@@ -1,0 +1,60 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      confirmed: "Vaše emailová adresa byla úspěšně verifikována."
+      send_instructions: "Během pár minut vám dorazí verifikační email."
+      send_paranoid_instructions: "Pokud máme Vaši emailovou adresu v databázi tak vám během chvilky dorazí verifikační email."
+    failure:
+      already_authenticated: "Už jste přihlášeni."
+      inactive: "Váš účet ještě není aktivován."
+      invalid: "Neplatné %{authentication_keys} nebo heslo."
+      locked: "Váš učet je zablokován."
+      last_attempt: "Máte ještě jeden pokus než se vám zablokuje účet."
+      not_found_in_database: "Neplatné %{authentication_keys} nebo heslo."
+      timeout: "Vaše přihlášení vypršelo. Prosím přihlašte se znovu."
+      unauthenticated: "Musíte se přihlásit nebo zaregistrovat abyste mohli pokračovat."
+      unconfirmed: "Musíte potvrdit vaši emailovou adresu abyste mohli pokračovat."
+    mailer:
+      confirmation_instructions:
+        subject: "Pokyny k ověření"
+      reset_password_instructions:
+        subject: "Pokyny k resetování hesla"
+      unlock_instructions:
+        subject: "Pokyny k odemknutí"
+    omniauth_callbacks:
+      failure: "Nemůžu vás potvrdit skrze %{kind} protože \"%{reason}\"."
+      success: "Přihlásili jste se úspěšně přes %{kind} účet."
+    passwords:
+      no_token: "Nemůžete sem. Použijte odkaz k resetování hesla v emailu, který vám došel. Pokud jste tento odkaz použili, zkontrolujte zda jste zadali správnou adresu do prohlížeče."
+      send_instructions: "Během pár minut vám dorazí email s pokyny jak resetovat heslo."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Vaše heslo bylo úspěšně resetováno. Jste přihlášeni."
+      updated_not_active: "Vaše heslo bylo úspěšně změněno."
+    registrations:
+      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
+      updated: "Your account has been updated successfully."
+    sessions:
+      signed_in: "Přihlášení proběhlo úspěšně."
+      signed_out: "Odhlášení proběhlo úspěšně."
+      already_signed_out: "Odhlásili jste se."
+    unlocks:
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "1 error prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:"

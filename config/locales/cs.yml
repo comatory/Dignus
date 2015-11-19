@@ -1,0 +1,10 @@
+cs:
+    home: 'Hlavní'
+    sign_in: 'Přihlásit se'
+    sign_out: 'Odhlásit se'
+    sign_up: 'Registrovat se'
+    email: 'Email'
+    password: 'Heslo'
+    characters_minimum: 'znaků minimum'
+    password_confirmation: 'Heslo znovu'
+
