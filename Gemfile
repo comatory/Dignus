@@ -39,6 +39,9 @@ gem 'autoprefixer-rails', '6.1.0'
 # DEVISE
 gem 'devise', '3.5.2'
 
+# PAPERCLIP
+gem "paperclip", "~> 4.3"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

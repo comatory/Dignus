@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
+
   def show
     @user = User.find_by(id: params[:id])
   end
@@ -11,6 +12,11 @@ class UsersController < ApplicationController
   def update
     user = User.find_by(id: current_user.id)
     user.update(location: safe_params[:location])
+
+    if safe_params[:avatar]
+      user.update(avatar: safe_params[:avatar])
+    end
+
     user.set_description(safe_params[:description])
     user.set_name(safe_params[:name])
     redirect_to user_path(user)
@@ -19,6 +25,6 @@ class UsersController < ApplicationController
   private
 
   def safe_params
-    params.require(:user).permit(:name, :description, :location)
+    params.require(:user).permit(:name, :description, :location, :avatar)
   end
 end

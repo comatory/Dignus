@@ -1,5 +1,8 @@
 <h1><%= @user.name %></h1>
 <h3><%= @user.role_name %></h3>
+<p>
+    <%= image_tag @user.avatar.url %>
+</p>
 <% if can_edit?(@user) %>
     <%= link_to "Edit", edit_user_path(current_user) %>
 <% end %>

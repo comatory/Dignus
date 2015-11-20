@@ -1,7 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_action :check_signup_params, only: [:new]
 
   def new
-    super
+      super
   end
 
   def create
@@ -37,6 +38,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     user_path(resource.id)
+  end
+
+  def check_signup_params
+    # handle agains `/users/sign_up` without correct params
+    unless params['user-type'] == 'organizer' || params['user-type'] == 'performer'
+      redirect_to root_path
+    end
   end
 
 end 
