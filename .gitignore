@@ -20,3 +20,4 @@
 .*.swo
 
 .DS_Store
+.content_types.txt

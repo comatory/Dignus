@@ -1,0 +1,15 @@
+<h1><%= @user.name %></h1>
+<h3><%= @user.role_name %></h3>
+<% if can_edit?(@user) %>
+    <%= link_to "Edit", edit_user_path(current_user) %>
+<% end %>
+<p>
+    <% unless @user.description.nil? %>
+        <div>
+            <%= @user.description %>
+        </div>
+        <div>
+            <%= @user.location %>
+        </div>
+    <% end %>
+</p>

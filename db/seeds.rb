@@ -19,20 +19,20 @@ end
 
 5.times do
 
-    u = User.create(email: Faker::Internet.email, password: password_digest, 
-                organizer: true, performer: false, organizer_name: Faker::Company.name,
-                organizer_description: Faker::Lorem.sentence(6), 
-                location: Faker::Address.city
+    o = User.create(email: Faker::Internet.email, password: password_digest, 
+                organizer: true, performer: false, location: Faker::Address.city
                )  
+    o.contents.create(role: 0, content_type: 1, content: Faker::Company.name)
+    o.contents.create(role: 0, content_type: 2, content: Faker::Lorem.sentence(2))
     
-    Event.create(user_id: u.id, name: Faker::Company.name + ' event', start: Faker::Time.forward(5),
+    Event.create(user_id: o.id, name: Faker::Company.name + ' event', start: Faker::Time.forward(5),
                  end: Faker::Time.forward(6), description: Faker::Lorem.sentence(3), venue: Faker::Company.name + ' club')
 
-    User.create(email: Faker::Internet.email, password: password_digest, 
-                organizer: false, performer: true, performer_name: Faker::Company.name,
-                performer_description: Faker::Lorem.sentence(6), 
-                location: Faker::Address.city
+    p = User.create(email: Faker::Internet.email, password: password_digest, 
+                organizer: false, performer: true, location: Faker::Address.city
                )  
+    p.contents.create(role: 1, content_type: 1, content: Faker::Name.name)
+    p.contents.create(role: 1, content_type: 2, content: Faker::Lorem.sentence(2))
 end
 
 puts "--- DB REPOPULATED ---"

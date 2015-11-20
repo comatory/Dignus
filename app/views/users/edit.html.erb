@@ -1,0 +1,17 @@
+<h1><%= @user.name %></h1>
+
+<%= form_tag({controller: "users", action: "update"}, method: "patch", class: "user-update-form") do %>
+    <div class="form-group">
+        <%= label_tag "Name" %>
+        <%= text_field_tag 'user[name]', @user.name, id: :user_name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= label_tag "Description" %>
+        <%= text_field_tag 'user[description]', @user.description, id: :user_description, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= label_tag "Location" %>
+        <%= text_field_tag 'user[location]', @user.location, id: :user_location, class: 'form-control' %>
+    </div>
+        <%= submit_tag "Save changes", class: 'btn btn-primary' %>
+<% end %>

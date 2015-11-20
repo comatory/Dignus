@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151119170048) do
+ActiveRecord::Schema.define(version: 20151120092109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "role"
+    t.integer  "content_type"
+    t.string   "content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,11 +55,8 @@ ActiveRecord::Schema.define(version: 20151119170048) do
     t.datetime "updated_at",                          null: false
     t.boolean  "organizer"
     t.boolean  "performer"
-    t.string   "organizer_name"
-    t.string   "performer_name"
-    t.string   "organizer_description"
-    t.string   "performer_description"
     t.string   "location"
+    t.integer  "content"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
