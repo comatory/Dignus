@@ -1,0 +1,9 @@
+<h1>Events</h1>
+
+<% if @events.any? %>
+    <ul>
+    <% @events.each do |event| %>
+        <li><%= event.name %> | <%= event.start %> | <%= event.venue %></li>
+    <% end %>
+    </ul>
+<% end %>

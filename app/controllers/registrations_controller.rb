@@ -7,14 +7,8 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    if params['user-type'] == 'organizer'
-      resource.update(organizer: true)
-      resource.update(performer: false)
-      resource.contents.create(role: 0, content_type: 1, content: params[:name])
-    elsif params['user-type'] == 'performer'
-      resource.update(organizer: false)
-      resource.update(performer: true)
-      resource.contents.create(role: 1, content_type: 1, content: params[:name])
+    if resource.save
+      set_user_role(resource)
     end
   end
 
@@ -45,6 +39,30 @@ class RegistrationsController < Devise::RegistrationsController
     unless params['user-type'] == 'organizer' || params['user-type'] == 'performer'
       redirect_to root_path
     end
+  end
+
+  private
+
+  def set_user_role(resource)
+    if params['user-type'] == 'organizer'
+      resource.update(organizer: true)
+      resource.update(performer: false)
+      name = resource.contents.create(role: 0, content_type: 1)
+    elsif params['user-type'] == 'performer'
+      resource.update(organizer: false)
+      resource.update(performer: true)
+      name = resource.contents.create(role: 1, content_type: 1)
+    end
+    name.update(content: set_default_user_name(resource))
+  end
+
+  def set_default_user_name(resource)
+    name_safe_params[:name].empty? ? resource.email : name_safe_params[:name]
+  end
+
+
+  def name_safe_params
+    params.require(:user).permit(:name)
   end
 
 end 

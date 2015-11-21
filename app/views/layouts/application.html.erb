@@ -10,9 +10,8 @@
 
 <%= render "shared/navbar" %>
 <div class="container">
+<%= flash_messages %>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 <%= yield %>
 
 <% if Rails.env.development? %>

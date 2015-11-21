@@ -8,19 +8,13 @@
 
 User.destroy_all
 Content.destroy_all
+Event.destroy_all
 
 puts "--- DB CLEANED ---"
 
-def password_digest
-  alpha = ('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a
-  password = []
-  8.times { password << alpha[rand(alpha.length - 1)]}
-  password.join()
-end
-
 5.times do
 
-    o = User.create(email: Faker::Internet.email, password: password_digest, 
+    o = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: true, performer: false, location: Faker::Address.city,
                )  
     o.contents.create(role: 0, content_type: 1, content: Faker::Company.name)
@@ -29,7 +23,7 @@ end
     Event.create(user_id: o.id, name: Faker::Company.name + ' event', start: Faker::Time.forward(5),
                  end: Faker::Time.forward(6), description: Faker::Lorem.sentence(3), venue: Faker::Company.name + ' club')
 
-    p = User.create(email: Faker::Internet.email, password: password_digest, 
+    p = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: false, performer: true, location: Faker::Address.city,
                )  
     p.contents.create(role: 1, content_type: 1, content: Faker::Name.name)
