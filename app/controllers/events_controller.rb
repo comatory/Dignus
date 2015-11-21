@@ -25,6 +25,9 @@ class EventsController < ApplicationController
   end
 
   def update
+    event = Event.find_by(user_id: params[:user_id], id: params[:id])
+    event.update(event_safe_params)
+    redirect_to user_event_path(event.user_id, event.id)
   end
 
   def index_all
