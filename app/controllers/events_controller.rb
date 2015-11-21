@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit]
+
   def new
     @event = Event.new
   end
@@ -6,16 +8,23 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_safe_params)
     @event.user_id = params[:user_id]
-    if @event.save!
-      binding.pry
+    if @event.save
       redirect_to user_event_path(@event.user_id, @event.id)
     else
+      flash[:alert] = @event.errors.full_messages
       render 'new'
     end
   end
 
   def show
     @event = Event.find_by(user_id: params[:user_id], id: params[:id])
+  end
+
+  def edit
+    @event = Event.find_by(user_id: params[:user_id], id: params[:id])
+  end
+
+  def update
   end
 
   def index_all

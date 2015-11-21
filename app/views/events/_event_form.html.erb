@@ -1,0 +1,49 @@
+<%= form_for event, url: user_events_path do |f| %>
+    
+    <div class="form-group">
+        <%= f.label 'Event name' %>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label 'Event description' %>
+        <%= f.text_field :description, class: 'form-control' %>
+    </div>
+
+    <div class='form-group input-group date' id='datetimepicker1'>
+        <%= f.text_field :start, class: 'form-control' %>
+        <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    <div class='form-group input-group date' id='datetimepicker2'>
+        <%= f.text_field :end, class: 'form-control' %>
+        <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label 'Venue' %>
+        <%= f.text_field :venue, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+    <%= f.submit "Add event", class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+          locale: 'en-gb',
+          format: 'YYYY-MM-DD HH:mm:SS'
+        });
+    });
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+          locale: 'en-gb',
+          format: 'YYYY-MM-DD HH:mm:SS'
+        });
+    });
+</script>
