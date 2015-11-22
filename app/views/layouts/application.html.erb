@@ -15,7 +15,9 @@
 <%= yield %>
 
 <% if Rails.env.development? %>
-    <div style="background-color: #eee; padding: 5px; margin: 20px; word-wrap: break-word;"><%= params %></div>
+    <div style="background-color: #eee; padding: 5px; margin: 20px; word-wrap: break-word;"><%= params %>
+    <p>Current user:<%= current_user.id if user_signed_in? %></p>
+</div>
 <% end %>
 
 </div>

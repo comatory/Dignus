@@ -42,8 +42,9 @@ class EventsController < ApplicationController
   end
 
   def authenticate_event_owner! 
-      unless current_user.organizer && current_user.id == params[:user_id]
-        redirect_to root_path
-      end
+    if params[:user_id].to_i != current_user.id 
+      redirect_to root_path
+    end
   end
+
 end
