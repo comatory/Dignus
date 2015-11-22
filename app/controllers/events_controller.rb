@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit]
+  before_action :authenticate_user!, only: [:edit, :new]
+  before_action :authenticate_event_owner!, only: [:edit, :new]
 
   def new
     @event = Event.new
@@ -38,5 +39,11 @@ class EventsController < ApplicationController
 
   def event_safe_params
     params.require(:event).permit(:name, :start, :end, :venue, :description)
+  end
+
+  def authenticate_event_owner! 
+      unless current_user.organizer && current_user.id == params[:user_id]
+        redirect_to root_path
+      end
   end
 end
