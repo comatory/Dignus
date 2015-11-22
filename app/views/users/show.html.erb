@@ -17,6 +17,15 @@
     <% end %>
 </p>
 
+<% if @user.invitations.any? && user_signed_in? %>
+    <h3>Invitations</h3>
+    <% @user.invitations.each do |invitation| %>
+    <ul>
+        <%= content_tag(:li, link_to("#{Event.find_by(id: invitation.event_id).name} | Sent: #{invitation.updated_at} | Accepted: #{invitation.accepted}", user_event_path(Event.find_by(id: invitation.event_id).user_id, invitation.event_id))) %>
+    </ul>
+    <% end %>
+<% end %>
+
 <% if @user.events.any? %>
     <h3>Events</h3>
     <% @user.events.each do |event| %>
