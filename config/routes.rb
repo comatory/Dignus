@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :events
   end
 
+  resources :invitations, only: [:create, :update, :destroy]
+
   get '/events' => 'events#index_all'
 
   root to: 'sites#index'

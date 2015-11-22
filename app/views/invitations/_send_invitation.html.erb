@@ -1,0 +1,10 @@
+<%= form_tag(controller: "invitations", action: "create", method: "post", class: "create_invitation") do %>
+    <!-- MAKE THIS MORE SECURE -->
+    <% if invitation_exists?(@event, current_user) %>
+        <%= submit_tag "Invitation sent", class: 'btn btn-primary disabled', disabled: true %>
+    <% else %>
+    <%= hidden_field_tag 'invitation[event_id]', params[:id] %>
+    <%= hidden_field_tag 'invitation[to]', params[:user_id] %>
+    <%= submit_tag "Send invitation", class: 'btn btn-primary' %>
+    <% end %>
+<% end %>

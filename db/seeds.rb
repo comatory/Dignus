@@ -9,6 +9,7 @@
 User.destroy_all
 Content.destroy_all
 Event.destroy_all
+Invitation.destroy_all
 
 puts "--- DB CLEANED ---"
 

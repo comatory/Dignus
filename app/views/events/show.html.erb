@@ -19,7 +19,7 @@
 </div>
 
 <% if current_user.performer %>
-    <p>Send invitation</p>
+    <%= render 'invitations/send_invitation' %>
 <% end %>
 
 <% if can_edit?(@event.user) %>
