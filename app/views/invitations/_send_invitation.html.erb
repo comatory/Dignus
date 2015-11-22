@@ -2,6 +2,8 @@
     <!-- MAKE THIS MORE SECURE -->
     <% if invitation_exists?(@event, current_user) %>
         <%= submit_tag "Invitation sent", class: 'btn btn-primary disabled', disabled: true %>
+    <% elsif current_user.already_invited?(@event) %>
+        <%= submit_tag "Invited", class: 'btn btn-success disabled', disabled: true %>
     <% else %>
     <%= hidden_field_tag 'invitation[event_id]', params[:id] %>
     <%= hidden_field_tag 'invitation[to]', params[:user_id] %>

@@ -17,13 +17,14 @@
     <% end %>
 </p>
 
-<% if @user.invitations.any? && user_signed_in? %>
+<% if user_signed_in? && can_edit?(@user)%>
     <h3>Invitations</h3>
-    <% @user.invitations.each do |invitation| %>
-    <ul>
-        <%= content_tag(:li, link_to("#{Event.find_by(id: invitation.event_id).name} | Sent: #{invitation.updated_at} | Accepted: #{invitation.accepted}", user_event_path(Event.find_by(id: invitation.event_id).user_id, invitation.event_id))) %>
-    </ul>
-    <% end %>
+
+    <h4>Inbox</h4>
+    <%= render 'invitations_inbox', invitations: @invitations_inbox %>
+
+    <h4>Outbox</h4>
+    <%= render 'invitations_outbox' %>
 <% end %>
 
 <% if @user.events.any? %>

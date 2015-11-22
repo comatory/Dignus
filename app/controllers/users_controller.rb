@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @invitations_inbox = Invitation.where(to: @user.id) 
   end
 
   def edit

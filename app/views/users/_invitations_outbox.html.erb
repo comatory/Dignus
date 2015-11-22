@@ -1,0 +1,9 @@
+<% if @user.invitations.any? %>
+    <ul>
+    <% @user.invitations.each do |invitation| %>
+        <%= content_tag(:li, link_to("#{User.find_by(id: invitation.to).name} | Sent: #{invitation.updated_at} | Accepted: #{invitation.accepted}", user_path(invitation.to))) %>
+    <% end %>
+    </ul>
+<% else %>
+    <p>You haven't sent any invitations yet</p>
+<% end %>

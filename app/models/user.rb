@@ -53,4 +53,8 @@ class User < ActiveRecord::Base
     self.contents.where(user_id: self.id, role: role) 
   end
 
+  def already_invited?(event)
+    Invitation.find_by(to: self.id, event_id: event.id)
+  end
+
 end

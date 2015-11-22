@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Invitation.destroy_all
 User.destroy_all
 Content.destroy_all
 Event.destroy_all
-Invitation.destroy_all
 
 puts "--- DB CLEANED ---"
 
@@ -29,6 +29,8 @@ puts "--- DB CLEANED ---"
                )  
     p.contents.create(role: 1, content_type: 1, content: Faker::Name.name)
     p.contents.create(role: 1, content_type: 2, content: Faker::Lorem.sentence(2))
+
+    o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false)
 end
 
 puts "--- DB REPOPULATED ---"
