@@ -18,6 +18,10 @@
     </p>
 </div>
 
+<% if current_user.performer %>
+    <p>Send invitation</p>
+<% end %>
+
 <% if can_edit?(@event.user) %>
     <%= link_to "Edit", edit_user_event_path(current_user, @event.id) %>
 <% end %>
