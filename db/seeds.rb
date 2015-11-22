@@ -30,7 +30,7 @@ puts "--- DB CLEANED ---"
     p.contents.create(role: 1, content_type: 1, content: Faker::Name.name)
     p.contents.create(role: 1, content_type: 2, content: Faker::Lorem.sentence(2))
 
-    o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false)
+    o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false)
 end
 
 puts "--- DB REPOPULATED ---"

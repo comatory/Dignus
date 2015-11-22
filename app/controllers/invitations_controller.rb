@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
 
   def create
-    invitation = Invitation.create(user_id: current_user.id, event_id: invitation_safe_params[:event_id], to: invitation_safe_params[:to], accepted: false)
+    invitation = Invitation.create(user_id: current_user.id, event_id: invitation_safe_params[:event_id], to: invitation_safe_params[:to], accepted: false, rejected: false)
     if invitation.save
       @event = Event.find_by(id: invitation.event_id)
       flash[:notice] = "Invitation sent."
@@ -12,9 +12,33 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def update
+    invitation = Invitation.find_by(id: invitation_safe_params[:invitation_id])
+    if invitation_safe_params[:accept] != nil
+      if invitation.update(accepted: invitation_safe_params[:accept])
+        flash[:notice] = "Invitation changed successfuly"
+        redirect_to user_path(params[:id])
+      else
+        flash[:notice] = "Invitation not changed"
+        redirect_to user_path(params[:id])
+      end
+    elsif invitation_safe_params[:reject] != nil
+      if invitation.update(rejected: invitation_safe_params[:reject])
+        flash[:notice] = "Invitation changed successfuly"
+        redirect_to user_path(params[:id])
+      else
+        flash[:notice] = "Invitation not changed"
+        redirect_to user_path(params[:id])
+      end
+    end
+  end
+
   private
 
   def invitation_safe_params
-    params.require(:invitation).permit(:event_id, :to)
+    # CHANGING DEFAULTS IN CASE STH BREAKS
+    #params.require(:invitation).permit(:event_id, :to)
+    params.require(:invitation).permit(:event_id, :to, :invitation_id, :accept, :reject)
   end
+
 end

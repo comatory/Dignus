@@ -24,7 +24,13 @@
     <%= render 'invitations_inbox', invitations: @invitations_inbox %>
 
     <h4>Outbox</h4>
-    <%= render 'invitations_outbox' %>
+    <%= render 'invitations_outbox', invitations: @invitations_outbox %>
+
+    <h4>Accepted</h4>
+    <%= render 'invitations_accepted', invitations: @invitations_accepted %>
+
+    <h4>Rejected</h4>
+    <%= render 'invitations_rejected', invitations: @invitations_rejected %>
 <% end %>
 
 <% if @user.events.any? %>

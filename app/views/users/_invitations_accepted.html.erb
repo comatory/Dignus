@@ -4,8 +4,6 @@
         <li>
             <%= link_to("#{User.find_by(id: invitation.user_id).name} | Sent: #{invitation.updated_at} | Accepted: #{invitation.accepted}", user_path(invitation.user_id)) %>
             <div class="event-confirm-buttons">
-                <%= render "invitation_accept", invitation_id: invitation.id %>
-                <%= render "invitation_reject", invitation_id: invitation.id %>
             </div>
         </li>
     <% end %>
