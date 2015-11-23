@@ -53,8 +53,28 @@ class User < ActiveRecord::Base
     self.contents.where(user_id: self.id, role: role) 
   end
 
+  def scheduled_performances
+    performances = []
+    invitations_created = Invitation.where(user_id: self.id, accepted: true)
+    invitations_received = Invitation.where(to: self.id, accepted: true)
+    invitations = invitations_created + invitations_received
+    invitations.each do |invitation|
+      performances << Event.where(id: invitation.event_id).where("start >= ?", DateTime.now)
+    end
+    return performances.flatten
+  end
+
   def already_invited?(event)
     Invitation.find_by(to: self.id, event_id: event.id)
+  end
+
+  def events_not_invited_to(user_id)
+    filtered_events = []
+    invitations = Invitation.where(user_id: self.id, to: user_id, accepted: true)
+    invitations.each do |invitation|
+      filtered_events << Event.find_by(user_id: self.id, id: invitation.event_id)
+    end
+    self.events - filtered_events 
   end
 
 end

@@ -4,7 +4,7 @@
     <%= image_tag @user.avatar.url %>
 </p>
 <% if can_edit?(@user) %>
-    <%= link_to "Edit", edit_user_path(current_user) %>
+    <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-warning' %>
 <% end %>
 <p>
     <% unless @user.description.nil? %>
@@ -17,7 +17,25 @@
     <% end %>
 </p>
 
-<% if current_user.organizer && params[:id].to_i != current_user.id && User.find_by(id: params[:id].to_i).performer %>
+<% if @user.events.any? %>
+    <h3>Events</h3>
+    <% @user.events.each do |event| %>
+    <ul>
+        <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+    </ul>
+    <% end %>
+<% end %>
+
+<% if @user.performer && @user.scheduled_performances.any? %>
+    <h3>Performances</h3>
+    <ul>
+        <% @user.scheduled_performances.each do |performance| %>
+            <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+        <% end %>
+    </ul>
+<% end %>
+
+<% if user_signed_in? && can_invite_to_event? %>
     <%= render "invitations/send_invitation_to_performer" %>
 <% end %>
 
@@ -43,11 +61,3 @@
     <%= render 'invitations_rejected', invitations: @invitations_rejected %>
 <% end %>
 
-<% if @user.events.any? %>
-    <h3>Events</h3>
-    <% @user.events.each do |event| %>
-    <ul>
-        <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-    </ul>
-    <% end %>
-<% end %>

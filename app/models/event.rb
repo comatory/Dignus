@@ -7,11 +7,12 @@ class Event < ActiveRecord::Base
 
   def performers
     performers = []
-    invitations = Invitation.where(event_id: self.id, accepted: true)
+    invitations = Invitation.where(event_id: self.id)
     invitations.each do |invitation|
-      performers << User.find_by(id: invitation.to)
+      performers << User.find_by(id: invitation.to, performer: true)
+      performers << User.find_by(id: invitation.user_id, performer: true)
     end
-    performers
+    performers.flatten.compact.uniq
   end
 
 end
