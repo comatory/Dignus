@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     redirect_to user_path(user)
   end
 
+  def index_performers
+    @performers = User.where(performer: true)
+  end
+
   private
 
   def safe_params

@@ -1,0 +1,9 @@
+<h1>Performers</h1>
+
+<% if @performers.any? %>
+    <ul>
+        <% @performers.each do |performer| %>
+            <%= content_tag(:li, link_to(performer.name, user_path(performer.id))) %>
+        <% end %>
+    </ul>
+<% end %>

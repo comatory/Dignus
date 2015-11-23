@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :invitations, only: [:create, :update, :destroy]
 
   get '/events' => 'events#index_all'
+  get '/performers' => 'users#index_performers'
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

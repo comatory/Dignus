@@ -13,7 +13,8 @@
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <%= content_tag(:li, (link_to "Events", events_path)) %>
+        <%= content_tag(:li, (link_to "Events", events_path)) %>
+        <%= content_tag(:li, (link_to "Performers", performers_path)) %>
         <% if user_signed_in? && current_user.organizer %>
         <%= content_tag(:li, (link_to "Add event", new_user_event_path(current_user)) ) %>
         <% end %>

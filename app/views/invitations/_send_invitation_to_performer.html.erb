@@ -1,0 +1,13 @@
+<%= form_tag({controller: "invitations", action: "create"}, method: "post", class: "create_invitation") do %>
+    <!-- MAKE THIS MORE SECURE -->
+    <!-- DISABLE JUST FOR SELECTIONS -->
+    <% if Invitation.find_by(to: params[:id].to_i, user_id: current_user.id) %>
+        <%= submit_tag "Invitation sent", class: 'btn btn-primary disabled', disabled: true %>
+    <%#<% elsif current_user.already_invited?(@event) %>%>
+        <%#<%= submit_tag "Invited", class: 'btn btn-success disabled', disabled: true %>%>
+    <% else %>
+    <%= hidden_field_tag 'invitation[to]', params[:id] %>
+    <%= select_tag 'invitation[event_id]', options_from_collection_for_select(current_user.events, 'id', 'name') %>
+    <%= submit_tag "Send invitation", class: 'btn btn-primary' %>
+    <% end %>
+<% end %>
