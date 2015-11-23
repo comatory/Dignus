@@ -1,0 +1,13 @@
+<% if invitations.any? %>
+    <ul>
+    <% invitations.each do |invitation| %>
+        <li>
+            <%= link_to("To: #{User.find_by(id: invitation.to).name} | Sent: #{invitation.updated_at} | Accepted: #{invitation.accepted}", user_path(invitation.user_id)) %>
+            <div class="event-confirm-buttons">
+            </div>
+        </li>
+    <% end %>
+    </ul>
+<% else %>
+   No confirmed invitations yet. 
+<% end %>

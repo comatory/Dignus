@@ -18,6 +18,15 @@
     </p>
 </div>
 
+<% if @performers.any? %>
+    <p><b>Performers: </b></p>
+    <div>
+        <% @performers.each do |performer| %>
+            <%= content_tag(:p, link_to(performer.name, user_path(performer.id))) %>
+        <% end %>
+    </div>
+<% end %>
+
 <% if current_user.performer %>
     <%= render 'invitations/send_invitation_to_organizer' %>
 <% end %>

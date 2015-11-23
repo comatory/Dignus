@@ -3,11 +3,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @invitations_confirmed = Invitation.where(user_id: @user.id, accepted: true) 
-    @invitations_inbox = Invitation.where(to: @user.id, accepted: false, rejected: false) 
-    @invitations_outbox = @user.invitations.where(accepted: false, rejected: false)
-    @invitations_accepted = Invitation.where(to: @user.id, accepted: true) 
-    @invitations_rejected = Invitation.where(to: @user.id, rejected: true) 
+    @invitations_confirmed = Invitation.confirmed(@user.id) 
+    @invitations_turned_down = Invitation.turned_down(@user.id)
+    @invitations_inbox = Invitation.inbox(@user.id) 
+    @invitations_outbox = Invitation.outbox(@user.id) 
+    @invitations_accepted = Invitation.accepted(@user.id) 
+    @invitations_rejected = Invitation.rejected(@user.id) 
 
   end
 

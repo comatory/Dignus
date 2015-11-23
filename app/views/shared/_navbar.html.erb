@@ -20,7 +20,7 @@
         <% end %>
 
         <% if user_signed_in? %>
-        <%= content_tag(:li, (link_to "Profile", user_path(current_user)) ) %>
+            <li><%= content_tag(:a, "Profile", href: user_path(current_user.id), id: 'profile-link') %><%= content_tag(:span, invitations_count, class: 'badge') if invitations_count > 0 %></li>
         <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete) ) %>
         <% else %>
         <%= content_tag( :li, link_to((I18n.t :sign_in), new_user_session_path) ) %>
