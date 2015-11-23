@@ -24,6 +24,9 @@
 <% if user_signed_in? && can_edit?(@user)%>
     <h3>Invitations</h3>
 
+    <h4>Confirmed</h4>
+    <%= render 'invitations_confirmed', invitations: @invitations_confirmed %>
+
     <h4>Inbox</h4>
     <%= render 'invitations_inbox', invitations: @invitations_inbox %>
 
