@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
 
   def events_not_invited_to(user_id)
     filtered_events = []
-    invitations = Invitation.where(user_id: self.id, to: user_id, accepted: true)
+    invitations = Invitation.where(user_id: self.id, to: user_id)
     invitations.each do |invitation|
       filtered_events << Event.find_by(user_id: self.id, id: invitation.event_id)
     end
