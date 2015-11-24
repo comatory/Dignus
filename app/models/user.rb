@@ -53,15 +53,34 @@ class User < ActiveRecord::Base
     self.contents.where(user_id: self.id, role: role) 
   end
 
-  def scheduled_performances
-    performances = []
+  def performer_invitations
     invitations_created = Invitation.where(user_id: self.id, accepted: true)
     invitations_received = Invitation.where(to: self.id, accepted: true)
-    invitations = invitations_created + invitations_received
-    invitations.each do |invitation|
+    invitations_created + invitations_received
+  end
+
+  def scheduled_performances
+    performances = []
+    performer_invitations.each do |invitation|
       performances << Event.where(id: invitation.event_id).where("start >= ?", DateTime.now)
     end
-    return performances.flatten
+    performances.flatten
+  end
+
+  def past_performances
+    performances = []
+    performer_invitations.each do |invitation|
+      performances << Event.where(id: invitation.event_id).where("end < ?", DateTime.now)
+    end
+    performances.flatten
+  end
+
+  def scheduled_events
+    self.events.where("start >= ?", DateTime.now)
+  end
+
+  def past_events
+    self.events.where("end >= ?", DateTime.now)
   end
 
   def already_invited?(event)

@@ -57,14 +57,23 @@
               <div class="tab-content">
 
                   <div role="tabpanel" class="tab-pane active" id="events-future">
-                        <% @user.events.each do |event| %>
-                        <ul>
-                            <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-                        </ul>
+                      <% if @user.scheduled_events.any? %>
+                            <% @user.scheduled_events.each do |event| %>
+                            <ul>
+                                <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+                            </ul>
+                            <% end %>
                         <% end %>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="events-past">
+                      <% if @user.past_events.any? %>
+                            <% @user.past_events.each do |event| %>
+                            <ul>
+                                <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+                            </ul>
+                            <% end %>
+                        <% end %>
                   </div>
 
               </div>
@@ -72,7 +81,7 @@
             </div> 
         <% end %>
 
-        <% if @user.performer && @user.scheduled_performances.any? %>
+        <% if @user.performer %>
             <div>
               <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
@@ -83,15 +92,23 @@
               <div class="tab-content">
 
                   <div role="tabpanel" class="tab-pane active" id="performances-future">
+                      <% if @user.scheduled_performances.any? %>
                         <ul>
                             <% @user.scheduled_performances.each do |performance| %>
                                 <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
                             <% end %>
                         </ul>
+                    <% end %>
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="performances-past">
-                      This is past
+                      <% if @user.past_performances.any? %>
+                        <ul>
+                            <% @user.past_performances.each do |performance| %>
+                                <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                            <% end %>
+                        </ul>
+                    <% end %>
                   </div>
 
               </div>
