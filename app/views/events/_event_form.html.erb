@@ -10,6 +10,11 @@
         <%= f.text_field :description, class: 'form-control' %>
     </div>
 
+    <div class="form-group">
+        <%= f.label 'Poster' %>
+        <%= f.file_field :poster %>
+    </div>
+
     <%= f.label 'Start time' %>
     <div class='form-group input-group date' id='datetimepicker1'>
         <%= f.text_field :start_time, class: 'form-control' %>
