@@ -1,4 +1,4 @@
-<%= form_tag({controller: "invitations", action: "update"}, method: "patch", class: "invitation") do %>
+<%= form_tag({controller: "invitations", action: "update"}, method: "patch", class: "invitations") do %>
     <%= submit_tag "Accept", class: 'btn btn-success' %>
     <%= hidden_field_tag 'invitation[invitation_id]', invitation_id %>
     <%= hidden_field_tag 'invitation[accept]', true %>

@@ -39,25 +39,28 @@
     <%= render "invitations/send_invitation_to_performer" %>
 <% end %>
 
-<% if user_signed_in? && can_edit?(@user)%>
-    <h3>Invitations</h3>
 
-    <h4>Confirmed</h4>
-    <%= render 'invitations_confirmed', invitations: @invitations_confirmed %>
 
-    <h4>Turned down</h4>
-    <%= render 'invitations_turned_down', invitations: @invitations_turned_down %>
+<% if user_signed_in? && can_edit?(@user) %>
 
-    <h4>Inbox</h4>
-    <%= render 'invitations_inbox', invitations: @invitations_inbox %>
+  <h3>Invitations</h3>
 
-    <h4>Outbox</h4>
-    <%= render 'invitations_outbox', invitations: @invitations_outbox %>
+  <h4>Confirmed</h4>
+  <%= render 'invitations_confirmed', invitations: @invitations_confirmed %>
 
-    <h4>Accepted</h4>
-    <%= render 'invitations_accepted', invitations: @invitations_accepted %>
+  <h4>Turned down</h4>
+  <%= render 'invitations_turned_down', invitations: @invitations_turned_down %>
 
-    <h4>Rejected</h4>
-    <%= render 'invitations_rejected', invitations: @invitations_rejected %>
+  <h4>Inbox</h4>
+  <%= render 'invitations_inbox', invitations: @invitations_inbox %>
+
+  <h4>Outbox</h4>
+  <%= render 'invitations_outbox', invitations: @invitations_outbox %>
+
+  <h4>Accepted</h4>
+  <%= render 'invitations_accepted', invitations: @invitations_accepted %>
+
+  <h4>Rejected</h4>
+  <%= render 'invitations_rejected', invitations: @invitations_rejected %>
+
 <% end %>
-

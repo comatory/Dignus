@@ -23,14 +23,18 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+                <% if user_signed_in? %>
+                    <%= content_tag(:li, link_to("Profile", user_path(current_user.id))) %>
+                <% end %>
+
                 <% if user_signed_in? && current_user.organizer %>
                 <%= content_tag(:li, (link_to "Add event", new_user_event_path(current_user)) ) %>
                 <% end %>
 
                 <% if user_signed_in? %>
-                    <%= content_tag(:li, link_to("Profile", user_path(current_user.id))) %>
-                <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete) ) %>
+                    <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete) ) %>
                 <% end %>
+
             </ul>
         </li>
         <% else %>

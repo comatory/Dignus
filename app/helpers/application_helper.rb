@@ -18,8 +18,11 @@ module ApplicationHelper
     end
   end
 
+  # used for rendering elements in page
   def can_edit?(user)
     user == current_user
   end
+
+
 
 end
