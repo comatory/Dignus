@@ -98,8 +98,8 @@ events = [
     o.contents.create(role: 0, content_type: 2, content: organizers[i][:description])
     o.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
     
-    Event.create(user_id: o.id, name: events[i][:name], start: Faker::Time.forward(5),
-                 end: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location])
+    Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
+                 end_time: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location])
 
     p = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: false, performer: true, location: performers[i][:location],

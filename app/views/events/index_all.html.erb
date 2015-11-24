@@ -3,7 +3,7 @@
 <% if @events.any? %>
     <ul>
     <% @events.each do |event| %>
-        <%= content_tag(:li, link_to("#{event.name} | #{event.start} | #{event.venue}", user_event_path(event.user_id, event.id))) %>
+        <%= content_tag(:li, link_to("#{event.name} | #{event.start_time} | #{event.venue}", user_event_path(event.user_id, event.id))) %>
     <% end %>
     </ul>
 <% end %>

@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   def scheduled_performances
     performances = []
     performer_invitations.each do |invitation|
-      performances << Event.where(id: invitation.event_id).where("start >= ?", DateTime.now)
+      performances << Event.where(id: invitation.event_id).where("start_time >= ?", DateTime.now)
     end
     performances.flatten
   end
@@ -70,17 +70,17 @@ class User < ActiveRecord::Base
   def past_performances
     performances = []
     performer_invitations.each do |invitation|
-      performances << Event.where(id: invitation.event_id).where("end < ?", DateTime.now)
+      performances << Event.where(id: invitation.event_id).where("end_time < ?", DateTime.now)
     end
     performances.flatten
   end
 
   def scheduled_events
-    self.events.where("start >= ?", DateTime.now)
+    self.events.where("start_time >= ?", DateTime.now)
   end
 
   def past_events
-    self.events.where("end >= ?", DateTime.now)
+    self.events.where("end_time < ?", DateTime.now)
   end
 
   def already_invited?(event)

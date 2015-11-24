@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   private
 
   def event_safe_params
-    params.require(:event).permit(:name, :start, :end, :venue, :description)
+    params.require(:event).permit(:name, :start_time, :end_time, :venue, :description)
   end
 
   def authenticate_event_owner! 
