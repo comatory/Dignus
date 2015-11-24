@@ -1,9 +1,20 @@
 <h1>Performers</h1>
 
 <% if @performers.any? %>
-    <ul>
-        <% @performers.each do |performer| %>
-            <%= content_tag(:li, link_to(performer.name, user_path(performer.id))) %>
-        <% end %>
-    </ul>
+    <table class="table table-hover">
+        <thead>
+            <th></th>
+            <th>Name</th>
+            <th>Location</th>
+        </thead>
+        <tbody>
+            <% @performers.each do |performer| %>
+                <tr>
+                    <td><%= link_to(image_tag(performer.avatar.url(:thumb)), user_path(performer.id)) %></td>
+                    <td><%= link_to(performer.name, user_path(performer.id)) %></td>
+                    <td><%= performer.location %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 <% end %>

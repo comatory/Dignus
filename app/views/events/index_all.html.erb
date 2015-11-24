@@ -1,10 +1,24 @@
 <h1>Events</h1>
 
-"Whatsup"
 <% if @events.any? %>
-    <ul>
-    <% @events.each do |event| %>
-        <%= content_tag(:li, link_to("#{event.name} | #{event.start_time} | #{event.venue}", user_event_path(event.user_id, event.id))) %>
-    <% end %>
-    </ul>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start</th>
+                <th>Venue</th>
+                <th>Organizer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @events.each do |event| %>
+                <tr>
+                    <td><%= link_to("#{event.name}", user_event_path(event.user_id, event.id)) %></td>
+                    <td><%= event.start_time %></td>
+                    <td><%= event.venue %></td>
+                    <td><%= link_to("#{User.find_by(id: event.user_id).name}", user_path(event.user_id)) %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
 <% end %>
