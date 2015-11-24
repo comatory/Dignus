@@ -65,48 +65,56 @@ events = [
   {
     "name": "Crush your bones",
     "description": "This will be great showcase of some great bands.",
-    "location": "Rocksound, Almogàvers, 116, 08018, Barcelona, Spain"
+    "location": "Rocksound, Almogàvers, 116, 08018, Barcelona, Spain",
+    "image": "11.png"
   },
   {
     "name": "Soul Marmelade",
     "description": "Come for some smooth sounds.",
-    "location": "6380 Fallsview Blvd, Niagara Falls, ON L2G, Canada"
+    "location": "6380 Fallsview Blvd, Niagara Falls, ON L2G, Canada",
+    "image": "12.png"
   },
   {
     "name": "Night Shift",
     "description": "Amsterdam's best residents, spinning the decks.",
-    "location": "Sugarfactory, Lijnbaansgracht 238, 1017 Amsterdam"
+    "location": "Sugarfactory, Lijnbaansgracht 238, 1017 Amsterdam",
+    "image": "13.png"
   },
   {
     "name": "Headbanging vol. 12",
     "description": "Come and have some fun in the moshpit.",
-    "location": "ArteFAQ, Ul. Bol. Dmitrovka 32, Moscow"
+    "location": "ArteFAQ, Ul. Bol. Dmitrovka 32, Moscow",
+    "image": "14.png"
   },
   {
     "name": "ZHX3204",
     "description": "Only robots invited.",
-    "location": "Zouk Klub, 436, Jalan Tun Razak, 50400 Kuala Lumpur"
+    "location": "Zouk Klub, 436, Jalan Tun Razak, 50400 Kuala Lumpur",
+    "image": "15.png"
   },
 ]
 
 5.times do |i|
-
-    o = User.create(email: Faker::Internet.email, password: "12345678", 
-                organizer: true, performer: false, location: organizers[i][:location],
-               )  
-    o.contents.create(role: 0, content_type: 1, content: organizers[i][:name])
-    o.contents.create(role: 0, content_type: 2, content: organizers[i][:description])
-    o.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
-    
-    Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
-                 end_time: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location])
 
     p = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: false, performer: true, location: performers[i][:location],
                )  
     p.contents.create(role: 1, content_type: 1, content: performers[i][:name])
     p.contents.create(role: 1, content_type: 2, content: performers[i][:description])
-    p.update(avatar: File.new("#{Rails.root}/faker/#{organizers[i][:image]}"))
+    p.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
+
+    o = User.create(email: Faker::Internet.email, password: "12345678", 
+                organizer: true, performer: false, location: organizers[i][:location],
+               )  
+    o.contents.create(role: 0, content_type: 1, content: organizers[i][:name])
+    o.contents.create(role: 0, content_type: 2, content: organizers[i][:description])
+    o.update(avatar: File.new("#{Rails.root}/faker/#{organizers[i][:image]}"))
+    
+    Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
+                 end_time: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location],
+                 poster: File.new("#{Rails.root}/faker/#{events[i][:image]}")
+                )
+
 
     o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false)
 end

@@ -14,7 +14,7 @@
         <tbody>
             <% @events.each do |event| %>
                 <tr>
-                    <td><%= image_tag(event.poster.url(:thumb)) %></td>
+                    <td><%= link_to(image_tag(event.poster.url(:thumb)), user_event_path(event.user_id, event.id)) %></td>
                     <td><%= link_to("#{event.name}", user_event_path(event.user_id, event.id)) %></td>
                     <td><%= event.start_time %></td>
                     <td><%= event.venue %></td>

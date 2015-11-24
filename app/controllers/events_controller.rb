@@ -20,6 +20,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find_by(user_id: params[:user_id], id: params[:id])
     @performers = @event.performers
+    @organizer = User.find_by(id: @event.user_id)
   end
 
   def edit
@@ -33,7 +34,7 @@ class EventsController < ApplicationController
   end
 
   def index_all
-    @events = Event.all
+    @events = Event.all.where("start_time >= ?", DateTime.now)
   end
 
   private

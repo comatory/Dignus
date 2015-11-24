@@ -1,43 +1,56 @@
 <h1><%= @event.name %></h1>
 
+<div class="row">
 
-<div>
-    <b>Venue: </b><%= @event.venue %>
-</div>
-
-<div>
-    <%= @event.description %>
-</div>
-
-<div>
-    <%= image_tag(@event.poster.url) %>
-</div>
-
-<div>
-    <p>
-        <b>Start time:</b> <%= @event.start_time %>
-    </p>
-    <p>
-        <b>End time:</b> <%= @event.end_time %>
-    </p>
-</div>
-
-<% if @performers.any? %>
-    <p><b>Performers: </b></p>
-    <div>
-        <% @performers.each do |performer| %>
-            <%= content_tag(:p, link_to(performer.name, user_path(performer.id))) %>
-        <% end %>
+    <div class="col-md-6">
+        <div>
+            <%= image_tag(@event.poster.url(:medium)) %>
+        </div>
     </div>
-<% end %>
 
-<% if user_signed_in? %>
-    <% if current_user.performer %>
-        <%= render 'invitations/send_invitation_to_organizer' %>
-    <% end %>
+    <div class="col-md-6">
 
-    <% if can_edit?(@event.user) %>
-        <%= link_to "Edit", edit_user_event_path(current_user, @event.id) %>
-    <% end %>
-<% end %>
+        <div>
+            <b>Venue: </b><%= @event.venue %>
+        </div>
+
+        <div>
+            <b>Organizer: </b><%= link_to(@organizer.name, user_path(@organizer.id)) %>
+        </div>
+
+        <div>
+            <%= @event.description %>
+        </div>
+
+
+        <div>
+            <p>
+                <b>Start time:</b> <%= @event.start_time %>
+            </p>
+            <p>
+                <b>End time:</b> <%= @event.end_time %>
+            </p>
+        </div>
+
+        <% if @performers.any? %>
+            <p><b>Performers: </b></p>
+            <div>
+                <% @performers.each do |performer| %>
+                    <%= content_tag(:p, link_to(performer.name, user_path(performer.id))) %>
+                <% end %>
+            </div>
+        <% end %>
+
+        <% if user_signed_in? %>
+            <% if current_user.performer %>
+                <%= render 'invitations/send_invitation_to_organizer' %>
+            <% end %>
+
+            <% if can_edit?(@event.user) %>
+                <%= link_to "Edit", edit_user_event_path(current_user, @event.id) %>
+            <% end %>
+        <% end %>
+
+    </div>
+</div>
 
