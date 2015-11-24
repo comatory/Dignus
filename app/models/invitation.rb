@@ -3,6 +3,17 @@ class Invitation < ActiveRecord::Base
   validates :user_id, presence: true
   validates :to, presence: true
 
+  def self.generate_admin_data(user_id)
+    {
+      confirmed: self.confirmed(user_id),
+      turned_down: self.turned_down(user_id),
+      inbox: self.inbox(user_id),
+      outbox: self.outbox(user_id),
+      accepted: self.accepted(user_id),
+      rejected: self.rejected(user_id)
+    }
+  end
+
   def self.confirmed(user_id)
     self.where(user_id: user_id, accepted: true)
   end

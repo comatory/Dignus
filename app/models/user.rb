@@ -53,6 +53,17 @@ class User < ActiveRecord::Base
     self.contents.where(user_id: self.id, role: role)
   end
 
+  def generate_user_data
+    {
+      performances: {
+        scheduled: scheduled_performances,
+        past: past_performances },
+      events: {
+          scheduled: scheduled_events,
+          past: past_events }
+    }
+  end
+
   def performer_invitations
     invitations_created = Invitation.where(user_id: self.id, accepted: true)
     invitations_received = Invitation.where(to: self.id, accepted: true)

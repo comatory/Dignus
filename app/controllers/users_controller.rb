@@ -3,12 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @invitations_confirmed = Invitation.confirmed(@user.id)
-    @invitations_turned_down = Invitation.turned_down(@user.id)
-    @invitations_inbox = Invitation.inbox(@user.id)
-    @invitations_outbox = Invitation.outbox(@user.id)
-    @invitations_accepted = Invitation.accepted(@user.id)
-    @invitations_rejected = Invitation.rejected(@user.id)
+    @user_data = @user.generate_user_data
+    @admin_data = Invitation.generate_admin_data(@user.id)
   end
 
   def edit

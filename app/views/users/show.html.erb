@@ -46,7 +46,7 @@
     </div>
 
     <div class="col-md-6">
-        <% if @user.events.any? %>
+        <% if @user.organizer %>
             <div>
               <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
@@ -57,8 +57,8 @@
               <div class="tab-content">
 
                   <div role="tabpanel" class="tab-pane active" id="events-future">
-                      <% if @user.scheduled_events.any? %>
-                            <% @user.scheduled_events.each do |event| %>
+                      <% if @user_data[:events][:scheduled].any? %>
+                            <% @user_data[:events][:scheduled].each do |event| %>
                             <ul>
                                 <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
                             </ul>
@@ -67,8 +67,8 @@
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="events-past">
-                      <% if @user.past_events.any? %>
-                            <% @user.past_events.each do |event| %>
+                      <% if @user_data[:events][:past].any? %>
+                            <% @user_data[:events][:past].each do |event| %>
                             <ul>
                                 <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
                             </ul>
@@ -92,9 +92,9 @@
               <div class="tab-content">
 
                   <div role="tabpanel" class="tab-pane active" id="performances-future">
-                      <% if @user.scheduled_performances.any? %>
+                      <% if @user_data[:performances][:scheduled].any? %>
                         <ul>
-                            <% @user.scheduled_performances.each do |performance| %>
+                            <% @user_data[:performances][:scheduled].each do |performance| %>
                                 <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
                             <% end %>
                         </ul>
@@ -102,9 +102,9 @@
                   </div>
 
                   <div role="tabpanel" class="tab-pane" id="performances-past">
-                      <% if @user.past_performances.any? %>
+                      <% if @user_data[:performances][:past].any? %>
                         <ul>
-                            <% @user.past_performances.each do |performance| %>
+                            <% @user_data[:performances][:past].each do |performance| %>
                                 <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
                             <% end %>
                         </ul>
@@ -143,28 +143,28 @@
           <div role="tabpanel" class="tab-pane active" id="mine">
               <h4>Accepted</h4>
               <sub>Invitations I accepted</sub>
-              <%= render 'invitations_accepted', invitations: @invitations_accepted %>
+              <%= render 'invitations_accepted', invitations: @admin_data[:accepted] %>
               <h4>Turned down</h4>
               <sub>Invitations I turned down</sub>
-              <%= render 'invitations_turned_down', invitations: @invitations_turned_down %>
+              <%= render 'invitations_turned_down', invitations: @admin_data[:turned_down] %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="inbox">
               <h4>Invitations</h4>
               <sub>Invitations sent to you</sub>
-              <%= render 'invitations_inbox', invitations: @invitations_inbox %>
+              <%= render 'invitations_inbox', invitations: @admin_data[:inbox] %>
               <h4>Confirmed</h4>
               <sub>Invitations confirmed by others</sub>
-              <%= render 'invitations_confirmed', invitations: @invitations_confirmed %>
+              <%= render 'invitations_confirmed', invitations: @admin_data[:confirmed] %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">
               <h4>Outbox</h4>
               <sub>Invitations I sent</sub>
-              <%= render 'invitations_outbox', invitations: @invitations_outbox %>
+              <%= render 'invitations_outbox', invitations: @admin_data[:outbox] %>
               <h4>Rejected</h4>
               <sub>Invitations others rejected</sub>
-              <%= render 'invitations_rejected', invitations: @invitations_rejected %>
+              <%= render 'invitations_rejected', invitations: @admin_data[:rejected] %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="archive">
