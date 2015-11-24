@@ -1,10 +1,10 @@
 <%= form_tag({controller: "invitations", action: "create"}, method: "post", class: "create_invitation") do %>
     <%= hidden_field_tag 'invitation[to]', params[:id] %>
-        <% if current_user.events.length > 0 %>
-            <%= select_tag 'invitation[event_id]', options_from_collection_for_select(current_user.events_not_invited_to(params[:id].to_i), 'id', 'name') %>
+        <% if current_user.events.length > 0 && @invitation_event_list.length > 0 %>
+            <%= select_tag 'invitation[event_id]', options_from_collection_for_select(@invitation_event_list, 'id', 'name') %>
             <%= submit_tag "Send invitation", class: 'btn btn-primary' %>
         <% else %>
-            <p>You have no events. <%= link_to("Create one", new_user_event_path(current_user.id))%></p>
+            <p>You have no events which you can invite this user to. <%= link_to("Create one", new_user_event_path(current_user.id))%></p>
             <%= submit_tag "Send invitation", class: 'btn btn-primary disabled', disabled: true %>
         <% end %>
 <% end %>

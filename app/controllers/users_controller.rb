@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @user_data = @user.generate_user_data
+    @invitation_event_list = current_user.events_not_invited_to(params[:id].to_i)
     @admin_data = Invitation.generate_admin_data(@user.id)
   end
 

@@ -106,7 +106,7 @@ events = [
                )  
     p.contents.create(role: 1, content_type: 1, content: performers[i][:name])
     p.contents.create(role: 1, content_type: 2, content: performers[i][:description])
-    p.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
+    p.update(avatar: File.new("#{Rails.root}/faker/#{organizers[i][:image]}"))
 
     o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false)
 end

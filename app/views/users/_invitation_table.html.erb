@@ -1,0 +1,39 @@
+<% if invitations.any? %>
+    <table class="table">
+        <thead>
+            <tr><th><%= th_text %></th><th>Event</th><th>Sent</th></tr>
+        </thead>
+        <tbody>
+    <% invitations.each do |invitation| %>
+        <tr>
+            <td>
+                <% if from %>
+                <%= link_to("#{User.find_by(id: invitation.user_id).name}", user_path(invitation.user_id)) %>
+                <% else %>
+                <%= link_to("#{User.find_by(id: invitation.to).name}", user_path(invitation.to)) %>
+                <% end %>
+            </td>
+            <td>
+                <% if from %>
+                <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.user_id, invitation.event_id)) %>
+                <% else %>
+                <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.to, invitation.event_id)) %>
+                <% end %>
+            </td>
+            <td>
+                <%= invitation.updated_at %>
+            </td>
+            <% if buttons %>
+            <td>
+                <div class="event-confirm-buttons">
+                    <%= render "invitation_accept", invitation_id: invitation.id %> <%= render "invitation_reject", invitation_id: invitation.id %>
+                </div>
+            </td>
+            <% end %>
+        </tr>
+    <% end %>
+        </tbody>
+    </table>
+<% else %>
+    <p>Inbox empty.</p>
+<% end %>

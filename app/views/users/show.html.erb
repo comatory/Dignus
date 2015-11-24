@@ -143,28 +143,28 @@
           <div role="tabpanel" class="tab-pane active" id="mine">
               <h4>Accepted</h4>
               <sub>Invitations I accepted</sub>
-              <%= render 'invitations_accepted', invitations: @admin_data[:accepted] %>
-              <h4>Turned down</h4>
-              <sub>Invitations I turned down</sub>
-              <%= render 'invitations_turned_down', invitations: @admin_data[:turned_down] %>
+                <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:accepted], buttons: false %>
+              <h4>Rejected</h4>
+              <sub>Invitations I rejected</sub>
+            <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:rejected], buttons: false %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="inbox">
               <h4>Invitations</h4>
               <sub>Invitations sent to you</sub>
-              <%= render 'invitations_inbox', invitations: @admin_data[:inbox] %>
+                <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:inbox], buttons: true %>
               <h4>Confirmed</h4>
               <sub>Invitations confirmed by others</sub>
-              <%= render 'invitations_confirmed', invitations: @admin_data[:confirmed] %>
+                <%= render "users/invitation_table", from: false, th_text: "From", invitations: @admin_data[:confirmed], buttons: false%>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">
               <h4>Outbox</h4>
               <sub>Invitations I sent</sub>
-              <%= render 'invitations_outbox', invitations: @admin_data[:outbox] %>
-              <h4>Rejected</h4>
-              <sub>Invitations others rejected</sub>
-              <%= render 'invitations_rejected', invitations: @admin_data[:rejected] %>
+            <%= render "users/invitation_table", from: false, th_text: "To",  invitations: @admin_data[:outbox], buttons: false %>
+              <h4>Turned down</h4>
+              <sub>My invitations others turned down</sub>
+            <%= render "users/invitation_table", from: false, th_text: "To", invitations: @admin_data[:turned_down], buttons: false%>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="archive">

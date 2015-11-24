@@ -5,7 +5,13 @@ class InvitationsController < ApplicationController
     if invitation.save
       @event = Event.find_by(id: invitation.event_id)
       flash[:notice] = "Invitation sent."
-      redirect_to user_event_path(@event.user_id, @event.id)
+
+      if current_user.organizer
+        redirect_to user_path(invitation.to)
+      else
+        redirect_to user_event_path(invitation.to, invitation.event_id)
+      end
+
     else
       flash[:alert] = "Invitation not sent."
       redirect_to root_path
