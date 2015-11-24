@@ -1,40 +1,107 @@
 <h1><%= @user.name %></h1>
 <h3><%= @user.role_name %></h3>
-<p>
-    <%= image_tag @user.avatar.url %>
-</p>
-<% if can_edit?(@user) %>
-    <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-warning' %>
-<% end %>
-<p>
-    <% unless @user.description.nil? %>
-        <div>
-            <%= @user.description %>
-        </div>
-        <div>
-            <%= @user.location %>
-        </div>
-    <% end %>
-</p>
 
-<% if @user.events.any? %>
-    <h3>Events</h3>
-    <% @user.events.each do |event| %>
-    <ul>
-        <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-    </ul>
-    <% end %>
-<% end %>
+<div class="row">
+    <div class="col-md-6">
+        <%= image_tag @user.avatar.url, class: "profile-avatar" %>
+    </div>
 
-<% if @user.performer && @user.scheduled_performances.any? %>
-    <h3>Performances</h3>
-    <ul>
-        <% @user.scheduled_performances.each do |performance| %>
-            <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+    <div class="col-md-6">
+        <div class="profile-description">
+            <% unless @user.description.nil? %>
+                <div>
+                    <%= @user.description %>
+                </div>
+                <div>
+                    <%= @user.location %>
+                </div>
+            <% end %>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="audioplayer">
+                    Audioplayer here
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="edit">
+                    <% if can_edit?(@user) %>
+                        <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-warning' %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        Photogallery here
+    </div>
+
+    <div class="col-md-6">
+        <% if @user.events.any? %>
+            <div>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#events-future" aria-controls="mine" role="tab" data-toggle="tab">Organizing</a></li>
+                <li role="presentation"><a href="#inbox" aria-controls="events-past" role="tab" data-toggle="tab">Organized</a></li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+
+                  <div role="tabpanel" class="tab-pane active" id="events-future">
+                        <% @user.events.each do |event| %>
+                        <ul>
+                            <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+                        </ul>
+                        <% end %>
+                  </div>
+
+                  <div role="tabpanel" class="tab-pane" id="events-past">
+                  </div>
+
+              </div>
+
+            </div> 
         <% end %>
-    </ul>
-<% end %>
 
+        <% if @user.performer && @user.scheduled_performances.any? %>
+            <div>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#performances-future" aria-controls="performances-future" role="tab" data-toggle="tab">Performing</a></li>
+                <li role="presentation"><a href="#performances-past" aria-controls="performances-past" role="tab" data-toggle="tab">Performed</a></li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+
+                  <div role="tabpanel" class="tab-pane active" id="performances-future">
+                        <ul>
+                            <% @user.scheduled_performances.each do |performance| %>
+                                <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                            <% end %>
+                        </ul>
+                  </div>
+
+                  <div role="tabpanel" class="tab-pane" id="performances-past">
+                      This is past
+                  </div>
+
+              </div>
+
+            </div> 
+        <% end %>
+
+            </div>
+
+</div>
 <% if user_signed_in? && can_invite_to_event? %>
     <%= render "invitations/send_invitation_to_performer" %>
 <% end %>
@@ -42,25 +109,52 @@
 
 
 <% if user_signed_in? && can_edit?(@user) %>
+    <h3>Dashboard</h3>
+    <div>
 
-  <h3>Invitations</h3>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#mine" aria-controls="mine" role="tab" data-toggle="tab">Mine</a></li>
+        <li role="presentation"><a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
+        <li role="presentation"><a href="#outbox" aria-controls="outbox" role="tab" data-toggle="tab">Outbox</a></li>
+        <li role="presentation"><a href="#archive" aria-controls="archive" role="tab" data-toggle="tab">Archive</a></li>
+      </ul>
 
-  <h4>Confirmed</h4>
-  <%= render 'invitations_confirmed', invitations: @invitations_confirmed %>
+      <!-- Tab panes -->
+      <div class="tab-content">
 
-  <h4>Turned down</h4>
-  <%= render 'invitations_turned_down', invitations: @invitations_turned_down %>
+          <div role="tabpanel" class="tab-pane active" id="mine">
+              <h4>Accepted</h4>
+              <sub>Invitations I accepted</sub>
+              <%= render 'invitations_accepted', invitations: @invitations_accepted %>
+              <h4>Turned down</h4>
+              <sub>Invitations I turned down</sub>
+              <%= render 'invitations_turned_down', invitations: @invitations_turned_down %>
+          </div>
 
-  <h4>Inbox</h4>
-  <%= render 'invitations_inbox', invitations: @invitations_inbox %>
+          <div role="tabpanel" class="tab-pane" id="inbox">
+              <h4>Invitations</h4>
+              <sub>Invitations sent to you</sub>
+              <%= render 'invitations_inbox', invitations: @invitations_inbox %>
+              <h4>Confirmed</h4>
+              <sub>Invitations confirmed by others</sub>
+              <%= render 'invitations_confirmed', invitations: @invitations_confirmed %>
+          </div>
 
-  <h4>Outbox</h4>
-  <%= render 'invitations_outbox', invitations: @invitations_outbox %>
+          <div role="tabpanel" class="tab-pane" id="outbox">
+              <h4>Outbox</h4>
+              <sub>Invitations I sent</sub>
+              <%= render 'invitations_outbox', invitations: @invitations_outbox %>
+              <h4>Rejected</h4>
+              <sub>Invitations others rejected</sub>
+              <%= render 'invitations_rejected', invitations: @invitations_rejected %>
+          </div>
 
-  <h4>Accepted</h4>
-  <%= render 'invitations_accepted', invitations: @invitations_accepted %>
+          <div role="tabpanel" class="tab-pane" id="archive">
+          </div>
 
-  <h4>Rejected</h4>
-  <%= render 'invitations_rejected', invitations: @invitations_rejected %>
+      </div>
+
+    </div> 
 
 <% end %>
