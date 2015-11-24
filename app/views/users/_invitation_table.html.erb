@@ -15,9 +15,17 @@
             </td>
             <td>
                 <% if from %>
-                <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.user_id, invitation.event_id)) %>
+                    <% if @user.organizer %>
+                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.to, invitation.event_id)) %>
+                    <% else %>
+                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.user_id, invitation.event_id)) %>
+                    <% end %>
                 <% else %>
-                <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.to, invitation.event_id)) %>
+                    <% if @user.organizer %>
+                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.user_id, invitation.event_id)) %>
+                    <% else %>
+                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.to, invitation.event_id)) %>
+                    <% end %>
                 <% end %>
             </td>
             <td>
