@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :contents
   has_many :invitations
 
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", thumb_nav: "20x20#" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def name
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def description
-    description = self.contents.where(user_id: self.id, role: role, content_type: 2) 
+    description = self.contents.where(user_id: self.id, role: role, content_type: 2)
     if description.any?
       description.first.content
     else
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   end
 
   def user_contents
-    self.contents.where(user_id: self.id, role: role) 
+    self.contents.where(user_id: self.id, role: role)
   end
 
   def performer_invitations
@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
     invitations.each do |invitation|
       filtered_events << Event.find_by(user_id: self.id, id: invitation.event_id)
     end
-    self.events - filtered_events 
+    self.events - filtered_events
   end
 
 end

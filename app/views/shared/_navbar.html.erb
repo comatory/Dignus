@@ -19,7 +19,7 @@
         <% if user_signed_in? %>
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">          <%= content_tag(:span, invitations_count, class: 'badge') if invitations_count > 0 %>
-              <%= image_tag(current_user.avatar.url(:thumb), class: 'nav-avatar') %>
+              <%= image_tag(current_user.avatar.url(:thumb_nav)) %>
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -40,7 +40,7 @@
         <% else %>
             <%= content_tag( :li, link_to((I18n.t :sign_in), new_user_session_path) ) %>
       <% end %>
-        
+
 
 
       </ul>
