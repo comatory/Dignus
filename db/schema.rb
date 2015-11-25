@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124175447) do
+ActiveRecord::Schema.define(version: 20151125101524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "canceled_invitations", force: :cascade do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "to",            null: false
+    t.integer  "event_id",      null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "invitation_id"
+  end
 
   create_table "contents", force: :cascade do |t|
     t.integer  "user_id"

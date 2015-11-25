@@ -8,13 +8,13 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
 
   def performers
-    performers = []
+    performers = {} 
     invitations = Invitation.where(event_id: self.id, accepted: true)
     invitations.each do |invitation|
-      performers << User.find_by(id: invitation.to, performer: true)
-      performers << User.find_by(id: invitation.user_id, performer: true)
+      performers[User.find_by(id: invitation.to, performer: true)] = invitation.id
+      performers[User.find_by(id: invitation.user_id, performer: true)] = invitation.id
     end
-    performers.flatten.compact.uniq
+    performers.delete_if { |k, v| k.nil? }
   end
 
 end

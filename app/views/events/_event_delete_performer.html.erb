@@ -1,0 +1,9 @@
+<% if user_signed_in? && can_edit?(@event.user) %>
+    <%= form_tag({controller: 'invitations', action: 'destroy', id: invitation_id}, method: 'delete') do %>
+        <%= hidden_field_tag 'invitation[invitation_id]', invitation_id %>
+        <%= hidden_field_tag 'invitation[user_id]', params[:user_id] %>
+        <%= hidden_field_tag 'invitation[event_id]', params[:id] %>
+        <%= hidden_field_tag 'invitation[to]', performer_id %>
+        <%= submit_tag "Delete", class: 'btn btn-danger' %>
+    <% end %>
+<% end %>

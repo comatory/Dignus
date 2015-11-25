@@ -39,12 +39,28 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def destroy
+    canceled_inv = CanceledInvitation.create(invitation_delete_safe_params)
+    if canceled_inv.save
+      Invitation.find_by(id: invitation_delete_safe_params[:invitation_id]).destroy
+      flash[:notice] = "You removed user from event."
+      redirect_to user_event_path(invitation_delete_safe_params[:user_id], invitation_delete_safe_params[:event_id])
+    else
+      flash[:alert] = "You didn't remove user from event."
+      redirect_to user_event_path(invitation_delete_safe_params[:user_id], invitation_delete_safe_params[:event_id])
+    end
+  end
+
   private
 
   def invitation_safe_params
     # CHANGING DEFAULTS IN CASE STH BREAKS
     #params.require(:invitation).permit(:event_id, :to)
     params.require(:invitation).permit(:event_id, :to, :invitation_id, :accept, :reject)
+  end
+
+  def invitation_delete_safe_params
+    params.require(:invitation).permit(:invitation_id, :to, :user_id, :event_id)
   end
 
 end
