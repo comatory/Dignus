@@ -1,19 +1,32 @@
 <% if reviews_to_write.any? %>
-<ul>
-    <% reviews_to_write.each do |reviews| %>
-        <% reviews.each do |k, v| %>
+<table class="table table-hover">
+    <thead>
+    </thead>
+    <tbody>
+        <% reviews_to_write.each do |reviews| %>
+            <% reviews.each do |k, v| %>
 
-            <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
-                <%= hidden_field_tag 'review[user_id]', @user.id %>
-                <%= hidden_field_tag 'review[event_id]', reviews[k] %>
-                <%= hidden_field_tag 'review[to]', k %>
-                <%= label_tag "Review:" %>
-                <%= text_field_tag 'review[text]' %>
-                <%= label_tag "Rating:" %>
-                <%= number_field_tag 'review[rating]' %>
-                <%= submit_tag "Review" %>
+                <tr>
+                    <td>
+                        <p>
+                            <b>To: </b><%= link_to(k.name, user_path(k.id)) %>
+                            <b>Event: </b><%= link_to(reviews[k].name, user_event_path(reviews[k].user_id, reviews[k].id)) %>
+                        </p>
+                        
+                        <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
+                            <%= hidden_field_tag 'review[user_id]', @user.id %>
+                            <%= hidden_field_tag 'review[event_id]', reviews[k].id %>
+                            <%= hidden_field_tag 'review[to]', k.id %>
+                            <%= label_tag "Review:" %>
+                            <%= text_field_tag 'review[text]' %>
+                            <%= label_tag "Rating:" %>
+                            <%= number_field_tag 'review[rating]' %>
+                            <%= submit_tag "Review" %>
+                        <% end %>
+                    </td>
+                </tr>
             <% end %>
         <% end %>
-    <% end %>
-</ul>
+    <tbody>
+</table>
 <% end %>

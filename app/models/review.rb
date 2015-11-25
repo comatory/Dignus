@@ -15,13 +15,13 @@ class Review < ActiveRecord::Base
         if user.organizer 
           if self.find_by(user_id: user.id, event_id: event.id, to: performer.first.id) == nil
             review = {}
-            review[performer.first.id] = event.id
+            review[User.find_by(id: performer.first.id)] = Event.find_by(id: event.id)
             reviews << review
           end
         elsif user.performer
           if self.find_by(user_id: user.id, event_id: event.id, to: event.user_id) == nil
             review = {}
-            review[event.user_id] = event.id
+            review[User.find_by(id: event.user_id)] = Event.find_by(id: event.id)
             reviews << review
           end
         else
@@ -30,7 +30,7 @@ class Review < ActiveRecord::Base
       end
     end
 
-    reviews
+    reviews.uniq
   end
 
   def self.user_reviews(user)
