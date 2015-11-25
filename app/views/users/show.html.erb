@@ -19,16 +19,45 @@
     </div>
 
     <div class="col-md-6">
-        <div class="profile-description">
-            <% unless @user.description.nil? %>
-                <div>
-                    <%= @user.description %>
-                </div>
-                <div>
-                    <%= @user.location %>
-                </div>
-            <% end %>
-        </div>
+        
+      <!-- nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Info</a></li>
+        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane active" id="info">
+            <div class="profile-description">
+                <% unless @user.description.nil? %>
+                    <div>
+                        <%= @user.description %>
+                    </div>
+                    <div>
+                        <%= @user.location %>
+                    </div>
+                <% end %>
+            </div>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="reviews">
+            <div class="profile-reviews">
+                <% if @user.reviews.any? %>
+                    <% @user.reviews.each do |review| %>
+                        <div class="review">
+                            <p><%= review.rating %></p>
+                            <p><%= review.user_id %></p>
+                            <p><%= review.to %></p>
+                            <p><%= review.text %></p>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+          </div>
+
+      </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -131,12 +160,11 @@
     <h3>Dashboard</h3>
     <div>
 
-      <!-- Nav tabs -->
+      <!-- nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation"><a href="#me" aria-controls="me" role="tab" data-toggle="tab">Me</a></li>
         <li role="presentation" class="active"><a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
         <li role="presentation"><a href="#outbox" aria-controls="outbox" role="tab" data-toggle="tab">Outbox</a></li>
-        <li role="presentation"><a href="#archive" aria-controls="archive" role="tab" data-toggle="tab">Archive</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -163,6 +191,9 @@
               <h4>Confirmed</h4>
               <sub>Invitations confirmed by others</sub>
                 <%= render "users/invitation_table", from: false, th_text: "From", invitations: @admin_data[:confirmed], buttons: false%>
+              <h4>Reviews</h4>
+              <sub>Reviews I need to write</sub>
+                  <%= render "reviews/review_form", reviews: @reviews_to_write %> 
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">
@@ -172,9 +203,6 @@
               <h4>Turned down</h4>
               <sub>My invitations others turned down</sub>
             <%= render "users/invitation_table", from: false, th_text: "To", invitations: @admin_data[:turned_down], buttons: false%>
-          </div>
-
-          <div role="tabpanel" class="tab-pane" id="archive">
           </div>
 
       </div>

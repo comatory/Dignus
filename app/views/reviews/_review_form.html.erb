@@ -1,0 +1,7 @@
+<% if reviews.any? %>
+<ul>
+    <% reviews.each do |k, v| %>
+        <li><%= reviews[k] %></li>
+    <% end %>
+</ul>
+<% end %>

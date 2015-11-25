@@ -11,7 +11,7 @@ class Invitation < ActiveRecord::Base
       outbox: self.outbox(user_id),
       accepted: self.accepted(user_id),
       rejected: self.rejected(user_id),
-      cancelled: self.cancelled(user_id)
+      cancelled: self.cancelled(user_id),
     }
   end
 

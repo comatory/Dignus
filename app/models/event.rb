@@ -17,4 +17,12 @@ class Event < ActiveRecord::Base
     performers.delete_if { |k, v| k.nil? }
   end
 
+  def self.events_participated(user)
+    events_past = self.where("end_time < ?", DateTime.now)
+    participated = events_past.select do |event|
+      event.user_id == user.id || event.performers.include?(user)
+    end
+  end
+
+
 end
