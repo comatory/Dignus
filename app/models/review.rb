@@ -16,12 +16,21 @@ class Review < ActiveRecord::Base
           reviews[performer.first.id] = event.id
         elsif user.performer && self.find_by(user_id: event.user_id, event_id: event.id, to: user.id) == nil
           reviews[event.user_id] = event.id
+        else
+          return {}
         end
       end
     end
 
     reviews
+  end
 
+  def self.user_reviews(user)
+    reviews = {}
+    self.where(to: user.id).each do |review|
+      reviews[review.id] = { reviewer: User.find_by(id: review.user_id), review: review }
+    end
+    reviews
   end
 
 end

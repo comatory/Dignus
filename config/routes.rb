@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/events' => 'events#index_all'
   get '/events/past' => 'events#index_past'
   get '/performers' => 'users#index_performers'
+  post '/reviews' => 'reviews#create'
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

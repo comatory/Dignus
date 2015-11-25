@@ -44,13 +44,11 @@
 
           <div role="tabpanel" class="tab-pane" id="reviews">
             <div class="profile-reviews">
-                <% if @user.reviews.any? %>
-                    <% @user.reviews.each do |review| %>
+                <% if @reviews.any? %>
+                    <% @reviews.each do |review_id, review| %>
                         <div class="review">
-                            <p><%= review.rating %></p>
-                            <p><%= review.user_id %></p>
-                            <p><%= review.to %></p>
-                            <p><%= review.text %></p>
+                            <p><b>Rating: </b><%= @reviews[review_id][:review][:rating] %> <b>From: </b><%= link_to(@reviews[review_id][:reviewer].name, user_path(@reviews[review_id][:reviewer].id)) %></p>
+                            <p><%= @reviews[review_id][:review].text %></p>
                         </div>
                     <% end %>
                 <% end %>
@@ -193,7 +191,7 @@
                 <%= render "users/invitation_table", from: false, th_text: "From", invitations: @admin_data[:confirmed], buttons: false%>
               <h4>Reviews</h4>
               <sub>Reviews I need to write</sub>
-                  <%= render "reviews/review_form", reviews: @reviews_to_write %> 
+                  <%= render "reviews/review_form", reviews_to_write: @reviews_to_write %> 
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">
