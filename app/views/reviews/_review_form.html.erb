@@ -1,14 +1,18 @@
 <% if reviews_to_write.any? %>
 <ul>
-    <% reviews_to_write.each do |k, v| %>
+    <% reviews_to_write.each do |reviews| %>
+        <% reviews.each do |k, v| %>
 
-        <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
-            <%= hidden_field_tag 'review[user_id]', @user.id %>
-            <%= hidden_field_tag 'review[event_id]', reviews_to_write[k] %>
-            <%= hidden_field_tag 'review[to]', k %>
-            <%= text_field_tag 'review[text]' %>
-            <%= number_field_tag 'review[rating]' %>
-            <%= submit_tag "Review" %>
+            <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
+                <%= hidden_field_tag 'review[user_id]', @user.id %>
+                <%= hidden_field_tag 'review[event_id]', reviews[k] %>
+                <%= hidden_field_tag 'review[to]', k %>
+                <%= label_tag "Review:" %>
+                <%= text_field_tag 'review[text]' %>
+                <%= label_tag "Rating:" %>
+                <%= number_field_tag 'review[rating]' %>
+                <%= submit_tag "Review" %>
+            <% end %>
         <% end %>
     <% end %>
 </ul>

@@ -191,7 +191,8 @@
                 <%= render "users/invitation_table", from: false, th_text: "From", invitations: @admin_data[:confirmed], buttons: false%>
               <h4>Reviews</h4>
               <sub>Reviews I need to write</sub>
-                  <%= render "reviews/review_form", reviews_to_write: @reviews_to_write %> 
+              <%= @reviews_to_write %>
+                  <%= render "reviews/review_form", reviews_to_write: @reviews_to_write  %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">

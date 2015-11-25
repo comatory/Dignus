@@ -8,16 +8,24 @@ class Review < ActiveRecord::Base
 
   def self.reviews_not_written(user)
     events = Event.events_participated(user)
-    reviews = {}
+    reviews = []
 
     events.each do |event|
       event.performers.each do |performer|
-        if user.organizer && self.find_by(user_id: user.id, event_id: event.id, to: performer.first.id) == nil
-          reviews[performer.first.id] = event.id
-        elsif user.performer && self.find_by(user_id: event.user_id, event_id: event.id, to: user.id) == nil
-          reviews[event.user_id] = event.id
+        if user.organizer 
+          if self.find_by(user_id: user.id, event_id: event.id, to: performer.first.id) == nil
+            review = {}
+            review[performer.first.id] = event.id
+            reviews << review
+          end
+        elsif user.performer
+          if self.find_by(user_id: user.id, event_id: event.id, to: event.user_id) == nil
+            review = {}
+            review[event.user_id] = event.id
+            reviews << review
+          end
         else
-          return {}
+          return []
         end
       end
     end
