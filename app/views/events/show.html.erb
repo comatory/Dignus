@@ -38,13 +38,15 @@
                 <% @performers.each do |performer, invitation| %>
                     <p>
                         <%= link_to(performer.name, user_path(performer.id)) %>
-                        <%= render "events/event_delete_performer", invitation_id: invitation, performer_id: performer.id %>
+                        <% if event_not_locked?(@event) %>
+                            <%= render "events/event_delete_performer", invitation_id: invitation, performer_id: performer.id %>
+                        <% end %>
                     </p>
                 <% end %>
             </div>
         <% end %>
 
-        <% if user_signed_in? %>
+        <% if user_signed_in? && event_not_locked?(@event) %>
             <% if current_user.performer %>
                 <%= render 'invitations/send_invitation_to_organizer' %>
             <% end %>
