@@ -94,6 +94,42 @@ events = [
   },
 ]
 
+past_events = [
+  {
+    "name": "Beirut",
+    "description": "Event from past - Beirut.",
+    "location": "Moore Theatre 1932 2nd Ave, Seattle, 98107, United States",
+    "image": "16.png"
+  },
+  {
+    "name": "Horse Party",
+    "description": "Part for horses.",
+    "location": "Stable, Farm Street 123, London",
+    "image": "17.png"
+  },
+  {
+    "name": "BLABLABLA",
+    "description": "This is nonsense.",
+    "location": "No Sense Town, No Sense Land",
+    "image": "18.png"
+  },
+  {
+    "name": "Ela Orleans",
+    "description": "January 13th, Prague will receive Ela Orleans, the crown princess of UK experimental pop. Her music combines nostalgic dark melodies with endless audio loops, dreamy lo-fi or abstract violin howls – which is possibly why she calls her music “movies for ears. .",
+    "location": "Café V Lese Krymská 273/12, Praha, 101 00, Czech Republic",
+    "image": "19.png"
+  },
+  {
+    "name": "Ride",
+    "description": "Waving farewell to the Eighties: it was biggest pop kick there’d been in, ooh, ten years. During that godforsaken, musically atrocious decade, it was them and us..",
+    "location": "The Warfield 982 Market Street, San Francisco, 94102, United States",
+    "image": "20.png"
+  },
+]
+
+performers_db = []
+organizers_db = []
+
 5.times do |i|
 
     p = User.create(email: Faker::Internet.email, password: "12345678", 
@@ -117,6 +153,20 @@ events = [
 
 
     o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false)
+
+    performers_db << p
+    organizers_db << o
 end
+
+
+organizers_db[0..2].each_with_index do |o, index|
+    date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
+    e = Event.create(user_id: o.id, name: past_events[index][:name], start_time: date,
+                 end_time: date + 0.2, description: past_events[index][:description], venue: past_events[index][:location],
+                 poster: File.new("#{Rails.root}/faker/#{past_events[index][:image]}")
+                )
+    i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false)
+end
+
 
 puts "--- DB REPOPULATED ---"

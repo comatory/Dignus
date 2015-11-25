@@ -37,6 +37,10 @@ class EventsController < ApplicationController
     @events = Event.all.where("start_time >= ?", DateTime.now)
   end
 
+  def index_past
+    @events = Event.all.where("end_time <= ?", DateTime.now)
+  end
+
   private
 
   def event_safe_params
