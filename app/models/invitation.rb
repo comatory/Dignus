@@ -10,7 +10,8 @@ class Invitation < ActiveRecord::Base
       inbox: self.inbox(user_id),
       outbox: self.outbox(user_id),
       accepted: self.accepted(user_id),
-      rejected: self.rejected(user_id)
+      rejected: self.rejected(user_id),
+      cancelled: self.cancelled(user_id)
     }
   end
 
@@ -36,6 +37,10 @@ class Invitation < ActiveRecord::Base
 
   def self.rejected(user_id)
     self.where(to: user_id, rejected: true)
+  end
+
+  def self.cancelled(user_id)
+    CanceledInvitation.where(to: user_id)
   end
 
 end

@@ -52,7 +52,7 @@
             <div>
               <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#events-future" aria-controls="mine" role="tab" data-toggle="tab">Organizing</a></li>
+                <li role="presentation" class="active"><a href="#events-future" aria-controls="events-future" role="tab" data-toggle="tab">Organizing</a></li>
                 <li role="presentation"><a href="#events-past" aria-controls="events-past" role="tab" data-toggle="tab">Organized</a></li>
               </ul>
               <!-- Tab panes -->
@@ -133,8 +133,8 @@
 
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#mine" aria-controls="mine" role="tab" data-toggle="tab">Mine</a></li>
-        <li role="presentation"><a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
+        <li role="presentation"><a href="#me" aria-controls="me" role="tab" data-toggle="tab">Me</a></li>
+        <li role="presentation" class="active"><a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
         <li role="presentation"><a href="#outbox" aria-controls="outbox" role="tab" data-toggle="tab">Outbox</a></li>
         <li role="presentation"><a href="#archive" aria-controls="archive" role="tab" data-toggle="tab">Archive</a></li>
       </ul>
@@ -142,16 +142,21 @@
       <!-- Tab panes -->
       <div class="tab-content">
 
-          <div role="tabpanel" class="tab-pane active" id="mine">
+          <div role="tabpanel" class="tab-pane" id="me">
               <h4>Accepted</h4>
               <sub>Invitations I accepted</sub>
                 <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:accepted], buttons: false %>
               <h4>Rejected</h4>
               <sub>Invitations I rejected</sub>
-            <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:rejected], buttons: false %>
+                <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:rejected], buttons: false %>
+                <% if current_user.performer %>
+                  <h4>Cancelled</h4>
+                  <sub>Cancelled performances</sub>
+                    <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:cancelled], buttons: false %>
+                <% end %>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="inbox">
+          <div role="tabpanel" class="tab-pane active" id="inbox">
               <h4>Invitations</h4>
               <sub>Invitations sent to you</sub>
                 <%= render "users/invitation_table", from: true, th_text: "From", invitations: @admin_data[:inbox], buttons: true %>
