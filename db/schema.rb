@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125121044) do
+ActiveRecord::Schema.define(version: 20151126113131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "audio_files", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "audio_file_name"
+    t.string   "audio_content_type"
+    t.integer  "audio_file_size"
+    t.datetime "audio_updated_at"
+    t.integer  "contents_id"
+  end
 
   create_table "canceled_invitations", force: :cascade do |t|
     t.integer  "user_id",       null: false
@@ -30,8 +40,9 @@ ActiveRecord::Schema.define(version: 20151125121044) do
     t.integer  "role"
     t.integer  "content_type"
     t.string   "content"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "audio_files_id"
   end
 
   add_index "contents", ["user_id"], name: "index_contents_on_user_id", using: :btree

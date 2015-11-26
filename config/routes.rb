@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get '/users/:user_id/contents' => 'contents#edit', as: 'user_content'
   post '/users/:user_id/contents' => 'contents#update'
+  delete '/users/:user_id/contents' => 'contents#destroy'
+
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

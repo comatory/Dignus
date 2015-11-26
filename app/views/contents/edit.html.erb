@@ -1,19 +1,25 @@
 <h1>Edit contents</h1>
 
-<%= form_tag do %>
+<%= form_tag({controller: "contents", action: "update"}, multipart: true) do %>
     <h3>Website</h3>
     <%= text_field_tag 'contents[website]', @website %>
     <h3>Youtube</h3>
     <%= text_field_tag 'contents[youtube]', @youtube %>
-    <h3>Audio</h3>
-
-    <% if @audio.any? %>
-        <% @audio.each_with_index do |a, i| %>
-            <%= text_field_tag "contents[audio#{i}]", a.content %>
-            <%= hidden_field_tag a.id %>
-        <% end %>
+    <% if @audio.length < 5 %>
+        <h3>Upload new track</h3>
+        <%= file_field_tag 'contents[audio_file]' %>
     <% end %>
-
-    <%= file_field_tag 'contents[new_audio]' %>
     <%= submit_tag "Save", class: 'btn btn-primary' %> 
 <% end %>
+
+<% if @audio.any? %>
+    <h3>Tracks</h3>
+    <% @audio.each do |track| %>
+        <p><%= track.audio_file_name %></p>
+        <%= form_tag({controller: "contents", action: "destroy"}, method: 'delete') do %>
+            <%= hidden_field_tag 'contents[delete_audio]', track.id %>
+            <%= submit_tag "Delete", class: 'btn btn-danger' %>
+        <% end %>
+    <% end %>
+<% end %>
+

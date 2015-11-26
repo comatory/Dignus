@@ -3,11 +3,10 @@ class ContentsController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:user_id]) 
-    website = @user.contents.find_by(content_type: 5)
-    website.nil? ? website : @website = website.content 
-    youtube = @user.contents.find_by(content_type: 4) 
-    youtube.nil? ? youtube : @youtube = youtube.content
-    @audio = @user.contents.where(content_type: 3)
+    content_data = @user.generate_content_data
+    @website = content_data[:website].content unless content_data[:website].nil?
+    @youtube = content_data[:youtube].content unless content_data[:youtube].nil?
+    @audio = content_data[:audio]
   end
 
   def update
@@ -15,22 +14,33 @@ class ContentsController < ApplicationController
     contents = Content.where(user_id: @user.id)
     website = contents.find_by(content_type: 5)
     youtube = contents.find_by(content_type: 4)
+    audio = contents.where(content_type: 3)
 
-    unless contents_safe_params[:website].empty?
+    if contents_safe_params[:website].empty?
+      website.destroy unless website.nil?
+    else
       website.nil? ? website = contents.create(content_type: 5, role: @user.role, content: "") : website
       website.update(content: check_for_http(contents_safe_params[:website]))
-    else
-      website.destroy unless website.nil?
     end
 
-    unless contents_safe_params[:youtube].empty?
+    if contents_safe_params[:youtube].empty?
+      youtube.destroy unless youtube.nil?
+    else
       youtube.nil? ? youtube = contents.create(content_type: 4, role: @user.role, content: "") : youtube
       youtube.update(content: check_for_http(contents_safe_params[:youtube]))
-    else
-      youtube.destroy unless youtube.nil?
     end
 
-    redirect_to user_path(@user.id)
+    unless contents_safe_params[:audio_file].nil?
+      AudioFile.upload_new_track(@user, audio, contents_safe_params)
+    end
+
+    redirect_to user_content_path(@user.id)
+  end
+
+  def destroy
+    AudioFile.find_by(id: contents_safe_params[:delete_audio]).destroy
+    flash[:notice] = "Audio file deleted."
+    redirect_to user_content_path(params[:user_id])
   end
 
   def check_for_http(resource)
@@ -43,9 +53,7 @@ class ContentsController < ApplicationController
   private
 
   def contents_safe_params
-    params.require(:contents).permit(:website, :youtube, :new_audio, 
-                                     :audio0, :audio1, :audio2,
-                                    :audio3, :audio4)
+    params.require(:contents).permit(:website, :youtube, :audio_file, :delete_audio)
   end
 
 end
