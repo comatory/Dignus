@@ -152,7 +152,7 @@ organizers_db = []
                 )
 
 
-    o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false)
+    o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false, responded: false)
 
     performers_db << p
     organizers_db << o
@@ -165,7 +165,7 @@ organizers_db[0..2].each_with_index do |o, index|
                  end_time: date + 0.2, description: past_events[index][:description], venue: past_events[index][:location],
                  poster: File.new("#{Rails.root}/faker/#{past_events[index][:image]}")
                 )
-    i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false)
+    i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false, responded: true)
 end
 
 
