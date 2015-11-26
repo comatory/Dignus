@@ -1,0 +1,19 @@
+<h1>Edit contents</h1>
+
+<%= form_tag do %>
+    <h3>Website</h3>
+    <%= text_field_tag 'contents[website]', @website %>
+    <h3>Youtube</h3>
+    <%= text_field_tag 'contents[youtube]', @youtube %>
+    <h3>Audio</h3>
+
+    <% if @audio.any? %>
+        <% @audio.each_with_index do |a, i| %>
+            <%= text_field_tag "contents[audio#{i}]", a.content %>
+            <%= hidden_field_tag a.id %>
+        <% end %>
+    <% end %>
+
+    <%= file_field_tag 'contents[new_audio]' %>
+    <%= submit_tag "Save", class: 'btn btn-primary' %> 
+<% end %>

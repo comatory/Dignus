@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   resources :users, only: [:edit, :show, :update] do
-    resources :events
+    resources :events 
   end
 
   resources :invitations, only: [:create, :update, :destroy]
@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get '/events/past' => 'events#index_past'
   get '/performers' => 'users#index_performers'
   post '/reviews' => 'reviews#create'
+
+  get '/users/:user_id/contents' => 'contents#edit', as: 'user_content'
+  post '/users/:user_id/contents' => 'contents#update'
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

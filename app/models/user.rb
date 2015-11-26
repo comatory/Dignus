@@ -61,7 +61,9 @@ class User < ActiveRecord::Base
         past: past_performances },
       events: {
           scheduled: scheduled_events,
-          past: past_events }
+          past: past_events },
+      website: website_link,
+      youtube: youtube_link
     }
   end
 
@@ -97,6 +99,20 @@ class User < ActiveRecord::Base
 
   def already_invited?(event)
     Invitation.find_by(to: self.id, event_id: event.id)
+  end
+
+  def website_link
+    link = Content.find_by(user_id: self.id, content_type: 5)
+    unless link.nil?
+      link.content
+    end
+  end
+
+  def youtube_link
+    link = Content.find_by(user_id: self.id, content_type: 4)
+    unless link.nil?
+      link.content
+    end
   end
 
   def events_not_invited_to(user_id)

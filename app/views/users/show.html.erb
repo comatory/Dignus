@@ -59,8 +59,23 @@
 
         <div class="row">
             <div class="col-md-12">
+                <div id="website-link">
+                    <% unless @user_data[:website].nil? %>
+                        <%= link_to("Website", @user_data[:website]) %>
+                    <% end %>
+                </div>
+                <div id="youtube-link">
+                    <% unless @user_data[:youtube].nil? %>
+                        <%= link_to("Youtube", @user_data[:youtube]) %>
+                    <% end %>
+                </div>
                 <div id="audioplayer">
                     Audioplayer here
+                </div>
+                <div class="edit">
+                    <% if can_edit?(@user) %>
+                        <%= link_to "Edit", user_content_path(current_user), class: 'btn btn-warning' %>
+                    <% end %>
                 </div>
             </div>
         </div>
