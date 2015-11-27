@@ -117,23 +117,15 @@ class User < ActiveRecord::Base
   end
 
   def audio_files
-    AudioFile.where(contents_id: self.id)
+    Content.where(user_id: self.id, content_type: 3)
   end
 
   def generate_content_data
     {
       website: self.contents.find_by(content_type: 5),
       youtube: self.contents.find_by(content_type: 4),
-      audio: get_audio_tracks(self.contents.find_by(content_type: 3))
+      audio: self.contents.where(content_type: 3)
     }
-  end
-
-  def get_audio_tracks(user_audio_content)
-    if user_audio_content.respond_to?(:audio_files_id)
-      AudioFile.where(contents_id: user_audio_content.audio_files_id)
-    else
-      []
-    end
   end
 
   def events_not_invited_to(user_id)

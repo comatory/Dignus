@@ -1,4 +1,4 @@
-$(document).on('ready', function() {
+$(document).ready(function() {
 
     $('div.track').click(function(e) {
         var trackDiv = $(e.target);

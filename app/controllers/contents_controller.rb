@@ -31,16 +31,18 @@ class ContentsController < ApplicationController
     end
 
     unless contents_safe_params[:audio_file].nil?
-      AudioFile.upload_new_track(@user, audio, contents_safe_params)
+      Content.create(user_id: @user.id, role: @user.role, content_type: 3, content: "", audio: contents_safe_params[:audio_file])
     end
 
     redirect_to user_content_path(@user.id)
   end
 
   def destroy
-    AudioFile.find_by(id: contents_safe_params[:delete_audio]).destroy
-    flash[:notice] = "Audio file deleted."
-    redirect_to user_content_path(params[:user_id])
+    if contents_safe_params[:delete_audio] != nil
+      Content.find_by(id: contents_safe_params[:delete_audio]).destroy
+      flash[:notice] = "Audio file deleted."
+      redirect_to user_content_path(params[:user_id])
+    end
   end
 
   def check_for_http(resource)
