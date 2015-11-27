@@ -1,0 +1,9 @@
+<% if audio_files.any? %>
+    <% audio_files.each do |file| %>
+        <div class="track">
+            <%= file.audio.instance.audio_file_name%>
+            <%= audio_tag(file.audio.url) %>
+        </div>
+    <% end %>
+<% end %>
+

@@ -63,7 +63,8 @@ class User < ActiveRecord::Base
           scheduled: scheduled_events,
           past: past_events },
       website: website_link,
-      youtube: youtube_link
+      youtube: youtube_link,
+      audio: audio_files
     }
   end
 
@@ -113,6 +114,10 @@ class User < ActiveRecord::Base
     unless link.nil?
       link.content
     end
+  end
+
+  def audio_files
+    AudioFile.where(contents_id: self.id)
   end
 
   def generate_content_data

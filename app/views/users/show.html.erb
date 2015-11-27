@@ -70,7 +70,7 @@
                     <% end %>
                 </div>
                 <div id="audioplayer">
-                    Audioplayer here
+                    <%= render "users/audio_player", audio_files: @user_data[:audio] %> 
                 </div>
                 <div class="edit">
                     <% if can_edit?(@user) %>
