@@ -47,8 +47,11 @@ gem "paperclip", "~> 4.3"
 # HEROKU
 gem 'rails_12factor'
 
+# TEXTACULAR SEARCH
+gem 'textacular', '~> 3.0'
+
 # FIX CACHE PROBLEM
-gem 'jquery-turbolinks'
+gem 'jquery-turbolinks', '~> 2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

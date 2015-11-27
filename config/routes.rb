@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     resources :events 
   end
 
+
   resources :invitations, only: [:create, :update, :destroy]
+  resources :search, only: [:index, :create]
+  post "/api/v1/search" => "search#create"
 
   get '/events' => 'events#index_all'
   get '/events/past' => 'events#index_past'
