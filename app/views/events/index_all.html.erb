@@ -1,4 +1,6 @@
-<h1>Upcoming Events</h1>
-<p><%= link_to "Past events", events_past_path %></p>
+<div class="container">
+    <h1>Upcoming Events</h1>
+    <p><%= link_to "Past events", events_past_path %></p>
 
-<%= render "events/event_list", events: @events %>
+    <%= render "events/event_list", events: @events %>
+</div>

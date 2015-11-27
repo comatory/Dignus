@@ -9,17 +9,9 @@
 <body>
 
 <%= render "shared/navbar" %>
-<div class="container">
-<%= flash_messages %>
 
+<%= flash_messages %>
 <%= yield %>
 
-<% if Rails.env.development? %>
-    <div style="background-color: #eee; padding: 5px; margin: 20px; word-wrap: break-word;"><%= params %>
-    <p>Current user:<%= current_user.id if user_signed_in? %></p>
-</div>
-<% end %>
-
-</div>
 </body>
 </html>

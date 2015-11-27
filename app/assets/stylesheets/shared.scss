@@ -1,7 +1,36 @@
-body {
-    padding-top: 65px;
-}
+$brand-primary: #3ab795;
 
 img.nav-avatar {
     width: 20px;
+}
+
+div.wrapper {
+    position: relative;
+    margin: 50px auto;
+    width: 50%
+}
+
+.marketing1 {
+    background: url('/welcome2.jpeg');
+    background-position: -151px;
+}
+
+.marketing2 {
+    background: url('/welcome1.jpeg')
+}
+
+.marketing1, .marketing2 {
+    background-size: cover;
+    height: 100vh;
+    color: $brand-primary;
+    position: relative;
+}
+
+div.filler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
 }

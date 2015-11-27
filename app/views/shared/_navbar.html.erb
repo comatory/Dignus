@@ -13,9 +13,9 @@
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <%= content_tag(:li, (link_to "Search", search_index_path)) %>
-        <%= content_tag(:li, (link_to "Events", events_path)) %>
-        <%= content_tag(:li, (link_to "Performers", performers_path)) %>
+        <%= content_tag(:li, (link_to "Search", search_index_path, class: 'navbar-link')) %>
+        <%= content_tag(:li, (link_to "Events", events_path, class: 'navbar-link')) %>
+        <%= content_tag(:li, (link_to "Performers", performers_path, class: 'navbar-link')) %>
 
         <% if user_signed_in? %>
         <li role="presentation" class="dropdown">
@@ -25,21 +25,21 @@
             </a>
             <ul class="dropdown-menu">
                 <% if user_signed_in? %>
-                    <%= content_tag(:li, link_to("Profile", user_path(current_user.id))) %>
+                    <%= content_tag(:li, link_to("Profile", user_path(current_user.id), class: 'navbar-link')) %>
                 <% end %>
 
                 <% if user_signed_in? && current_user.organizer %>
-                <%= content_tag(:li, (link_to "Add event", new_user_event_path(current_user)) ) %>
+                <%= content_tag(:li, (link_to "Add event", new_user_event_path(current_user), class: 'navbar-link') ) %>
                 <% end %>
 
                 <% if user_signed_in? %>
-                    <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete) ) %>
+                    <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete, class: 'navbar-link') ) %>
                 <% end %>
 
             </ul>
         </li>
         <% else %>
-            <%= content_tag( :li, link_to((I18n.t :sign_in), new_user_session_path) ) %>
+            <%= content_tag( :li, link_to((I18n.t :sign_in), new_user_session_path, class: 'navbar-link') ) %>
       <% end %>
 
 

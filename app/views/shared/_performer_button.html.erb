@@ -1,4 +1,4 @@
 <%= form_tag({controller: "registrations", action: "new"}, method: "get", class: "form-signup-performer") do %>
-  <%= content_tag(:button, "I am a performer", class: "btn btn-success", type: "submit" ) %>
+  <%= content_tag(:button, "I am a performer", class: "btn btn-primary", type: "submit" ) %>
   <%= hidden_field_tag "user-type", "performer" %> 
 <% end %>

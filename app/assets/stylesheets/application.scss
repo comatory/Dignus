@@ -1,0 +1,86 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+$brand-primary: #3ab795;
+$navbar-default-bg: #2a333b;
+$navbar-default-link-color: #39b392;
+$navbar-default-link-hover-color: #c1da5a;
+$navbar-default-border: $brand-primary;
+$highlight-font: 'Oswald';
+$dropdown-link-hover-bg: $brand-primary;
+$link-color: $navbar-default-bg;
+$font-family-sans-serif: 'Roboto';
+$btn-primary-bg: transparent;
+$btn-primary-color: $brand-primary;
+
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "bootstrap-datetimepicker";
+@import "bootstrap/theme";
+
+// TYPOGRAPHY
+@import url(https://fonts.googleapis.com/css?family=Oswald);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,100);
+
+.btn {
+    font-size: 80%;
+    text-transform: uppercase;
+    padding: 9px 16px;
+}
+
+.btn-primary {
+    border-color: $brand-primary;
+    text-shadow: none;
+    box-shadow: none;
+    border-radius: 0px;
+
+    &:hover {
+        background-color: $brand-primary;
+        color: #fff;
+    }
+}
+
+a.navbar-brand {
+    font-size: 250%;
+      background: -webkit-linear-gradient(#c1da5a, #39b392);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+        text-shadow: none;
+    font-family: $highlight-font;
+}
+
+.navbar-nav > li > a, a.navbar-link {
+    text-shadow: none;
+    text-transform: uppercase;
+    font-family: $highlight-font;
+} 
+
+ul.dropdown-menu {
+    background-color: $navbar-default-bg;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: $brand-primary;
+}
+
+h4.dashboard-label {
+    margin-bottom: -4;
+
+    small {
+        font-size: 60%;
+        letter-spacing: 0.05em;
+    }
+}

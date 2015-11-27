@@ -1,17 +1,29 @@
-<div class="row marketing">
+<div class="container-fluid">
+    <div class="row">
 
-    <% unless user_signed_in? %>
-    <div class="col-lg-6">
-      <h4>I want to organize</h4>
-      <p>Become an event organizer, get great performers at no price.</p>
-      <%= render "shared/organizer_button" %>
+        <% unless user_signed_in? %>
+        <div class="col-md-6 marketing1">
+
+                <div class="filler"></div>
+                <div class="wrapper">
+                  <h4>I want to organize</h4>
+                  <p>Become an event organizer, get great performers at no price.</p>
+                  <%= render "shared/organizer_button" %>
+                </div>
+
+        </div>
+
+        <div class="col-md-6 marketing2">
+
+                <div class="filler"></div>
+                <div class="wrapper">
+                  <h4>I want to perform</h4>
+                  <p>Get an exposure and gain new fans.</p>
+                  <%= render "shared/performer_button" %>
+                </div>
+
+        </div>
+        <% end %>
+
     </div>
-
-    <div class="col-lg-6">
-      <h4>I want to perform</h4>
-      <p>Get an exposure and gain new fans.</p>
-      <%= render "shared/performer_button" %>
-
-    </div>
-    <% end %>
 </div>
