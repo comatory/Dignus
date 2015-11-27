@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :invitations, only: [:create, :update, :destroy]
   resources :search, only: [:index, :create]
-  post "/api/v1/search" => "search#create"
+  post "/api/v1/search" => "api#search"
 
   get '/events' => 'events#index_all'
   get '/events/past' => 'events#index_past'
