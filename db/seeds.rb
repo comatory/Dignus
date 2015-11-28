@@ -17,9 +17,13 @@ audio_path = "#{Rails.root}/public/system/contents/audios/"
 poster_path = "#{Rails.root}/public/system/events/posters/"
 avatar_path = "#{Rails.root}/public/system/users/avatars/"
 
-Dir.foreach(audio_path) {|f| fn = File.join(audio_path, f); File.delete(fn) if f != '.' && f != '..'}
-Dir.foreach(poster_path) {|f| fn = File.join(poster_path, f); File.delete(fn) if f != '.' && f != '..'}
-Dir.foreach(avatar_path) {|f| fn = File.join(avatar_path, f); File.delete(fn) if f != '.' && f != '..'}
+#Dir.foreach(audio_path) {|f| fn = File.join(audio_path, f); File.delete(fn) if f != '.' && f != '..'}
+#Dir.foreach(poster_path) {|f| fn = File.join(poster_path, f); File.delete(fn) if f != '.' && f != '..'}
+#Dir.foreach(avatar_path) {|f| fn = File.join(avatar_path, f); File.delete(fn) if f != '.' && f != '..'}
+
+FileUtils.rm_rf(Dir.glob("#{audio_path}*"))
+FileUtils.rm_rf(Dir.glob("#{poster_path}*"))
+FileUtils.rm_rf(Dir.glob("#{avatar_path}*"))
 
 puts "--- DB CLEANED ---"
 
@@ -183,6 +187,7 @@ organizers_db = []
     organizers_db << o
 end
 
+Invitation.find_by(to: performers_db.last.id).update(accepted: true, responded: true)
 
 organizers_db[0..2].each_with_index do |o, index|
     date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
@@ -196,6 +201,8 @@ organizers_db[0..2].each_with_index do |o, index|
     r2 = Review.create(user_id: performers_db[index].id, to: organizers_db[index].id, rating: rand(0..5), event_id: e.id,
                   text: "#{organizers_db[index].name} had a nice event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
 end
+
+
 
 
 puts "--- DB REPOPULATED ---"

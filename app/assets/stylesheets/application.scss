@@ -21,7 +21,7 @@ $navbar-default-link-hover-color: #c1da5a;
 $navbar-default-border: $brand-primary;
 $highlight-font: 'Oswald';
 $dropdown-link-hover-bg: $brand-primary;
-$link-color: $navbar-default-bg;
+$link-color: darken($brand-primary, 10%);
 $font-family-sans-serif: 'Roboto';
 $btn-primary-bg: transparent;
 $btn-danger-bg: transparent;
