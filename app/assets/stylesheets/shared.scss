@@ -1,4 +1,5 @@
 $brand-primary: #3ab795;
+$navbar-height: 50px;
 
 img.nav-avatar {
     width: 20px;
@@ -6,8 +7,9 @@ img.nav-avatar {
 
 div.wrapper {
     position: relative;
-    margin: 50px auto;
-    width: 50%
+    margin: 0px auto;
+    padding-top: 100px;
+    width: 50%;
 }
 
 .marketing1 {
@@ -21,9 +23,11 @@ div.wrapper {
 
 .marketing1, .marketing2 {
     background-size: cover;
-    height: 100vh;
+    height: 100vh; 
+    margin-top: -#{$navbar-height};
     color: $brand-primary;
     position: relative;
+    text-align: center;
 }
 
 div.filler {
@@ -32,5 +36,29 @@ div.filler {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, .5);
+    background: rgba(0,0,0,1);
+    background: -moz-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.31) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0.31)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.31) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.31) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.31) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.31) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+}
+
+div.more {
+    text-align: left;
+    margin-top: 20px;
+    display: none;
+}
+
+div.more-button {
+    margin: 20px auto;
+    border: 1px solid;
+    width: 6%;
+    border-radius: 50%;
+
+    &:hover {
+        opacity: 0.5;
+    }
 }
