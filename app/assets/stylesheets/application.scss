@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
 $brand-primary: #3ab795;
 $navbar-height: 50px;
 $navbar-default-bg: #2a333b;
@@ -25,7 +24,10 @@ $dropdown-link-hover-bg: $brand-primary;
 $link-color: $navbar-default-bg;
 $font-family-sans-serif: 'Roboto';
 $btn-primary-bg: transparent;
+$btn-danger-bg: transparent;
+$btn-danger-color: #e1362d;
 $btn-primary-color: $brand-primary;
+$highlight-color: #a3d166;
 
 
 @import "bootstrap-sprockets";
@@ -53,6 +55,24 @@ $btn-primary-color: $brand-primary;
         background-color: $brand-primary;
         color: #fff;
     }
+}
+
+.btn-danger {
+    text-shadow: none;
+    box-shadow: none;
+    border-radius: 0px;
+    border: 1px solid $btn-danger-color;
+
+    &:hover {
+        background-color: $btn-danger-color;
+        color: #fff;
+    }
+}
+
+.btn-invitation {
+    font-size: 60%;
+    padding: 5px 12px;
+    margin: 0px 4px;
 }
 
 a.navbar-brand {

@@ -1,0 +1,30 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#performances-future" aria-controls="performances-future" role="tab" data-toggle="tab">Performing</a></li>
+    <li role="presentation"><a href="#performances-past" aria-controls="performances-past" role="tab" data-toggle="tab">Performed</a></li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="performances-future">
+          <% if events[:scheduled].any? %>
+            <ul>
+                <% events[:scheduled].each do |performance| %>
+                    <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                <% end %>
+            </ul>
+        <% end %>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="performances-past">
+          <% if events[:past].any? %>
+            <ul>
+                <% events[:past].each do |performance| %>
+                    <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                <% end %>
+            </ul>
+        <% end %>
+      </div>
+  </div>
+</div> 

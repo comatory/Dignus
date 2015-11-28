@@ -1,0 +1,22 @@
+<div id="website-link">
+    <% unless website.nil? %>
+        <b>Website: </b><%= link_to(website, website) %>
+    <% end %>
+</div>
+
+<div id="audioplayer">
+    <%= render "users/audio_player", audio_files: audio %> 
+</div>
+
+<div id="youtube-link">
+    <% unless youtube.nil? %>
+        <%= link_to("Youtube", youtube) %>
+    <% end %>
+</div>
+
+
+<div class="edit-media">
+    <% if can_edit?(@user) %>
+        <%= link_to "Edit", user_content_path(current_user), class: 'btn btn-primary' %>
+    <% end %>
+</div>

@@ -1,170 +1,51 @@
 <div class="container">
 
 <div class="row">
-    <div class="col-md-6">
-        <h1><%= @user.name %></h1>
-        <h3><%= @user.role_name %></h3>
-    </div>
-
-    <div class="col-md-6">
-        <div class="edit">
-            <% if can_edit?(@user) %>
-                <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-warning' %>
+    <div class="col-md-12">
+        <h1>
+            <%= @user.name %>
+        </h1>
+        <p>
+            <% if @user.role == 0 %>
+                <span class="organizer-badge resource-badge"></span>
+            <% else %>
+                <span class="performer-badge resource-badge"></span>
             <% end %>
-        </div>
+        </p>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <%= image_tag @user.avatar.url, class: "img-responsive" %>
     </div>
 
-    <div class="col-md-6">
-        
-      <!-- nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Info</a></li>
-        <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reviews</a></li>
-      </ul>
+    <div class="col-md-4">
+        <%= render "users/description", user: @user %>
+    </div>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
+    <div class="col-md-5">
+        <% if @user.organizer %>
+            <%= render "users/organizer_events", events: @user_data[:events] %>
+        <% end %>
 
-          <div role="tabpanel" class="tab-pane active" id="info">
-            <div class="profile-description">
-                <% unless @user.description.nil? %>
-                    <div>
-                        <%= @user.description %>
-                    </div>
-                    <div>
-                        <%= @user.location %>
-                    </div>
-                <% end %>
-            </div>
-          </div>
-
-          <div role="tabpanel" class="tab-pane" id="reviews">
-            <div class="profile-reviews">
-                <% if @reviews.any? %>
-                    <% @reviews.each do |review_id, review| %>
-                        <div class="review">
-                            <p><b>Rating: </b><%= @reviews[review_id][:review][:rating] %> <b>From: </b><%= link_to(@reviews[review_id][:reviewer].name, user_path(@reviews[review_id][:reviewer].id)) %></p>
-                            <p><%= @reviews[review_id][:review].text %></p>
-                        </div>
-                    <% end %>
-                <% end %>
-            </div>
-          </div>
-
-      </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div id="website-link">
-                    <% unless @user_data[:website].nil? %>
-                        <%= link_to("Website", @user_data[:website]) %>
-                    <% end %>
-                </div>
-                <div id="youtube-link">
-                    <% unless @user_data[:youtube].nil? %>
-                        <%= link_to("Youtube", @user_data[:youtube]) %>
-                    <% end %>
-                </div>
-                <div id="audioplayer">
-                    <%= render "users/audio_player", audio_files: @user_data[:audio] %> 
-                </div>
-                <div class="edit">
-                    <% if can_edit?(@user) %>
-                        <%= link_to "Edit", user_content_path(current_user), class: 'btn btn-warning' %>
-                    <% end %>
-                </div>
-            </div>
-        </div>
-
+        <% if @user.performer %>
+            <%= render "users/performer_events", events: @user_data[:performances] %>
+        <% end %>
     </div>
 </div>
 
 <div class="row">
-
-    <div class="col-md-8">
-        Photogallery here
+    <div class="col-md-3">
+        <%= render "users/reviews", reviews: @reviews %>
     </div>
 
-    <div class="col-md-6">
-        <% if @user.organizer %>
-            <div>
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#events-future" aria-controls="events-future" role="tab" data-toggle="tab">Organizing</a></li>
-                <li role="presentation"><a href="#events-past" aria-controls="events-past" role="tab" data-toggle="tab">Organized</a></li>
-              </ul>
-              <!-- Tab panes -->
-              <div class="tab-content">
-
-                  <div role="tabpanel" class="tab-pane active" id="events-future">
-                      <% if @user_data[:events][:scheduled].any? %>
-                            <% @user_data[:events][:scheduled].each do |event| %>
-                            <ul>
-                                <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-                            </ul>
-                            <% end %>
-                        <% end %>
-                  </div>
-
-                  <div role="tabpanel" class="tab-pane" id="events-past">
-                      <% if @user_data[:events][:past].any? %>
-                            <% @user_data[:events][:past].each do |event| %>
-                            <ul>
-                                <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-                            </ul>
-                            <% end %>
-                        <% end %>
-                  </div>
-
-              </div>
-
-            </div> 
-        <% end %>
-
-        <% if @user.performer %>
-            <div>
-              <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#performances-future" aria-controls="performances-future" role="tab" data-toggle="tab">Performing</a></li>
-                <li role="presentation"><a href="#performances-past" aria-controls="performances-past" role="tab" data-toggle="tab">Performed</a></li>
-              </ul>
-              <!-- Tab panes -->
-              <div class="tab-content">
-
-                  <div role="tabpanel" class="tab-pane active" id="performances-future">
-                      <% if @user_data[:performances][:scheduled].any? %>
-                        <ul>
-                            <% @user_data[:performances][:scheduled].each do |performance| %>
-                                <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
-                            <% end %>
-                        </ul>
-                    <% end %>
-                  </div>
-
-                  <div role="tabpanel" class="tab-pane" id="performances-past">
-                      <% if @user_data[:performances][:past].any? %>
-                        <ul>
-                            <% @user_data[:performances][:past].each do |performance| %>
-                                <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
-                            <% end %>
-                        </ul>
-                    <% end %>
-                  </div>
-
-              </div>
-
-            </div> 
-        <% end %>
-
-            </div>
-
+    <div class="col-md-9">
+        <%= render "users/media", website: @user_data[:website], youtube: @user_data[:youtube], audio: @user_data[:audio] %>
+    </div>
 </div>
+
+
 <% if user_signed_in? && can_invite_to_event? %>
     <%= render "invitations/send_invitation_to_performer" %>
 <% end %>

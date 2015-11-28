@@ -1,5 +1,5 @@
 <%= form_tag({controller: "invitations", action: "update"}, method: "patch", class: "invitation") do %>
-    <%= submit_tag "Reject", class: 'btn btn-danger' %>
+    <%= submit_tag "Reject", class: 'btn btn-danger btn-invitation' %>
     <%= hidden_field_tag 'invitation[invitation_id]', invitation_id %>
     <%= hidden_field_tag 'invitation[reject]', true %>
 <% end %>
