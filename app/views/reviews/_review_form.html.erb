@@ -8,21 +8,23 @@
 
                 <tr>
                     <td>
-                        <p>
+                        <div class="review-header">
+                            <div class="reveal" data-review=<%= reviews[k].id %>></div>
                             <b>To: </b><%= link_to(k.name, user_path(k.id)) %>
                             <b>Event: </b><%= link_to(reviews[k].name, user_event_path(reviews[k].user_id, reviews[k].id)) %>
-                        </p>
+                        </div>
                         
-                        <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
-                            <%= hidden_field_tag 'review[user_id]', @user.id %>
-                            <%= hidden_field_tag 'review[event_id]', reviews[k].id %>
-                            <%= hidden_field_tag 'review[to]', k.id %>
-                            <%= label_tag "Review:" %>
-                            <%= text_field_tag 'review[text]' %>
-                            <%= label_tag "Rating:" %>
-                            <%= number_field_tag 'review[rating]' %>
-                            <%= submit_tag "Review" %>
-                        <% end %>
+                        <div class="review-form" data-review=<%= reviews[k].id %>>
+                            <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
+                                <%= hidden_field_tag 'review[user_id]', @user.id %>
+                                <%= hidden_field_tag 'review[event_id]', reviews[k].id %>
+                                <%= hidden_field_tag 'review[to]', k.id %>
+                                <%= label_tag "Message:" %>
+                                <%= text_field_tag 'review[text]' %>
+                                <%= number_field_tag 'review[rating]' %>
+                                <%= submit_tag "Review" %>
+                            <% end %>
+                        </div>
                     </td>
                 </tr>
             <% end %>

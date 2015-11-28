@@ -203,6 +203,25 @@ organizers_db[0..2].each_with_index do |o, index|
 end
 
 
+date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
+e = Event.create(user_id: organizers_db[3].id, name: past_events[3][:name], start_time: date,
+             end_time: date + 0.2, description: past_events[3][:description], venue: past_events[3][:location],
+             poster: File.new("#{Rails.root}/faker/#{past_events[3][:image]}")
+            )
+e2 = Event.create(user_id: organizers_db[3].id, name: past_events[4][:name], start_time: date,
+             end_time: date + 0.2, description: past_events[4][:description], venue: past_events[4][:location],
+             poster: File.new("#{Rails.root}/faker/#{past_events[4][:image]}")
+            )
+i = performers_db[3].invitations.create(to: organizers_db[3].id, event_id: e.id, accepted: true, rejected: false, responded: true)
+i = performers_db[3].invitations.create(to: organizers_db[3].id, event_id: e2.id, accepted: true, rejected: false, responded: true)
+r1 = Review.create(user_id: organizers_db[3].id, to: performers_db[3].id, rating: rand(0..5), event_id: e.id,
+              text: "#{performers_db[3].name} was at my event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
+r2 = Review.create(user_id: organizers_db[3].id, to: performers_db[3].id, rating: rand(0..5), event_id: e2.id,
+              text: "#{performers_db[3].name} was at my event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
 
+puts "--- performers ---"
+performers_db.each_with_index do |performer, i|
+  puts "#{i} | #{performer.email} | #{performer.id}"
+end
 
 puts "--- DB REPOPULATED ---"
