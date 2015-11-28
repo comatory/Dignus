@@ -4,8 +4,8 @@
     <div class="row">
 
         <div class="col-md-6">
-            <div>
-                <%= image_tag(@event.poster.url(:medium)) %>
+            <div class="event-poster">
+                <%= image_tag(@event.poster.url(:medium), class: 'img-responsive') %>
             </div>
         </div>
 

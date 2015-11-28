@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-img.profile-avatar {
-    max-width: 80%;
-}
-
 div.profile-description {
     margin-right: 50px;
 }
@@ -15,3 +11,8 @@ div#audioplayer {
     height: 120px;
     background-color: grey;
 }
+
+div#dashboard {
+    margin-bottom: 30px;
+}
+

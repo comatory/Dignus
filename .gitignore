@@ -21,7 +21,7 @@
 
 .DS_Store
 .content_types.txt
-/faker/
-/system/contents/audios/
-/system/events/posters/
-/system/users/avatars/
+faker/*
+/public/system/contents/audios/
+/public/system/events/posters/
+/public/system/users/avatars/
