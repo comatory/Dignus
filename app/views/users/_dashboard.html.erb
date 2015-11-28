@@ -1,0 +1,62 @@
+<% if user_signed_in? && can_edit?(user) %>
+    <h3>Dashboard</h3>
+    <div>
+
+      <!-- nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation"><a href="#me" aria-controls="me" role="tab" data-toggle="tab">Me</a></li>
+        <li role="presentation" class="active"><a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a></li>
+        <li role="presentation"><a href="#outbox" aria-controls="outbox" role="tab" data-toggle="tab">Outbox</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+
+          <div role="tabpanel" class="tab-pane" id="me">
+              <h4 class="dashboard-label">Accepted<br>
+                  <small>Invitations I accepted</small>
+              </h4>
+                <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:accepted], buttons: false %>
+                <h4 class="dashboard-label">Rejected<br>
+                  <small>Invitations I rejected</small>
+                </h4>
+                <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:rejected], buttons: false %>
+                <% if current_user.performer %>
+                    <h4 class="dashboard-label">Cancelled<br>
+                      <small>Cancelled performances</small>
+                    </h4>
+                    <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:cancelled], buttons: false %>
+                <% end %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane active" id="inbox">
+              <h4 class="dashboard-label">Invitations<br>
+                  <small>Invitations sent to you</small>
+              </h4>
+                <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:inbox], buttons: true %>
+                <h4 class="dashboard-label">Confirmed<br>
+                  <small>Invitations confirmed by others</small>
+                </h4>
+                <%= render "users/invitation_table", from: false, th_text: "From", invitations: admin_data[:confirmed], buttons: false%>
+                <h4 class="dashboard-label">Reviews<br>
+                  <small>Reviews I need to write</small>
+                </h4>
+                  <%= render "reviews/review_form", reviews_to_write: reviews_to_write  %>
+          </div>
+
+          <div role="tabpanel" class="tab-pane" id="outbox">
+              <h4 class="dashboard-label"> Outbox<br>
+                  <small>Invitations I sent</small>
+              </h4>
+            <%= render "users/invitation_table", from: false, th_text: "To",  invitations: admin_data[:outbox], buttons: false %>
+            <h4 class="dashboard-label">Turned down<br>
+              <small>My invitations others turned down</small>
+            </h4>
+            <%= render "users/invitation_table", from: false, th_text: "To", invitations: admin_data[:turned_down], buttons: false%>
+          </div>
+
+      </div>
+
+    </div> 
+
+<% end %>
