@@ -13,6 +13,14 @@ User.destroy_all
 Content.destroy_all
 Event.destroy_all
 
+audio_path = "#{Rails.root}/public/system/contents/audios/"
+poster_path = "#{Rails.root}/public/system/events/posters/"
+avatar_path = "#{Rails.root}/public/system/users/avatars/"
+
+Dir.foreach(audio_path) {|f| fn = File.join(audio_path, f); File.delete(fn) if f != '.' && f != '..'}
+Dir.foreach(poster_path) {|f| fn = File.join(poster_path, f); File.delete(fn) if f != '.' && f != '..'}
+Dir.foreach(avatar_path) {|f| fn = File.join(avatar_path, f); File.delete(fn) if f != '.' && f != '..'}
+
 puts "--- DB CLEANED ---"
 
 password = "12345678"
@@ -21,23 +29,32 @@ performers = [
   { "name": "Lewis Fautzi", 
     "description": "The gleam of cosmic light reflects on polished surfaces, which sometimes trace long smooth curves, other times end in edges, outlining a powerful machine piercing a path between the gravitational pull of a black hole, and the attraction of the brightness of a newly-born star. If Lewis Fautzi´s sound could be materialized, it would look something like this.",
     "location": "Madrid, Spain",
-    "image": "06.jpg"},
+    "image": "06.jpg",
+    "files": ["IC-10.mp3"]
+  },
   { "name": "Los Crudos", 
     "description": "DIY political hardcore punk band from Chicago, Illinois fronted by vocalist Martin Sorrondeguy. All of the band members were of Latino descent and all of their lyrics were in Spanish. They formed in 1991 and their last show was in October 1998.",
     "location": "Chicago, USA",
-    "image": "07.jpg"},
+    "image": "07.jpg",
+    "files": ["01 Achicados.mp3", "02 En Mi Opinion.mp3", "03 No Te Debo Nado.mp3", "04 Levantante!.mp3", "05 La Caida De Latino America.mp3"]
+  },
   {"name": "Vril", 
     "description": "Vril has been building a strong reputation for his live performances. He's become increasingly busy over the last 12 months, with gigs in an impressive number of countries, and he'll set out this week on his first US tour, with stops in Miami, New York, Washington DC and Philadelphia.",
     "location": "Hannover, Denmark",
-    "image": "08.jpg"},
+    "image": "08.jpg",
+    "files": ["IAMIX146Vril.mp3", "03 Portal 3.mp3"]},
   { "name": "Midi Lidi", 
     "description": "Electro-pop band Midi Lidi was formed and built in 2006 around the backbone of the band The Beautiful Removal Man Gerard & Sexual Furniture. Up until 2011, the band members were Petr Marek (vocals, electronics, keyboards), Marketa Lisa (vocals, electronics, keyboards, saxophone), Prokop Holoubek (vocals, drums, keyboards, clarinet, guitar) and three visual artists Filip Cenek, Magdalena Hruba and Jan Sramek, all of whom were responsible for creating the live visuals, album covers, posters and T-shirts.",
     "image": "09.jpg",
-    "location": "Brno, Czech Republic"},
+    "location": "Brno, Czech Republic",
+    "files": ["20 Jellybelly - Miami Vice (Midi Lidi Kutya Remix).mp3", "Bujon (live Fléda 2012).mp3"]
+    },
     { "name": "Kamp!", 
     "description": "Kamp! has been around for a while having grown a massive domestic popularity in their native Poland and a niche global fanbase thanks to their smooth synth pop, that brings the new-wave feel to the retro chic of disco.",
     "location": "Warsaw, Poland",
-    "image": "10.jpg"}
+    "image": "10.jpg",
+    "files": ["02 Cairo.mp3", "04 Sulk.mp3", "06 Lux Lisbon.mp3", "07 Distance of the modern hearts.mp3"]
+    }
 ]
 
 organizers = [
@@ -141,6 +158,12 @@ organizers_db = []
     p.contents.create(role: 1, content_type: 2, content: performers[i][:description])
     p.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
 
+    if performers[i][:files]
+      performers[i][:files].each do |file|
+        p.contents.create(role: 1, content_type: 3, content: "", audio: File.new("#{Rails.root}/faker/#{file}"))
+      end
+    end
+
     o = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: true, performer: false, location: organizers[i][:location],
                )  
@@ -168,6 +191,10 @@ organizers_db[0..2].each_with_index do |o, index|
                  poster: File.new("#{Rails.root}/faker/#{past_events[index][:image]}")
                 )
     i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false, responded: true)
+    r1 = Review.create(user_id: organizers_db[index].id, to: performers_db[index].id, rating: rand(0..5), event_id: e.id,
+                  text: "#{performers_db[index].name} was at my event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
+    r2 = Review.create(user_id: performers_db[index].id, to: organizers_db[index].id, rating: rand(0..5), event_id: e.id,
+                  text: "#{organizers_db[index].name} had a nice event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
 end
 
 
