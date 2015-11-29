@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   default from: "do-not-reply@dign.us"
 
-  def sample_email(user_to, user_from, message)
+  def send_message(user_to, user_from, message)
     @user_to = user_to
     @user_from = user_from
     @message = message
