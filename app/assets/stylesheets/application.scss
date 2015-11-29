@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require jquery.rating
  *= require_self
  */
 $brand-primary: #3ab795;
@@ -38,6 +39,10 @@ $highlight-color: #a3d166;
 // TYPOGRAPHY
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,100);
+
+.nav-tabs > li > a {
+    border-radius: 0px;
+}
 
 .btn {
     font-size: 80%;

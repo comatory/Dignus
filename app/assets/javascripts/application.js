@@ -13,6 +13,10 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.form
+//= require jquery.MetaData
+//= require jquery.rating
+//= require jquery.rating.pack
 //= require bootstrap-sprockets
 //= require jquery.expander.min
 //= require bindWithDelay

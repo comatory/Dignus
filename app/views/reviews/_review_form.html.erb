@@ -16,13 +16,20 @@
                         
                         <div class="review-form" data-review=<%= reviews[k].id %>>
                             <%= form_tag({controller: 'reviews', action: 'create'}, method: 'post') do %>
+                                <div class="review-stars">
+                                    <input name="star1" type="radio" class="star" value=1 id=<%= reviews[k].id %>> 
+                                    <input name="star1" type="radio" class="star" value=2 id=<%= reviews[k].id %>> 
+                                    <input name="star1" type="radio" class="star" value=3 id=<%= reviews[k].id %>> 
+                                    <input name="star1" type="radio" class="star" value=4 id=<%= reviews[k].id %>> 
+                                    <input name="star1" type="radio" class="star" value=5 id=<%= reviews[k].id %>>                                 
+                                </div>
                                 <%= hidden_field_tag 'review[user_id]', @user.id %>
                                 <%= hidden_field_tag 'review[event_id]', reviews[k].id %>
                                 <%= hidden_field_tag 'review[to]', k.id %>
-                                <%= label_tag "Message:" %>
-                                <%= text_field_tag 'review[text]' %>
-                                <%= number_field_tag 'review[rating]' %>
-                                <%= submit_tag "Review" %>
+                                <%= hidden_field_tag 'review[rating]', 0 %>
+                                <%= label_tag "Message:", nil, class: 'review-label' %>
+                                <%= text_field_tag 'review[text]', nil, class: 'review-message' %>
+                                <%= submit_tag "Review", class: 'btn btn-primary btn-invitation' %>
                             <% end %>
                         </div>
                     </td>

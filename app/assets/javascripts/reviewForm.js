@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    // DISPLAY REVIEW FORM
     var rotations = {
     }
 
@@ -30,5 +31,14 @@ $(document).ready(function() {
                      'transform' : 'rotate('+ degrees +'deg)'});
         return $(this);
     };
+
+
+    // STAR RATING 
+    $('.star-rating a').click(function(e) {
+        var rating = $(e.target)[0].innerHTML;
+        var id = $(e.target).first().parent().prop('id');
+        field = $('div.review-form[data-review="' + id + '"] form input#review_rating').first().val(rating);
+           
+    })
 
 });

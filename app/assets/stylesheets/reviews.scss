@@ -1,6 +1,9 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$brand-primary: #3ab795;
+
 .reveal {
     display: inline-block;
 	width: 0;
@@ -13,4 +16,19 @@
 div.review-form {
     display: none;
 }
-	
+
+div.review-stars {
+    margin-top: 4px;
+}
+
+label.review-label {
+    margin-left: 11px;
+    font-size: 13px;
+}
+
+input.review-message {
+    font-size: 12px;
+    border: 1px solid $brand-primary;
+    padding: 2px;
+    margin-left: 5px;
+}
