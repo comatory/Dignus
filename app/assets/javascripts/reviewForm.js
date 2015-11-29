@@ -8,11 +8,11 @@ $(document).ready(function() {
         if ($(this).hasClass('rotated')) {
             $(this).removeClass('rotated');
             rotations[targetId] -= 90 
-            $('div.review-form[data-review="' + targetId + '"]').slideUp();
+            $('div.review-form[data-review="' + targetId + '"]').slideUp('fast');
         } else {
             $(this).addClass('rotated');
             rotations[targetId] += 90 
-            $('div.review-form[data-review="' + targetId + '"]').slideDown();
+            $('div.review-form[data-review="' + targetId + '"]').slideDown('fast');
         }
 
         $('div.reveal' + '[data-review="' + targetId + '"]').rotate(rotations[targetId]);
