@@ -37,6 +37,9 @@
 
 <div class="row">
     <div class="col-md-3">
+        <div class="send-message-btn">
+            <button class="btn btn-primary" id="btn-show-message-modal" data-toggle="modal" data-target="#myModal">Message</button>
+        </div>
         <%= render "users/reviews", reviews: @reviews %>
     </div>
 
@@ -44,6 +47,9 @@
         <%= render "users/media", website: @user_data[:website], youtube: @user_data[:youtube], audio: @user_data[:audio] %>
     </div>
 </div>
+
+<%= render "users/message", to: @user %>
+
 
 
 <% if user_signed_in? && can_invite_to_event? %>
