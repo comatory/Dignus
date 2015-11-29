@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post '/users/:user_id/contents' => 'contents#update'
   delete '/users/:user_id/contents' => 'contents#destroy'
 
+  post '/users/:id/email' => 'emails#create', as: 'user_email'
+
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

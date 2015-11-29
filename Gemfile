@@ -53,9 +53,12 @@ gem 'textacular', '~> 3.0'
 # FIX CACHE PROBLEM
 gem 'jquery-turbolinks', '~> 2.1'
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  # FIGARO
+  gem 'figaro', '1.1.1'
 end
 
 group :development do

@@ -25,3 +25,6 @@ faker/*
 /public/system/contents/audios/
 /public/system/events/posters/
 /public/system/users/avatars/
+
+# Ignore application configuration
+/config/application.yml
