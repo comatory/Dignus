@@ -53,6 +53,9 @@ gem 'textacular', '~> 3.0'
 # FIX CACHE PROBLEM
 gem 'jquery-turbolinks', '~> 2.1'
 
+# MAILGUN
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
