@@ -1,5 +1,5 @@
 class ExampleMailer < ActionMailer::Base
-  default from: 'dignus.mailer@gmail.com' 
+  default from: ENV['gmail_username'] 
 
   def sample_email(user)
     @user = user
