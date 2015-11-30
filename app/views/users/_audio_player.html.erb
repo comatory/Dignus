@@ -1,9 +1,9 @@
-<% if audio_files.any? %>
-    <% audio_files.each do |file| %>
-        <div class="track">
-            <%= file.audio.instance.audio_file_name%>
-            <%= audio_tag(file.audio.url) %>
+<% audio_files.each do |file| %>
+    <div class="track">
+        <%= file.audio.instance.audio_file_name%>
+        <%= audio_tag(file.audio.url) %>
+        <div class="seekbar">
+          <progress value="0" max="30"></progress>
         </div>
-    <% end %>
+    </div>
 <% end %>
-

@@ -110,3 +110,13 @@ h4.dashboard-label {
         letter-spacing: 0.05em;
     }
 }
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: $brand-primary;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: $brand-primary;
+    &:hover {
+        background-color: rgba(161, 209, 103, 0.28);
+    }
+}

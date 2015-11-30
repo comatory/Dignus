@@ -1,0 +1,11 @@
+<div class="video-wrapper">
+    <div id="youtube-link">
+        <% if youtube.nil? %>
+            <em>User has no videos.</em>
+        <% else %>
+            <div class="embed-container">
+                <%= embed(youtube) %>
+            </div>
+        <% end %>
+    </div>
+</div>

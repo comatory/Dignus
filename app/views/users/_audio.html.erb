@@ -1,0 +1,22 @@
+<div class="audio-wrapper">
+    <div id="website-link">
+        <% unless website.nil? %>
+            <b>Website: </b><%= link_to(website, website) %>
+        <% end %>
+    </div>
+
+    <% if audio.any? %>
+        <p class="audio-player-label"><b>Audio</b></p>
+        <div id="audioplayer">
+            <%= render "users/audio_player", audio_files: audio %> 
+        </div>
+    <% else %>
+        <em>User has no audio.</em>
+    <% end %>
+
+    <div class="edit">
+        <% if can_edit?(@user) %>
+            <%= link_to "Edit media", user_content_path(current_user), class: 'btn btn-primary' %>
+        <% end %>
+    </div>
+</div>

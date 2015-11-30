@@ -39,13 +39,19 @@
     <div class="col-md-3">
         <%= render "users/reviews", reviews: @reviews %>
 
-        <div class="send-message-btn">
-            <button class="btn btn-primary" id="btn-show-message-modal" data-toggle="modal" data-target="#myModal">Message</button>
-        </div>
+        <% if user_signed_in? && !can_edit?(current_user) %>
+            <div class="send-message-btn">
+                <button class="btn btn-primary" id="btn-show-message-modal" data-toggle="modal" data-target="#myModal">Message</button>
+            </div>
+        <% end %>
     </div>
 
-    <div class="col-md-9">
-        <%= render "users/media", website: @user_data[:website], youtube: @user_data[:youtube], audio: @user_data[:audio] %>
+    <div class="col-md-4">
+        <%= render "users/audio", website: @user_data[:website], audio: @user_data[:audio] %>
+    </div>
+
+    <div class="col-md-5">
+        <%= render "users/video", youtube: @user_data[:youtube] %>
     </div>
 </div>
 
@@ -58,6 +64,8 @@
 
 <%= render "users/dashboard", user: @user, admin_data: @admin_data, reviews_to_write: @reviews_to_write %>
 
-<%= render "users/message", to: @user %>
+<% if user_signed_in? && !can_edit?(current_user) %>
+    <%= render "users/message", to: @user %>
+<% end %>
 
 </div>

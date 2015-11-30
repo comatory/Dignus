@@ -1,17 +1,19 @@
-<% if user.description.nil? %>
-    <em>User has no description.</em>
-<% else %>
-    <h3>Bio</h3>
-    <p>
-    <b>Location: </b><%= user.location %>
-    </p>
-    <div class="profile-description">
-        <%= user.description %>
-    </div>
-<% end %>
-
-<div class="edit">
-    <% if can_edit?(user) %>
-        <%= link_to "Edit", edit_user_path(current_user), class: 'btn btn-primary' %>
+<div class="description-wrapper">
+    <% if user.description.nil? %>
+        <em>User has no description.</em>
+    <% else %>
+        <h3>Bio</h3>
+        <p>
+        <b>Location: </b><%= user.location %>
+        </p>
+        <div class="profile-description">
+            <%= user.description %>
+        </div>
     <% end %>
+
+    <div class="edit">
+        <% if can_edit?(user) %>
+            <%= link_to "Edit profile", edit_user_path(current_user), class: 'btn btn-primary' %>
+        <% end %>
+    </div>
 </div>

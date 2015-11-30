@@ -7,12 +7,38 @@ $brand-primary: #3ab795;
 $organizer-badge-color: darken($highlight-color, 20%);
 $performer-badge-color: darken($brand-primary, 40%);
 $event-badge-color: #dc7100;
+$audio-track-color: darken($brand-primary, 20%);
 
 div.profile-description {
     margin-right: 50px;
 }
 
 div#audioplayer {
+    border: 1px solid $audio-track-color;
+    padding: 8px;
+}
+
+.audio-player-label {
+    margin-bottom: 0px;
+}
+
+div.track {
+    font-size: 90%;
+    padding: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $audio-track-color;
+
+    &:hover {
+        background-color: lighten($brand-primary, 10%);
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.track-playing {
+    background-color: $brand-primary;
 }
 
 div#dashboard {
@@ -50,4 +76,36 @@ div#dashboard {
     margin: 10px 0px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
+}
+
+div.edit {
+    margin: 10px 0px;
+}
+
+.audio-wrapper, .video-wrapper, .description-wrapper {
+    margin: 20px 0px;
+}
+
+#website-link {
+    margin-bottom: 10px;
+}
+
+.embed-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+} 
+
+.embed-container {
+    iframe, object, embed {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%;
+          height: 100%;
+    }
 }
