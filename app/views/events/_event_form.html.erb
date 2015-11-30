@@ -1,44 +1,64 @@
-<%= form_for event, { url: url } do |f| %>
+        <%= form_for event, { url: url } do |f| %>
+<div class="row">
+    <div class="col-md-4">
+            <div class="form-group">
+                <h4>Poster
+                    <small>Upload custom poster</small>
+                </h4>
+                <%= f.file_field :poster %>
+            </div>
+    </div>
+    <div class="col-md-4">
 
-    <div class="form-group">
-        <%= f.label 'Event name' %>
-        <%= f.text_field :name, class: 'form-control' %>
-    </div>
+            <div class="form-group">
+                <h4>Name
+                    <small>What is your event called</small>
+                </h4>
+                <%= f.text_field :name, class: 'form-control' %>
+            </div>
 
-    <div class="form-group">
-        <%= f.label 'Event description' %>
-        <%= f.text_field :description, class: 'form-control' %>
-    </div>
+            <div class="form-group">
+                <h4>Description
+                    <small>What is happening here? Any supporting acts?</small>
+                </h4>
+                <%= f.text_area :description, class: 'form-control', rows: 7 %>
+            </div>
 
-    <div class="form-group">
-        <%= f.label 'Poster' %>
-        <%= f.file_field :poster %>
-    </div>
 
-    <%= f.label 'Start time' %>
-    <div class='form-group input-group date' id='datetimepicker1'>
-        <%= f.text_field :start_time, class: 'form-control' %>
-        <span class="input-group-addon">
-        <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-    </div>
-      <%= f.label 'End time' %>
-    <div class='form-group input-group date' id='datetimepicker2'>
-        <%= f.text_field :end_time, class: 'form-control' %>
-        <span class="input-group-addon">
-        <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-    </div>
+                <h4>Start
+                    <small>When does the event start?</small>
+                </h4>
+            <div class='form-group input-group date' id='datetimepicker1'>
+                <%= f.text_field :start_time, class: 'form-control' %>
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+                <h4>End
+                    <small>When is it finished?</small>
+                </h4>
+            <div class='form-group input-group date' id='datetimepicker2'>
+                <%= f.text_field :end_time, class: 'form-control' %>
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
 
-    <div class="form-group">
-        <%= f.label 'Venue' %>
-        <%= f.text_field :venue, class: 'form-control' %>
-    </div>
+            <div class="form-group">
+                <h4>Venue
+                    <small>Name of the club, venue or place</small>
+                </h4>
+                <%= f.text_field :venue, class: 'form-control' %>
+            </div>
 
-    <div class="form-group">
-    <%= f.submit button_label, class: 'btn btn-primary' %>
+            <div class="action">
+            <%= f.submit button_label, class: 'btn btn-primary' %>
+            </div>
+        <% end %>
     </div>
-<% end %>
+    <div class="col-md-4">
+    </div>
+</div>
 
 <script type="text/javascript">
     $(function () {

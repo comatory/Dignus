@@ -10,11 +10,11 @@ $(document).ready(function() {
         })
     }
 
-    $('div.track').click(function(e) {
-        var trackDiv = $(e.target);
-        var trackAudio = $(e.target).children()[0];
+    $('div.track div.track-title').click(function(e) {
+        var trackDiv = $(e.target).parent();
+        var seekBar = $('progress#' + 'sk' + trackDiv.attr('id'));
+        var trackAudio = trackDiv.children('audio')[0];
         var trackDuration = trackAudio.duration;
-        var seekBar = $(trackDiv).children().last().children()[0];
 
         if (trackAudio.paused == true) {
             trackAudio.play();

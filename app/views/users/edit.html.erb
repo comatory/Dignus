@@ -1,23 +1,43 @@
+            <%= form_tag({controller: "users", action: "update"}, multipart: true, class: 'edit_user', method: "patch") do %>
 <div class="container">
-    <h1><%= @user.name %></h1>
+    <div class="row">
+        <div class="col-md-12">
+            <h1><%= @user.name %></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Avatar</h4>
+                <div class="form-group">
+                    <%= image_tag @user.avatar, class: 'img-responsive' %>
+                    <%= file_field_tag 'user[avatar]' %>
+                </div>
+        </div>
+        <div class="col-md-6">
+                <div class="form-group">
+                    <h4>Name</h4>
+                    <%= text_field_tag 'user[name]', @user.name, id: :user_name, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <h4>Bio
+                        <small>Tell us about yourself</small>
+                    </h4>
+                    <%= text_area_tag 'user[description]', @user.description, rows: 7, id: :user_description, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <h4>
+                        Location
+                        <small>City / Region / County </small>
+                    </h4>
+                    <%= text_field_tag 'user[location]', @user.location, id: :user_location, class: 'form-control' %>
+                </div>
+                <div class="action">
+                    <%= submit_tag "Save changes", class: 'btn btn-primary' %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
 
-    <%= form_tag({controller: "users", action: "update"}, multipart: true, class: 'edit_user', method: "patch") do %>
-        <div class="form-group">
-            <%= label_tag "Name" %>
-            <%= text_field_tag 'user[name]', @user.name, id: :user_name, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-            <%= image_tag @user.avatar %>
-            <%= file_field_tag 'user[avatar]', class: 'form-control' %>
-        </div>
-        <div class="form-group">
-            <%= label_tag "Description" %>
-            <%= text_field_tag 'user[description]', @user.description, id: :user_description, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-            <%= label_tag "Location" %>
-            <%= text_field_tag 'user[location]', @user.location, id: :user_location, class: 'form-control' %>
-        </div>
-            <%= submit_tag "Save changes", class: 'btn btn-primary' %>
-    <% end %>
 </div>

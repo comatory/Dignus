@@ -1,6 +1,8 @@
 <% audio_files.each do |file| %>
     <div class="track">
-        <%= file.audio.instance.audio_file_name%>
+        <div class="track-title">
+            <%= file.audio.instance.audio_file_name%>
+        </div>
         <%= audio_tag(file.audio.url) %>
         <div class="seekbar">
           <progress value="0" max="30"></progress>

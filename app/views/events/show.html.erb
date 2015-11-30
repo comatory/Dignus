@@ -55,7 +55,9 @@
                 <% end %>
 
                 <% if can_edit?(@event.user) %>
-                    <%= link_to "Edit", edit_user_event_path(current_user, @event.id) %>
+                    <%= form_tag(edit_user_event_path(current_user, @event.id), {:method => 'get'}) do %>
+                        <% submit_tag "Edit", class: 'btn btn-primary' %>
+                    <% end %>
                 <% end %>
             <% end %>
 

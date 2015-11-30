@@ -1,46 +1,56 @@
 <div class="container">
-    <h2>Sign up</h2>
+    <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <div class="centered-wrapper">
+                <h2>Sign up</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  <%= devise_error_messages! %>
 
-      <% if params['user-type'] == 'performer' %>
-      <div class="field">
-        <%= label_tag 'Performer name' %><br />
-      <%= hidden_field_tag "user-type", "performer" %> 
-      </div>
-      <% elsif params['user-type'] == 'organizer' %>
-      <div class="field">
-        <%= label_tag 'Organizer name' %><br />
-      <%= hidden_field_tag "user-type", "organizer" %> 
-      </div>
-      <% end %>
-      <div class="field">
-        <%= text_field_tag 'user[name]' %>
-      </div>
-      <div class="field">
-        <%= f.label (I18n.t :email) %><br />
-        <%= f.email_field :email %>
-      </div>
+                  <% if params['user-type'] == 'performer' %>
+                  <div class="field">
+                    <%= label_tag 'Performer name' %><br />
+                  <%= hidden_field_tag "user-type", "performer" %> 
+                  </div>
+                  <% elsif params['user-type'] == 'organizer' %>
+                  <div class="field">
+                    <%= label_tag 'Organizer name' %><br />
+                  <%= hidden_field_tag "user-type", "organizer" %> 
+                  </div>
+                  <% end %>
+                  <div class="field">
+                    <%= text_field_tag 'user[name]' %>
+                  </div>
+                  <div class="field">
+                    <%= f.label (I18n.t :email) %><br />
+                    <%= f.email_field :email %>
+                  </div>
 
-      <div class="field">
-        <%= f.label (I18n.t :password) %>
-        <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> <%= I18n.t :characters_minimum %></em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
-      </div>
+                  <div class="field">
+                    <%= f.label (I18n.t :password) %>
+                    <% if @minimum_password_length %>
+                    <em><%= @minimum_password_length %> <%= I18n.t :characters_minimum %></em>
+                    <% end %><br />
+                    <%= f.password_field :password, autocomplete: "off" %>
+                  </div>
 
-      <div class="field">
-        <%= f.label (I18n.t :password_confirmation) %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-      </div>
+                  <div class="field">
+                    <%= f.label (I18n.t :password_confirmation) %><br />
+                    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                  </div>
 
-      <div class="actions">
-          <%= f.submit (I18n.t :sign_up)  %>
-      </div>
-    <% end %>
+                  <div style="margin-top: 15px;">
+                      <%= f.submit (I18n.t :sign_up), class: 'btn btn-primary'  %>
+                  </div>
+                <% end %>
 
 
-    <%= render "devise/shared/links" %>
+                <%= render "devise/shared/links" %>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
 </div>

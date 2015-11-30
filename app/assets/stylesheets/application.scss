@@ -30,6 +30,7 @@ $btn-danger-bg: transparent;
 $btn-danger-color: #e1362d;
 $btn-primary-color: $brand-primary;
 $highlight-color: #a3d166;
+$input-border-radius: 0px;
 
 
 @import "bootstrap-sprockets";
@@ -40,6 +41,13 @@ $highlight-color: #a3d166;
 // TYPOGRAPHY
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,100);
+
+input, textarea {
+    &:focus {
+        outline: none !important;
+        box-shadow: 0 0 10px $brand-primary;
+    }
+}
 
 .nav-tabs > li > a {
     border-radius: 0px;
