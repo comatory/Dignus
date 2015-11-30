@@ -1,5 +1,15 @@
 $(document).ready(function() {
 
+    function initializeTracks() {
+        $('div.track').each(function(tr) {
+            var track = $('.track')[tr];
+            var tr_id = $(track).uniqueId();
+            var seekBarId = 'sk' + tr_id.prop('id');
+            var seekBar = $('progress')[tr];
+            $(seekBar).prop('id', seekBarId);
+        })
+    }
+
     $('div.track').click(function(e) {
         var trackDiv = $(e.target);
         var trackAudio = $(e.target).children()[0];
@@ -15,9 +25,11 @@ $(document).ready(function() {
                 $(seekBar).attr('value', trackAudio.currentTime);
             })
 
-        } else {
+        } else if (trackAudio.paused == false){
             trackAudio.pause();
             trackDiv.removeClass('track-playing');
         }
     });
+
+    initializeTracks();
 })
