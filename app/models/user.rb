@@ -64,7 +64,8 @@ class User < ActiveRecord::Base
           past: past_events },
       website: website_link,
       youtube: youtube_link,
-      audio: audio_files
+      audio: audio_files,
+      rating: rating
     }
   end
 
@@ -118,6 +119,19 @@ class User < ActiveRecord::Base
 
   def audio_files
     Content.where(user_id: self.id, content_type: 3)
+  end
+
+  def rating
+    reviews = Review.where(to: self.id)
+    count = reviews.length
+    if count.zero?
+      0
+    else
+      reviews_total = reviews.reduce(0) do |sum, review|
+        sum + review.rating
+      end
+      reviews_total / count
+    end
   end
 
   def generate_content_data

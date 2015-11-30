@@ -17,10 +17,6 @@ audio_path = "#{Rails.root}/public/system/contents/audios/"
 poster_path = "#{Rails.root}/public/system/events/posters/"
 avatar_path = "#{Rails.root}/public/system/users/avatars/"
 
-#Dir.foreach(audio_path) {|f| fn = File.join(audio_path, f); File.delete(fn) if f != '.' && f != '..'}
-#Dir.foreach(poster_path) {|f| fn = File.join(poster_path, f); File.delete(fn) if f != '.' && f != '..'}
-#Dir.foreach(avatar_path) {|f| fn = File.join(avatar_path, f); File.delete(fn) if f != '.' && f != '..'}
-
 FileUtils.rm_rf(Dir.glob("#{audio_path}*"))
 FileUtils.rm_rf(Dir.glob("#{poster_path}*"))
 FileUtils.rm_rf(Dir.glob("#{avatar_path}*"))

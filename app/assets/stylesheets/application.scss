@@ -12,7 +12,7 @@
  *
  *= require_tree .
  *= require jquery.rating
-*= require jquery-ui
+ *= require jquery-ui
  *= require_self
  */
 $brand-primary: #3ab795;
@@ -128,4 +128,21 @@ h4.dashboard-label {
     &:hover {
         background-color: rgba(161, 209, 103, 0.28);
     }
+}
+
+.modal-content {
+    border-radius: 0px;
+}
+
+select {
+    background: transparent;
+    border-radius: 0px;
+    border: 1px solid $brand-primary;
+   padding: 5px;
+   padding-top: 4px;
+   min-width: 120px;
+   font-size: 16px;
+   line-height: 1;
+   height: 34px;
+   -webkit-appearance: none;
 }

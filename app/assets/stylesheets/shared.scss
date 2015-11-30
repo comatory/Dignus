@@ -6,3 +6,10 @@ div.action {
     float: right;
 }
 
+.icon {
+    font-size: 18px;
+    &:hover {
+        text-decoration: none;
+    }
+}
+

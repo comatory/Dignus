@@ -11,13 +11,24 @@
             <% else %>
                 <span class="performer-badge resource-badge"></span>
             <% end %>
+            <%= rating_stars(@user_data[:rating]) %>
         </p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-3">
-        <%= image_tag @user.avatar.url, class: "img-responsive" %>
+
+        <div class="row">
+            <div class="col-md-12">
+                <%= image_tag @user.avatar.url, class: "img-responsive" %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <%= render "users/social_panel", user: @user %>
+            </div>
+        </div>
     </div>
 
     <div class="col-md-4">
@@ -39,11 +50,6 @@
     <div class="col-md-3">
         <%= render "users/reviews", reviews: @reviews %>
 
-        <% if user_signed_in? && !can_edit?(current_user) %>
-            <div class="send-message-btn">
-                <button class="btn btn-primary" id="btn-show-message-modal" data-toggle="modal" data-target="#myModal">Message</button>
-            </div>
-        <% end %>
     </div>
 
     <div class="col-md-4">
@@ -64,7 +70,7 @@
 
 <%= render "users/dashboard", user: @user, admin_data: @admin_data, reviews_to_write: @reviews_to_write %>
 
-<% if user_signed_in? && !can_edit?(current_user) %>
+<% if user_signed_in? %>
     <%= render "users/message", to: @user %>
 <% end %>
 

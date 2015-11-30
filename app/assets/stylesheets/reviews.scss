@@ -32,3 +32,9 @@ input.review-message {
     padding: 2px;
     margin-left: 5px;
 }
+
+.stars {
+    font-size: 85%;
+    margin-left: 10px;
+    color: darken($brand-primary, 20%);
+}

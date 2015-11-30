@@ -11,7 +11,6 @@
           <h6>Message</h6>
             <%= text_area_tag 'email[body]', nil, class: 'form-control' %>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             <%= hidden_field_tag 'email[from]', current_user.id %>
             <%= hidden_field_tag 'email[to]', to.id %>
             <%= submit_tag "Send", class: 'btn btn-primary' %>

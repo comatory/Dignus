@@ -50,6 +50,11 @@ div#dashboard {
     margin-bottom: 30px;
 }
 
+div.social-panel {
+    margin-top: 10px;
+    padding: 5px;
+}
+
 .organizer-badge {
     &:before {
         content: "organizer";
