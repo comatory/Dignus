@@ -5,6 +5,7 @@ class EmailsController < ApplicationController
     recipient = User.find_by(id: safe_email_params[:to])
     message = safe_email_params[:body]
     UserMailer.message_email(recipient, sender, message).deliver
+    binding.pry
     flash[:notice] = "Email sent"
     redirect_to user_path(recipient.id)
   end
