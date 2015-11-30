@@ -8,7 +8,7 @@
     <p>You have received message from user <%= @sender.name %>. This is the following message:</p>
     <p><%= @message %></p>
     <p>
-        You can reply by clicking <%= content_tag(:a, "this link", href: "mailto://#{@sender.email}") %>.
+        You can reply by clicking <%= content_tag(:a, "this link", href: "mailto:#{@sender.email}") %>.
     </p>
   </body>
 </html>
