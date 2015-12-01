@@ -34,11 +34,11 @@ class EventsController < ApplicationController
   end
 
   def index_all
-    @events = Event.all.where("start_time >= ?", DateTime.now)
+    @events = Event.all.where("start_time >= ?", DateTime.now).order(:start_time)
   end
 
   def index_past
-    @events = Event.all.where("end_time <= ?", DateTime.now)
+    @events = Event.all.where("end_time <= ?", DateTime.now).order('end_time DESC')
   end
 
   private
