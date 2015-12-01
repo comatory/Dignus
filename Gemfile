@@ -38,6 +38,9 @@ gem 'autoprefixer-rails', '6.1.0'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 
+# DATETIME VALIDATIONS ON EVENT MODEL
+gem 'ae-validates_timeliness', '4.0.0'
+
 # DEVISE
 gem 'devise', '3.5.2'
 
