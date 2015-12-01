@@ -10,7 +10,10 @@
 
 <%= render "shared/navbar" %>
 
-<%= flash_messages %>
+<div class="flash">
+    <%= flash_messages %>
+</div>
+
 <%= yield %>
 
 </body>

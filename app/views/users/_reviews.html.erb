@@ -3,7 +3,8 @@
         <h3>Reviews</h3>
         <% reviews.each do |review_id, review| %>
             <div class="review">
-                <p><b>Rating: </b><%= reviews[review_id][:review][:rating] %> <b>From: </b><%= link_to(reviews[review_id][:reviewer].name, user_path(reviews[review_id][:reviewer].id)) %></p>
+                <p><b>From: </b><%= link_to(reviews[review_id][:reviewer].name, user_path(reviews[review_id][:reviewer].id)) %>
+                <%= rating_stars(reviews[review_id][:review][:rating]) %></p>
                 <p><%= reviews[review_id][:review].text %></p>
             </div>
         <% end %>

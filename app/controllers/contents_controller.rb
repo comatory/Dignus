@@ -21,6 +21,7 @@ class ContentsController < ApplicationController
     else
       website.nil? ? website = contents.create(content_type: 5, role: @user.role, content: "") : website
       website.update(content: check_for_http(contents_safe_params[:website]))
+      flash[:notice] = "Website updated"
     end
 
     if contents_safe_params[:youtube].empty?
@@ -28,10 +29,12 @@ class ContentsController < ApplicationController
     else
       youtube.nil? ? youtube = contents.create(content_type: 4, role: @user.role, content: "") : youtube
       youtube.update(content: check_for_http(contents_safe_params[:youtube]))
+      flash[:notice] = "Youtube video updated"
     end
 
     unless contents_safe_params[:audio_file].nil?
       Content.create(user_id: @user.id, role: @user.role, content_type: 3, content: "", audio: contents_safe_params[:audio_file])
+      flash[:notice] = "Track uploaded" 
     end
 
     redirect_to user_content_path(@user.id)
@@ -40,7 +43,7 @@ class ContentsController < ApplicationController
   def destroy
     if contents_safe_params[:delete_audio] != nil
       Content.find_by(id: contents_safe_params[:delete_audio]).destroy
-      flash[:notice] = "Audio file deleted."
+      flash[:alert] = "Audio file deleted."
       redirect_to user_content_path(params[:user_id])
     end
   end

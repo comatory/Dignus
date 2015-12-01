@@ -7,9 +7,14 @@ div.action {
 }
 
 .icon {
-    font-size: 18px;
+    font-size: 120%;
     &:hover {
         text-decoration: none;
     }
 }
 
+div.flash {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+}
