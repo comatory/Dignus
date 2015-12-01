@@ -10,9 +10,13 @@ module ApplicationHelper
       if flash[:alert].class == String
         result += content_tag(:div, flash[:alert], class: "alert alert-danger")
       else
+        #flash[:alert].each do |error|
+          #result += content_tag(:div, content_tag(:p, error), class: "alert alert-danger")
+        #end
         flash[:alert].each do |error|
-          result += content_tag(:div, content_tag(:p, error), class: "alert alert-danger")
+          result += (error + "<br />")
         end
+        result = content_tag(:div, result.html_safe, class: 'alert alert-danger')
       end
         result.html_safe
     end
