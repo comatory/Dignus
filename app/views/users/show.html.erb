@@ -68,8 +68,6 @@
     <%= render "invitations/send_invitation_to_performer" %>
 <% end %>
 
-<%= render "users/dashboard", user: @user, admin_data: @admin_data, reviews_to_write: @reviews_to_write %>
-
 <% if user_signed_in? %>
     <%= render "users/message", to: @user %>
 <% end %>

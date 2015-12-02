@@ -5,9 +5,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user_data = @user.generate_user_data
     @invitation_event_list = current_user.events_not_invited_to(params[:id].to_i) if user_signed_in? && current_user.organizer
-    @admin_data = Invitation.generate_admin_data(@user.id)
     @reviews = Review.user_reviews(@user)
-    @reviews_to_write = Review.reviews_not_written(@user)
   end
 
   def edit

@@ -25,6 +25,7 @@
             </a>
             <ul class="dropdown-menu">
                 <% if user_signed_in? %>
+                    <%= content_tag(:li, link_to("Dashboard", user_dashboard_path(current_user.id), class: 'navbar-link')) %>
                     <%= content_tag(:li, link_to("Profile", user_path(current_user.id), class: 'navbar-link')) %>
                 <% end %>
 

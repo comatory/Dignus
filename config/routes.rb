@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :events 
   end
 
+  get '/users/:id/dashboard' => 'dashboard#index', as: 'user_dashboard'
 
   resources :invitations, only: [:create, :update, :destroy]
   resources :search, only: [:index, :create]

@@ -34,7 +34,7 @@
             <% if buttons %>
             <td>
                 <div class="event-confirm-buttons">
-                    <%= render "invitation_accept", invitation_id: invitation.id %> <%= render "invitation_reject", invitation_id: invitation.id %>
+                    <%= render "dashboard/invitation_accept", invitation_id: invitation.id %> <%= render "dashboard/invitation_reject", invitation_id: invitation.id %>
                 </div>
             </td>
             <% end %>

@@ -1,6 +1,5 @@
 <% if user_signed_in? && can_edit?(user) %>
 <div id="dashboard">
-    <h3>Dashboard</h3>
     <div>
 
       <!-- nav tabs -->
@@ -17,16 +16,16 @@
               <h4 class="dashboard-label">Accepted<br>
                   <small>Invitations I accepted</small>
               </h4>
-                <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:accepted], buttons: false %>
+                <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:accepted], buttons: false %>
                 <h4 class="dashboard-label">Rejected<br>
                   <small>Invitations I rejected</small>
                 </h4>
-                <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:rejected], buttons: false %>
+                <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:rejected], buttons: false %>
                 <% if current_user.performer %>
                     <h4 class="dashboard-label">Cancelled<br>
                       <small>Cancelled performances</small>
                     </h4>
-                    <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:cancelled], buttons: false %>
+                    <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:cancelled], buttons: false %>
                 <% end %>
           </div>
 
@@ -34,11 +33,11 @@
               <h4 class="dashboard-label">Invitations<br>
                   <small>Invitations sent to you</small>
               </h4>
-                <%= render "users/invitation_table", from: true, th_text: "From", invitations: admin_data[:inbox], buttons: true %>
+                <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:inbox], buttons: true %>
                 <h4 class="dashboard-label">Confirmed<br>
                   <small>Invitations confirmed by others</small>
                 </h4>
-                <%= render "users/invitation_table", from: false, th_text: "From", invitations: admin_data[:confirmed], buttons: false%>
+                <%= render "dashboard/invitation_table", from: false, th_text: "From", invitations: admin_data[:confirmed], buttons: false%>
                 <h4 class="dashboard-label">Reviews<br>
                   <small>Reviews I need to write</small>
                 </h4>
@@ -49,11 +48,11 @@
               <h4 class="dashboard-label"> Outbox<br>
                   <small>Invitations I sent</small>
               </h4>
-            <%= render "users/invitation_table", from: false, th_text: "To",  invitations: admin_data[:outbox], buttons: false %>
+            <%= render "dashboard/invitation_table", from: false, th_text: "To",  invitations: admin_data[:outbox], buttons: false %>
             <h4 class="dashboard-label">Turned down<br>
               <small>My invitations others turned down</small>
             </h4>
-            <%= render "users/invitation_table", from: false, th_text: "To", invitations: admin_data[:turned_down], buttons: false%>
+            <%= render "dashboard/invitation_table", from: false, th_text: "To", invitations: admin_data[:turned_down], buttons: false%>
           </div>
 
       </div>
