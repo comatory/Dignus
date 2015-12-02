@@ -24,7 +24,6 @@ class Invitation < ActiveRecord::Base
       inbox: self.inbox(user_id),
       outbox: self.outbox(user_id),
       accepted: self.accepted(user_id),
-      rejected: self.rejected(user_id),
       cancelled: self.cancelled(user_id),
     }
   end
@@ -34,7 +33,7 @@ class Invitation < ActiveRecord::Base
   end
 
   def self.turned_down(user_id)
-    self.collect(self.where(user_id: user_id, rejected: true))
+    self.collect(CanceledInvitation.where(user_id: user_id))
   end
 
   def self.inbox(user_id)
@@ -47,10 +46,6 @@ class Invitation < ActiveRecord::Base
 
   def self.accepted(user_id)
     self.collect(self.where(to: user_id, accepted: true))
-  end
-
-  def self.rejected(user_id)
-    self.collect(self.where(to: user_id, rejected: true))
   end
 
   def self.cancelled(user_id)

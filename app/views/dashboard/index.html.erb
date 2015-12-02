@@ -2,6 +2,14 @@
 
     <h1>Dashboard</h1>
 
-    <%= render "dashboard/dashboard", user: @user, admin_data: @admin_data, reviews_to_write: @reviews_to_write %>
+    <%= render "dashboard/dashboard", user: @user, admin_data: @admin_data %>
+
+    <h3>Reviews
+        <p><small>Reviews I need to write</small></p>
+    </h3>
+
+    <div class="reviews">
+          <%= render "reviews/review_form", reviews_to_write: @reviews_to_write  %>
+    </div>
 
 </div>

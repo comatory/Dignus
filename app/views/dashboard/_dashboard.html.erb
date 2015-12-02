@@ -20,13 +20,7 @@
                 <h4 class="dashboard-label">Rejected<br>
                   <small>Invitations I rejected</small>
                 </h4>
-                <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:rejected], buttons: false %>
-                <% if current_user.performer %>
-                    <h4 class="dashboard-label">Cancelled<br>
-                      <small>Cancelled performances</small>
-                    </h4>
                     <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:cancelled], buttons: false %>
-                <% end %>
           </div>
 
           <div role="tabpanel" class="tab-pane active" id="inbox">
@@ -38,10 +32,6 @@
                   <small>Invitations confirmed by others</small>
                 </h4>
                 <%= render "dashboard/invitation_table", from: false, th_text: "From", invitations: admin_data[:confirmed], buttons: false%>
-                <h4 class="dashboard-label">Reviews<br>
-                  <small>Reviews I need to write</small>
-                </h4>
-                  <%= render "reviews/review_form", reviews_to_write: reviews_to_write  %>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">
