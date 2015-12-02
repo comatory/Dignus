@@ -64,15 +64,22 @@ group :development, :test do
   gem 'byebug'
   # FIGARO
   gem 'figaro', '1.1.1'
+  # RSPEC
+  gem 'rspec-rails', '~> 3.0'
+  # FACTORY GIRL & DATABASE CLEANER 
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner', '1.5.1' 
+  # FAKER
+  gem 'faker', '1.5.0'
+  # PRY
+  gem 'pry'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-  gem 'faker', '1.5.0'
   gem 'better_errors', '2.1.1'
   gem 'binding_of_caller', '0.7.2'
-  gem 'pry'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

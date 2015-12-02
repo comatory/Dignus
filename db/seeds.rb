@@ -185,6 +185,12 @@ end
 
 Invitation.find_by(to: performers_db.last.id).update(accepted: true, responded: true)
 
+if Rails.env.development? || Rails.env.test?
+  ValidatesTimeliness.setup do |config|
+    config.ignore_restriction_errors = true 
+   end
+end
+
 organizers_db[0..2].each_with_index do |o, index|
     date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
     e = Event.create(user_id: o.id, name: past_events[index][:name], start_time: date,

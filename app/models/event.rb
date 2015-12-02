@@ -2,8 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :user
   validates :name, presence: true
   validates :start_time, presence: true
-  validates_datetime :start_time, on_or_after: DateTime.now + (4.0 / 24)
-  validates_datetime :end_time, on_or_after: DateTime.now + (6.0 / 24)
+  validates_datetime :start_time, on_or_after: DateTime.now + (4.0 / 24) if Rails.env.production?
+  validates_datetime :end_time, on_or_after: DateTime.now + (6.0 / 24) if Rails.env.production?
   validates :end_time, presence: true
   validates :venue, presence: true
   has_attached_file :poster, styles: { medium: "350x525>", thumb: "200x300>" }, default_url: "/images/poster/:style/poster_default.png"
