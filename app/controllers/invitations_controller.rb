@@ -24,16 +24,16 @@ class InvitationsController < ApplicationController
     if invitation_safe_params[:accept] != nil
       if invitation.update(accepted: invitation_safe_params[:accept], responded: true)
         flash[:notice] = "Invitation changed successfuly"
-        redirect_to user_path(params[:id])
+        redirect_to user_dashboard_path(params[:id])
       else
         flash[:notice] = "Invitation not changed"
-        redirect_to user_path(params[:id])
+        redirect_to user_dashboard_path(params[:id])
       end
     elsif invitation_safe_params[:reject] != nil
         CanceledInvitation.create(user_id: invitation.user_id, to: invitation.to, event_id: invitation.event_id)
         invitation.destroy
         flash[:notice] = "Invitation rejected"
-        redirect_to user_path(params[:id])
+        redirect_to user_dashboard_path(params[:id])
     end
   end
 

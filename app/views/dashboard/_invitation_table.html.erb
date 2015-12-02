@@ -4,41 +4,43 @@
             <tr><th><%= th_text %></th><th>Event</th><th>Sent</th><th></th></tr>
         </thead>
         <tbody>
-    <% invitations.each do |invitation| %>
-        <tr>
-            <td>
-                <% if from %>
-                <%= link_to("#{User.find_by(id: invitation.user_id).name}", user_path(invitation.user_id)) %>
-                <% else %>
-                <%= link_to("#{User.find_by(id: invitation.to).name}", user_path(invitation.to)) %>
-                <% end %>
-            </td>
-            <td>
-                <% if from %>
-                    <% if @user.organizer %>
-                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.to, invitation.event_id)) %>
+    <% invitations.each do |invitation_hash| %>
+        <% invitation_hash.each do |invitation, names| %>
+            <tr>
+                <td>
+                    <% if from %>
+                    <%= link_to(names[:from_name], user_path(invitation.user_id)) %>
                     <% else %>
-                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.user_id, invitation.event_id)) %>
+                    <%= link_to(names[:to_name], user_path(invitation.to)) %>
                     <% end %>
-                <% else %>
-                    <% if @user.organizer %>
-                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.user_id, invitation.event_id)) %>
+                </td>
+                <td>
+                    <% if from %>
+                        <% if @user.organizer %>
+                            <%= link_to(names[:event_name], user_event_path(invitation.to, invitation.event_id)) %>
+                        <% else %>
+                            <%= link_to(names[:event_name], user_event_path(invitation.user_id, invitation.event_id)) %>
+                        <% end %>
                     <% else %>
-                        <%= link_to("#{Event.find_by(id: invitation.event_id).name}", user_event_path(invitation.to, invitation.event_id)) %>
+                        <% if @user.organizer %>
+                            <%= link_to(names[:event_name], user_event_path(invitation.user_id, invitation.event_id)) %>
+                        <% else %>
+                            <%= link_to(names[:event_name], user_event_path(invitation.to, invitation.event_id)) %>
+                        <% end %>
                     <% end %>
+                </td>
+                <td>
+                    <%= invitation.updated_at.strftime("%d. %m. %Y %H:%M") %>
+                </td>
+                <% if buttons %>
+                <td>
+                    <div class="event-confirm-buttons">
+                        <%= render "dashboard/invitation_accept", invitation_id: invitation.id %> <%= render "dashboard/invitation_reject", invitation_id: invitation.id %>
+                    </div>
+                </td>
                 <% end %>
-            </td>
-            <td>
-                <%= invitation.updated_at %>
-            </td>
-            <% if buttons %>
-            <td>
-                <div class="event-confirm-buttons">
-                    <%= render "dashboard/invitation_accept", invitation_id: invitation.id %> <%= render "dashboard/invitation_reject", invitation_id: invitation.id %>
-                </div>
-            </td>
-            <% end %>
-        </tr>
+            </tr>
+        <% end %>
     <% end %>
         </tbody>
     </table>
