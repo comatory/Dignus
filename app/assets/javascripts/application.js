@@ -18,10 +18,12 @@
 //= require jquery.MetaData
 //= require jquery.rating
 //= require jquery.rating.pack
+//= require jquery.geocomplete
 //= require bootstrap-sprockets
 //= require jquery.expander.min
 //= require bindWithDelay
 //= require moment
 //= require bootstrap-datetimepicker
 //= require turbolinks
-//= require_tree .
+//= require_tree 
+

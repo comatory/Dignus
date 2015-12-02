@@ -29,7 +29,7 @@
                         Location
                         <small>City / Region / County </small>
                     </h4>
-                    <%= text_field_tag 'user[location]', @user.location, id: :user_location, class: 'form-control' %>
+                    <%= text_field_tag 'user[location]', @user.location, id: 'searchTextField', class: 'form-control' %>
                 </div>
                 <div class="action">
                     <%= submit_tag "Save changes", class: 'btn btn-primary' %>
@@ -41,3 +41,4 @@
     </div>
 
 </div>
+

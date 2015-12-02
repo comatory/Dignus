@@ -52,8 +52,6 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_safe_params
-    # CHANGING DEFAULTS IN CASE STH BREAKS
-    #params.require(:invitation).permit(:event_id, :to)
     params.require(:invitation).permit(:event_id, :to, :invitation_id, :accept, :reject)
   end
 

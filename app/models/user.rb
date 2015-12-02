@@ -145,8 +145,10 @@ class User < ActiveRecord::Base
   def events_not_invited_to(user_id)
     filtered_events = []
     # we are filtering on these invitations
-    invitations = Invitation.where(user_id: user_id, to: self.id, responded: false) + Invitation.where(user_id: self.id, to: user_id, responded: false) + 
-          Invitation.where(user_id: user_id, to: self.id, accepted: true) + Invitation.where(user_id: self.id, to: user_id, accepted: true)
+    invitations = Invitation.where(user_id: user_id, to: self.id, responded: false) +
+    Invitation.where(user_id: self.id, to: user_id, responded: false) + 
+    Invitation.where(user_id: user_id, to: self.id, accepted: true) + 
+    Invitation.where(user_id: self.id, to: user_id, accepted: true)
 
     invitations.each do |invitation|
       event = Event.find_by(user_id: self.id, id: invitation.event_id)  
