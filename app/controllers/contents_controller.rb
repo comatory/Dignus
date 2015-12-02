@@ -4,8 +4,10 @@ class ContentsController < ApplicationController
   def edit
     @user = User.find_by(id: params[:user_id]) 
     content_data = @user.generate_content_data
-    @website = content_data[:website].content unless content_data[:website].nil?
-    @youtube = content_data[:youtube].content unless content_data[:youtube].nil?
+    #@website = content_data[:website].content 
+    content_data[:website].nil? ? @website = nil : @website = content_data[:website].content
+    #@youtube = content_data[:youtube].content
+    content_data[:youtube].nil? ? @youtube = nil : @youtube = content_data[:youtube].content
     @audio = content_data[:audio]
   end
 
