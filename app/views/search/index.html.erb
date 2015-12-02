@@ -14,19 +14,35 @@
         </div>
     </div>
 
-
+  <div class="sk-fading-circle" id="loader">
+      <div class="sk-circle1 sk-circle"></div>
+      <div class="sk-circle2 sk-circle"></div>
+      <div class="sk-circle3 sk-circle"></div>
+      <div class="sk-circle4 sk-circle"></div>
+      <div class="sk-circle5 sk-circle"></div>
+      <div class="sk-circle6 sk-circle"></div>
+      <div class="sk-circle7 sk-circle"></div>
+      <div class="sk-circle8 sk-circle"></div>
+      <div class="sk-circle9 sk-circle"></div>
+      <div class="sk-circle10 sk-circle"></div>
+      <div class="sk-circle11 sk-circle"></div>
+      <div class="sk-circle12 sk-circle"></div>
+    </div>
 
     <table class="table table-hover" id="search-table">
         <thead>
+            <th id="table-badge"></th>
+            <th id="table-name"></th>
+            <th id="table-description"></th>
         </thead>
             <tbody id="search-table-body">
                 <% if @results.any? %>
                         <% @results.each do |item| %>
                             <% item.each do |name, data| %>
                                 <tr>
-                                    <td><%= link_to(name, item[name][:link]) %></td>
-                                    <td><%= item[name][:description] %></td>
-                                    <td><%= item[name][:role] %></td>
+                                    <td class="col-md-1"><%= content_tag(:span, nil, class: "#{item[name][:role]}-badge resource-badge") %></td>
+                                    <td class="col-md-2"><%= link_to(name, item[name][:link]) %></td>
+                                    <td class="col-md-9"><%= content_tag(:span, item[name][:description], class: 'profile-description') %></td>
                                 </tr>
                             <% end %>
                         <% end %>

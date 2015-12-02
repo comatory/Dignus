@@ -1,6 +1,9 @@
 $(document).ready(function() {
 
     $('input#query').bindWithDelay('keyup', searchDB, 1000);
+    $('input#query').on('keyup', function() {
+        $('#loader').show();
+    })
 
     function searchDB() {
         var query = $(this).val();
@@ -15,24 +18,31 @@ $(document).ready(function() {
     }
 
     function constructResults(response) {
+        $('#loader').hide();
         var tableBody = $('#search-table-body');
         tableBody.empty();
         response.forEach(function(obj) {
             var row = $('<tr>');
-            var name = $('<td>');
-            var description = $('<td>');
+            var badge = $('<td>').addClass('col-md-1');
+            var name = $('<td>').addClass('col-md-2');
+            var description = $('<td>').addClass('col-md-9');
             var link = $('<a>')
             for (var prop in obj) {
                 if (obj.hasOwnProperty(prop)) {
                     link.text(prop);
                     link.attr('href', obj[prop]['link']);
                     name.append(link);
-                    description.text(obj[prop]['description']);
+                    var badgeData = $('<span>').addClass(obj[prop]['role'] + '-badge resource-badge');
+                    badge.append(badgeData);
+                    var descriptionCollapse = $('<span>').addClass('profile-description');
+                    descriptionCollapse.text(obj[prop]['description'].substring(0, 120) + ' ...');
+                    description.append(descriptionCollapse);
                 }
-                row.append(name, description);
+                row.append(badge, name, description);
             }
             tableBody.append(row);
         })
+
     }
 
 })

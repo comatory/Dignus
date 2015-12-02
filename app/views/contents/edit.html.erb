@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-md-3">
-<%= form_tag({controller: "contents", action: "update"}, multipart: true, id: 'upload-form') do %>
+    <%= form_tag({controller: "contents", action: "update"}, multipart: true, id: 'upload-form') do %>
                 <% if @audio.length < 5 %>
                     <h4>Upload
                         <small>Put new track on your profile</small>
@@ -41,7 +41,7 @@
                     <div class="col-md-12">
                         <div class="action">
                             <%= submit_tag "Save", class: 'btn btn-primary' %> 
-<% end %>
+    <% end %>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,42 @@
 $brand-primary: #3ab795;
+$highlight-color: #a3d166;
 $navbar-height: 50px;
+$organizer-badge-color: darken($highlight-color, 20%);
+$performer-badge-color: darken($brand-primary, 40%);
+$event-badge-color: #dc7100;
+
+.organizer-badge {
+    &:before {
+        content: "organizer";
+    }
+    border: 1px solid $organizer-badge-color; 
+    color: $organizer-badge-color;
+}
+
+.performer-badge {
+    &:before {
+        content: "performer";
+    }
+    border: 1px solid $performer-badge-color; 
+    color: $performer-badge-color;
+}
+
+.event-badge {
+    &:before {
+        content: "event";
+    }
+    border: 1px solid $event-badge-color; 
+    color: $event-badge-color;
+}
+
+.resource-badge {
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    opacity: 0.8;
+    margin: 10px 0px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
 
 div.action {
     margin: 10px 0px;
