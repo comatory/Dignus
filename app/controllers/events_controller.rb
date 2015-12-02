@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :new]
-  before_action :authenticate_event_owner!, only: [:edit, :new]
+  before_action :authenticate_event_owner!, only: [:edit]
+  before_action :can_create_events?, only: [:new]
 
   def new
     @event = Event.new
@@ -48,7 +49,13 @@ class EventsController < ApplicationController
   end
 
   def authenticate_event_owner! 
-    if params[:user_id].to_i != current_user.id 
+    if params[:user_id].to_i != current_user.id
+      redirect_to root_path
+    end
+  end
+
+  def can_create_events?
+    if current_user.performer
       redirect_to root_path
     end
   end
