@@ -30,30 +30,41 @@ performers = [
     "description": "The gleam of cosmic light reflects on polished surfaces, which sometimes trace long smooth curves, other times end in edges, outlining a powerful machine piercing a path between the gravitational pull of a black hole, and the attraction of the brightness of a newly-born star. If Lewis Fautzi´s sound could be materialized, it would look something like this.",
     "location": "Madrid, Spain",
     "image": "06.jpg",
-    "files": ["IC-10.mp3"]
+    "files": ["IC-10.mp3"],
+    "youtube": "https://www.youtube.com/watch?v=Y0CX3nr-Hn8",
+    "website": "https://www.facebook.com/lewisfautziofficial/"
   },
   { "name": "Los Crudos", 
     "description": "DIY political hardcore punk band from Chicago, Illinois fronted by vocalist Martin Sorrondeguy. All of the band members were of Latino descent and all of their lyrics were in Spanish. They formed in 1991 and their last show was in October 1998.",
     "location": "Chicago, USA",
     "image": "07.jpg",
-    "files": ["01 Achicados.mp3", "02 En Mi Opinion.mp3", "03 No Te Debo Nado.mp3", "04 Levantante!.mp3", "05 La Caida De Latino America.mp3"]
+    "files": ["01 Achicados.mp3", "02 En Mi Opinion.mp3", "03 No Te Debo Nado.mp3", "04 Levantante!.mp3", "05 La Caida De Latino America.mp3"],
+    "youtube": "https://www.youtube.com/watch?v=_Y4asIi3yNs&list=RD5DEe1TStXCM&index=5",
+    "website": "https://es.wikipedia.org/wiki/Los_Crudos"
   },
   {"name": "Vril", 
     "description": "Vril has been building a strong reputation for his live performances. He's become increasingly busy over the last 12 months, with gigs in an impressive number of countries, and he'll set out this week on his first US tour, with stops in Miami, New York, Washington DC and Philadelphia.",
     "location": "Hannover, Denmark",
     "image": "08.jpg",
-    "files": ["IAMIX146Vril.mp3", "03 Portal 3.mp3"]},
+    "files": ["IAMIX146Vril.mp3", "03 Portal 3.mp3"],
+    "youtube": "https://www.youtube.com/watch?v=y2s_PH25OB0",
+    "website": "http://www.residentadvisor.net/dj/vril"
+    },
   { "name": "Midi Lidi", 
     "description": "Electro-pop band Midi Lidi was formed and built in 2006 around the backbone of the band The Beautiful Removal Man Gerard & Sexual Furniture. Up until 2011, the band members were Petr Marek (vocals, electronics, keyboards), Marketa Lisa (vocals, electronics, keyboards, saxophone), Prokop Holoubek (vocals, drums, keyboards, clarinet, guitar) and three visual artists Filip Cenek, Magdalena Hruba and Jan Sramek, all of whom were responsible for creating the live visuals, album covers, posters and T-shirts.",
     "image": "09.jpg",
     "location": "Brno, Czech Republic",
-    "files": ["20 Jellybelly - Miami Vice (Midi Lidi Kutya Remix).mp3", "Bujon (live Fléda 2012).mp3"]
+    "files": ["20 Jellybelly - Miami Vice (Midi Lidi Kutya Remix).mp3", "Bujon (live Fléda 2012).mp3"],
+    "youtube": "https://www.youtube.com/watch?v=jjxhXSYIOlA",
+    "website": "http://www.bumbumsatori.org/artists/midi-lidi/"
     },
     { "name": "Kamp!", 
     "description": "Kamp! has been around for a while having grown a massive domestic popularity in their native Poland and a niche global fanbase thanks to their smooth synth pop, that brings the new-wave feel to the retro chic of disco.",
     "location": "Warsaw, Poland",
     "image": "10.jpg",
-    "files": ["02 Cairo.mp3", "04 Sulk.mp3", "06 Lux Lisbon.mp3", "07 Distance of the modern hearts.mp3"]
+    "files": ["02 Cairo.mp3", "04 Sulk.mp3", "06 Lux Lisbon.mp3", "07 Distance of the modern hearts.mp3"],
+    "youtube": "https://www.youtube.com/watch?v=yhHzY_Au-9c",
+    "website": "https://www.facebook.com/kampmusik"
     }
 ]
 
@@ -157,6 +168,8 @@ organizers_db = []
     p.contents.create(role: 1, content_type: 1, content: performers[i][:name])
     p.contents.create(role: 1, content_type: 2, content: performers[i][:description])
     p.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
+    p.contents.create(role: 1, content_type: 4, content: performers[i][:youtube] )
+    p.contents.create(role: 1, content_type: 5, content: performers[i][:website] )
 
     if performers[i][:files]
       performers[i][:files].each do |file|
@@ -224,6 +237,9 @@ r2 = Review.create(user_id: organizers_db[3].id, to: performers_db[3].id, rating
 puts "--- performers ---"
 performers_db.each_with_index do |performer, i|
   puts "#{i} | #{performer.email} | #{performer.id}"
+  if i == 3
+    puts "--->"
+  end
 end
 
 puts "--- DB REPOPULATED ---"
