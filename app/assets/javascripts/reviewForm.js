@@ -5,23 +5,27 @@ $(document).ready(function() {
     }
 
     $('div.reveal').click(function(e) {
-        var targetId = $(e.target).attr('data-review');
-        if ($(this).hasClass('rotated')) {
-            $(this).removeClass('rotated');
-            rotations[targetId] -= 90 
-            $('div.review-form[data-review="' + targetId + '"]').slideUp('fast');
-        } else {
-            $(this).addClass('rotated');
-            rotations[targetId] += 90 
-            $('div.review-form[data-review="' + targetId + '"]').slideDown('fast');
-        }
+            var targetId = $(e.target).attr('id');
+            if ($(this).hasClass('rotated')) {
+                $(this).removeClass('rotated');
+                rotations[targetId] -= 90 
+                $('div.review-form#' + targetId).slideUp('fast');
+            } else {
+                $(this).addClass('rotated');
+                rotations[targetId] += 90 
+                $('div.review-form#' + targetId).slideDown('fast');
+            }
 
-        $('div.reveal' + '[data-review="' + targetId + '"]').rotate(rotations[targetId]);
-    });
+            $('div.reveal#' + targetId).rotate(rotations[targetId]);
+        });
 
-    $('div.reveal[data-review]').each(function(el) {
-        rotations[($('div.reveal[data-review]')[el].getAttribute('data-review'))] = 0;
-    })
+     $('div.reveal').each(function(el) {
+            var reveal = $('div.reveal')[el]
+            var revealId = $(reveal).uniqueId();
+            rotations[$(reveal).attr('id')] = 0;
+            var reviewForm = $(this).parent().next();
+            $(reviewForm).attr('id', revealId.attr('id'));
+        })
 
 
     jQuery.fn.rotate = function(degrees) {
