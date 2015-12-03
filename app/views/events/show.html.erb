@@ -12,41 +12,36 @@
         <div class="col-md-6">
 
             <div>
-                <b>Venue: </b><%= @event.venue %>
+                <dl class="event-details">
+                    <dt>Venue</dt>
+                    <dd><%= @event.venue %></dd>
+                    <dt>Organizer</dt>
+                    <dd><%= link_to(@organizer.name, user_path(@organizer.id)) %></dd>
+                    <dt>Start time</dt>
+                    <dd><%= @event.start_time.strftime("%d. %m. %Y %H:%M") %></dd>
+                    <dt>End time</dt>
+                    <dd><%= @event.end_time.strftime("%d. %m. %Y %H:%M") %></dd>
+                </dl>
             </div>
 
-            <div>
-                <b>Organizer: </b><%= link_to(@organizer.name, user_path(@organizer.id)) %>
-            </div>
-
-            <div>
-                <p>
-                    <b>Start time:</b> <%= @event.start_time.strftime("%d. %m. %Y %H:%M") %>
-                </p>
-                <p>
-                    <b>End time:</b> <%= @event.end_time.strftime("%d. %m. %Y %H:%M") %>
-                </p>
-            </div>
-
-            <div>
+            <div class="event-description">
                 <%= @event.description %>
             </div>
 
             <% if @performers.any? %>
-                <p><b>Performers: </b></p>
-                <ul>
+                <dl class="performers-list"> 
+                    <dt>Performers</dt>
                     <% @performers.each do |performer, invitation| %>
-                        <p>
-                            <li>
-                                <%= link_to(performer.name, user_path(performer.id)) %>
-                                <% if event_not_locked?(@event) %>
-                                    <%= render "events/event_delete_performer", invitation_id: invitation, performer_id: performer.id %>
-                                <% end %>
-                            </li>
-                        </p>
+                        <dd>
+                            <%= link_to(performer.name, user_path(performer.id)) %>
+                            <% if event_not_locked?(@event) %>
+                                <%= render "events/event_delete_performer", invitation_id: invitation, performer_id: performer.id %>
+                            <% end %>
+                        </dd>
                     <% end %>
                 </ul>
             <% end %>
+                </dl>
 
             <% if user_signed_in? && event_not_locked?(@event) %>
                 <% if current_user.performer %>

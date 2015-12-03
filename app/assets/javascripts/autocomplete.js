@@ -1,3 +1,5 @@
 $(document).ready(function() {
-    $('#searchTextField').geocomplete();
+    $('#searchTextField').geocomplete({
+            types: ["geocode", "establishment"]
+    });
 })

@@ -17,8 +17,8 @@
                   <small>Invitations I accepted</small>
               </h4>
                 <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:accepted], buttons: false %>
-                <h4 class="dashboard-label">Rejected<br>
-                  <small>Invitations I rejected</small>
+                <h4 class="dashboard-label">Rejected & Cancelled<br>
+                  <small>Invitations I rejected & Cancelled events</small>
                 </h4>
                     <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:cancelled], buttons: false %>
           </div>
