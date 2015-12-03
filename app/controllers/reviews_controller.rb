@@ -7,10 +7,10 @@ class ReviewsController < ApplicationController
 
     if review.save
       flash[:notice] = "You reviewed the person."
-      redirect_to user_path(user.id)
+      redirect_to user_dashboard_path(user.id)
     else
       flash[:alert] = "The review didn't go through."
-      render user_path(user.id)
+      redirect_to user_dashboard_path(user.id)
     end
   end
 
