@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = "You reviewed the person."
       redirect_to user_dashboard_path(user.id)
     else
-      flash[:alert] = "The review didn't go through."
+      flash[:alert] = review.errors.full_messages
       redirect_to user_dashboard_path(user.id)
     end
   end

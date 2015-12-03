@@ -27,20 +27,22 @@ class Search < ActiveRecord::Base
 
   def self.generate_search_data(collection)
     search_ary = []
+
     collection.each do |item|
       search_data = {}
+
       if item.class == User
         search_data[item.name] = {
           description: item.description,
           link: Rails.application.routes.url_helpers.user_path(item.id),
         }
 
-
         if item.performer
           search_data[item.name][:role] = 'performer'
         elsif item.organizer
           search_data[item.name][:role] = 'organizer'
         end 
+
       elsif item.class == Event
         search_data[item.name] = {
           description: item.description,
@@ -48,9 +50,9 @@ class Search < ActiveRecord::Base
           role: 'event'
         }
       end
-
       search_ary << search_data
     end
+
     search_ary 
   end
 

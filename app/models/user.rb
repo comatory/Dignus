@@ -130,6 +130,7 @@ class User < ActiveRecord::Base
       reviews_total = reviews.reduce(0) do |sum, review|
         sum + review.rating
       end
+
       reviews_total / count
     end
   end
@@ -144,7 +145,7 @@ class User < ActiveRecord::Base
 
   def events_not_invited_to(user_id)
     filtered_events = []
-    # we are filtering on these invitations
+    # filtering on these invitations
     invitations = Invitation.where(user_id: user_id, to: self.id, responded: false) +
     Invitation.where(user_id: self.id, to: user_id, responded: false) + 
     Invitation.where(user_id: user_id, to: self.id, accepted: true) + 
@@ -156,6 +157,7 @@ class User < ActiveRecord::Base
         filtered_events << event
       end
     end
+
     self.events.where("end_time > ?", DateTime.now) - filtered_events
   end
 
