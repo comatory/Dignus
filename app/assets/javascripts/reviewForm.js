@@ -36,6 +36,20 @@ $(document).ready(function() {
         return $(this);
     };
 
+    // REVIEW LENGTH VALIDATION
+    
+   $('div.review-form input#review_text').keyup(function() {
+       var originalColor = $(this).css('backgroundColor');
+       console.log($(this).val().length)
+       var input = $(this).val().length
+
+       if (input < 10 || input > 70) {
+           $(this).css('backgroundColor', 'rgba(242, 222, 222, 0.8)');
+       } else {
+           $(this).css('backgroundColor', 'white');
+       }
+   });
+
 
     // STAR RATING 
     $('.star-rating a').click(function(e) {
