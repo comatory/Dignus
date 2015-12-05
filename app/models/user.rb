@@ -69,24 +69,33 @@ class User < ActiveRecord::Base
     }
   end
 
+  # method for organizers
   def performer_invitations
     invitations_created = Invitation.where(user_id: self.id, accepted: true)
     invitations_received = Invitation.where(to: self.id, accepted: true)
     invitations_created + invitations_received
   end
 
+  # method for performers 
   def scheduled_performances
-    performances = []
-    performer_invitations.each do |invitation|
-      performances << Event.where(id: invitation.event_id).where("start_time >= ?", DateTime.now)
-    end
-    performances.flatten
+    fetch_performances(present = true)
   end
 
+  # method for performers 
   def past_performances
+    fetch_performances(present = false)
+  end
+
+  def fetch_performances(present)
+    if present
+      time = "start_time >= ?"
+    else
+      time = "end_time < ?"
+    end
+      
     performances = []
     performer_invitations.each do |invitation|
-      performances << Event.where(id: invitation.event_id).where("end_time < ?", DateTime.now)
+      performances << Event.where(id: invitation.event_id).where(time, DateTime.now)
     end
     performances.flatten
   end
