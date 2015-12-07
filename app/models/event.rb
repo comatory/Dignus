@@ -27,5 +27,24 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def self.upcoming_events
+    self.get_events("start_time >= ?", :start_time)
+  end
+
+  def self.past_events
+    self.get_events("end_time <= ?", "end_time DESC")
+  end
+
+  def self.get_events(time, order_by)
+    collected = []
+    events = self.where(time, DateTime.now).order(order_by)
+    events.each do |event|
+      event_data = {}
+      event_data[event] = User.find_by(id: event.user_id).name
+      collected << event_data
+    end
+    collected
+  end
+
 
 end

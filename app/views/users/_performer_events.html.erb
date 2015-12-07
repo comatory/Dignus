@@ -9,21 +9,23 @@
 
       <div role="tabpanel" class="tab-pane active" id="performances-future">
           <% if events[:scheduled].any? %>
-            <ul>
+              <dl class="events-tab dl-horizontal">
                 <% events[:scheduled].each do |performance| %>
-                    <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                    <%= content_tag(:dt, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                    <%= content_tag(:dd, performance.start_time.strftime("%d. %m. %Y %H:%M")) %>
                 <% end %>
-            </ul>
+              </dl>
         <% end %>
       </div>
 
       <div role="tabpanel" class="tab-pane" id="performances-past">
           <% if events[:past].any? %>
-            <ul>
+              <dl class="events-tab dl-horizontal">
                 <% events[:past].each do |performance| %>
-                    <%= content_tag(:li, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                    <%= content_tag(:dt, link_to(performance.name, user_event_path(performance.user_id, performance.id))) %>
+                    <%= content_tag(:dd, performance.end_time.strftime("%d. %m. %Y %H:%M")) %>
                 <% end %>
-            </ul>
+              </dl>
         <% end %>
       </div>
   </div>

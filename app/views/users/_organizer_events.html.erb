@@ -8,22 +8,24 @@
   <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="events-future">
           <% if events[:scheduled].any? %>
-                <% events[:scheduled].each do |event| %>
-                <ul>
-                    <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-                </ul>
-                <% end %>
+              <dl class="events-tab dl-horizontal">
+                    <% events[:scheduled].each do |event| %>
+                        <%= content_tag(:dt, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+                    <%= content_tag(:dd, event.start_time.strftime("%d. %m. %Y %H:%M")) %>
+                    <% end %>
+              </dl>
             <% end %>
       </div>
 
       <div role="tabpanel" class="tab-pane" id="events-past">
           <% if events[:past].any? %>
-                <% events[:past].each do |event| %>
-                <ul>
-                    <%= content_tag(:li, link_to(event.name, user_event_path(event.user_id, event.id))) %>
-                </ul>
-                <% end %>
-            <% end %>
+              <dl class="events-tab dl-horizontal">
+                    <% events[:past].each do |event| %>
+                        <%= content_tag(:dt, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+                        <%= content_tag(:dd, event.end_time.strftime("%d. %m. %Y %H:%M")) %>
+                    <% end %>
+            </dl>
+        <% end %>
       </div>
   </div>
 </div> 
