@@ -14,5 +14,7 @@ $(document).ready(function() {
 
    shortenDescription();
 
+   $('#tagInputField').tagsInput();
+
 
 });

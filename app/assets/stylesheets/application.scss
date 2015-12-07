@@ -13,6 +13,7 @@
  *= require_tree .
  *= require jquery.rating
  *= require jquery-ui
+ *= require jquery.tagsinput
  *= require_self
  */
 $brand-primary: #3ab795;
@@ -66,7 +67,7 @@ input, textarea {
 }
 
 .alert-danger {
-    background-color: rgba(242, 222, 222, 0.8); 
+    background-color: rgba(242, 222, 222, 0.8);
     background-image: none;
     background-repeat: none;
     border-color: none;
@@ -125,7 +126,7 @@ a.navbar-brand {
     text-shadow: none;
     text-transform: uppercase;
     font-family: $highlight-font;
-} 
+}
 
 ul.dropdown-menu {
     background-color: $navbar-default-bg;

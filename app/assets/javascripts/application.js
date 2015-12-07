@@ -24,6 +24,6 @@
 //= require bindWithDelay
 //= require moment
 //= require bootstrap-datetimepicker
+//= require jquery.tagsinput
 //= require turbolinks
-//= require_tree 
-
+//= require_tree

@@ -35,7 +35,7 @@
                     <h4>Tags
                         <small>Genres, style ...</small>
                     </h4>
-                    <%= text_field_tag 'user[tags]', @user.tag_list.join(', '), class: 'form-control', placeholder: 'tags separated by comma' %>
+                    <%= text_field_tag 'user[tags]', @user.tag_list.join(', '), class: 'form-control', placeholder: 'tags separated by comma', id: 'tagInputField' %>
                 </div>
                 <div class="action">
                     <%= submit_tag "Save changes", class: 'btn btn-primary' %>
