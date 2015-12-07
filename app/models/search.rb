@@ -3,6 +3,8 @@ class Search < ActiveRecord::Base
   def self.search(query)
     event_results = Event.fuzzy_search({venue: query, description: query, name: query}, false)
     self.set_fuzzy_search(0.1)
+    event_tag_results = Event.tagged_with(query.split, any: true, on: :tags)
+    user_tag_results = User.tagged_with(query.split, any: true, on: :tags)
     names = Content.where(content_type: 1).fuzzy_search({content: query}, false) 
     self.set_fuzzy_search(0.1)
     descriptions = Content.where(content_type: 2).fuzzy_search({content: query}, false) 
@@ -10,7 +12,7 @@ class Search < ActiveRecord::Base
     by_location = User.fuzzy_search({location: query}, false)
 
     user_results = self.get_user_objects(names + descriptions)
-    collection = (event_results + user_results + by_location).flatten.uniq
+    collection = (event_results + event_tag_results + user_tag_results + user_results + by_location).flatten.uniq
 
     @results = generate_search_data(collection)
   end
