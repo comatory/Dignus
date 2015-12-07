@@ -18,9 +18,16 @@ $(document).ready(function() {
        });
    }
 
+
+   function bindInputs() {
+        $('#tagInputField').tagsInput();
+        $('#searchTextField').geocomplete({
+            types: ["geocode", "establishment"]
+        });
+   }
+
+
+   bindInputs();
    shortenDescription();
-
-   $('#tagInputField').tagsInput();
-
 
 });
