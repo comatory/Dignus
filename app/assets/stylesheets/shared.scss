@@ -56,6 +56,23 @@ div.flash {
     width: 100%;
 }
 
+.tag {
+    padding: 8px 5px;
+    background-color: $highlight-color;
+    color: white;
+    margin-right: 3px;
+    font-size: 80%;
+    opacity: 0.7;
+
+    &:hover {
+        opacity: 1.0;
+    }
+}
+
+div.tag-list {
+    margin: 15px 0px;
+}
+
 
 // LOADER 
 

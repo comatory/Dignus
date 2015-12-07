@@ -14,13 +14,15 @@
             <%= rating_stars(@user_data[:rating]) %>
         </p>
     </div>
-    <div class="col-md-12">
-        <% if @user.tags.any? %>
-        <b>Tags: </b>
-            <% @user.tags.each do |tag| %>
-                <small><%= tag.name %></small>
-            <% end %>
-        <% end %>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="tag-list">
+            <%= list_tags(@user) %>
+        </div>
+    </div>
+    <div class="col-md-6">
     </div>
 </div>
 

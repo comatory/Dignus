@@ -7,6 +7,7 @@
                 <th>Start</th>
                 <th>Venue</th>
                 <th>Organizer</th>
+                <th>Tags</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
                     <td><%= event.start_time.strftime("%d. %m. %Y %H:%M") %></td>
                     <td><%= event.venue %></td>
                     <td><%= link_to("#{User.find_by(id: event.user_id).name}", user_path(event.user_id)) %></td>
+                    <td><%= list_tags(event, n = 3) %></td>
                 </tr>
             <% end %>
         </tbody>
