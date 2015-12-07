@@ -159,8 +159,14 @@ past_events = [
 
 performers_db = []
 organizers_db = []
+tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad", "czech", "USA", "french", "electronic", "non-profit", "crazy",
+            "audience", "funny", "comedy", "drama", "improvisation", "rural", "urban", "trippy", "norm-core", "event-hacking"
+            ]
 
 5.times do |i|
+
+    ptags = ""
+    8.times { |i| ptags += "#{tag_list[rand(tag_list.length - 1)]}, " }
 
     p = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: false, performer: true, location: performers[i][:location],
@@ -170,6 +176,8 @@ organizers_db = []
     p.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
     p.contents.create(role: 1, content_type: 4, content: performers[i][:youtube] )
     p.contents.create(role: 1, content_type: 5, content: performers[i][:website] )
+    p.tag_list = ptags
+    p.save
 
     if performers[i][:files]
       performers[i][:files].each do |file|
@@ -177,12 +185,17 @@ organizers_db = []
       end
     end
 
+    otags = ""
+    8.times { |i| otags += "#{tag_list[rand(tag_list.length - 1)]}, " }
+
     o = User.create(email: Faker::Internet.email, password: "12345678", 
                 organizer: true, performer: false, location: organizers[i][:location],
                )  
     o.contents.create(role: 0, content_type: 1, content: organizers[i][:name])
     o.contents.create(role: 0, content_type: 2, content: organizers[i][:description])
     o.update(avatar: File.new("#{Rails.root}/faker/#{organizers[i][:image]}"))
+    o.tag_list = otags
+    o.save
     
     Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
                  end_time: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location],
