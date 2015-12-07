@@ -27,8 +27,8 @@ $(document).ready(function() {
             types: ["geocode", "establishment"],
         }).bind('geocode:result', function(e, result) {
             console.log(result);
-            $('#latitude').val(result.geometry.location.lat());
-            $('#longitude').val(result.geometry.location.lng());
+            $('#place_latitude').val(result.geometry.location.lat());
+            $('#place_longitude').val(result.geometry.location.lng());
             $('#place_id').val(result.place_id);
             $('#place_name').val(result.name);
             $('#place_address').val(result.formatted_address);
