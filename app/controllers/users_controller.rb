@@ -22,6 +22,8 @@ class UsersController < ApplicationController
 
     user.set_description(safe_params[:description])
     user.set_name(safe_params[:name])
+    user.tag_list = safe_params[:tags]
+    user.save
     redirect_to user_path(user)
   end
 
@@ -29,9 +31,12 @@ class UsersController < ApplicationController
     @performers = User.where(performer: true)
   end
 
+  def update_tags
+  end
+
   private
 
   def safe_params
-    params.require(:user).permit(:name, :description, :location, :avatar)
+    params.require(:user).permit(:name, :description, :location, :avatar, :tags)
   end
 end

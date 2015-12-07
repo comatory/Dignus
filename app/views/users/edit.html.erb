@@ -31,6 +31,12 @@
                     </h4>
                     <%= text_field_tag 'user[location]', @user.location, id: 'searchTextField', class: 'form-control' %>
                 </div>
+                <div class="form-group">
+                    <h4>Tags
+                        <small>Genres, style ...</small>
+                    </h4>
+                    <%= text_field_tag 'user[tags]', @user.tag_list.join(', '), class: 'form-control', placeholder: 'tags separated by comma' %>
+                </div>
                 <div class="action">
                     <%= submit_tag "Save changes", class: 'btn btn-primary' %>
                 </div>
