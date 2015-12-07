@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
    function shortenDescription() {
-       $('.profile-description').expander({
+       $('.description').expander({
            expandEffect: 'fadeIn',
            slicePoint: 250
        });
@@ -9,6 +9,12 @@ $(document).ready(function() {
        $('.event-description').expander({
            expandEffect: 'fadeIn',
            slicePoint: 500 
+       });
+       $('.venue-description').expander({
+           expandEffect: 'fadeIn',
+           slicePoint: 20,
+           expandText: '  ...',
+           expandPrefix: ''
        });
    }
 

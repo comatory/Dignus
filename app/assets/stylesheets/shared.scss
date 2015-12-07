@@ -5,6 +5,10 @@ $organizer-badge-color: darken($highlight-color, 20%);
 $performer-badge-color: darken($brand-primary, 40%);
 $event-badge-color: #dc7100;
 
+.description {
+    margin-right: 50px;
+}
+
 .organizer-badge {
     &:before {
         content: "organizer";
@@ -216,4 +220,8 @@ div.tag-list {
 @keyframes sk-circleFadeDelay {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; } 
+}
+
+.table-sortable {
+    cursor: pointer;
 }

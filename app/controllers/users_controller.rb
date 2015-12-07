@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def index_performers
-    @performers = User.where(performer: true)
+    @performers = User.where(performer: true).sort_by { |perf| perf.name }
   end
 
   def update_tags

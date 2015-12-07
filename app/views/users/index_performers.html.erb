@@ -1,12 +1,12 @@
 <div class="container">
     <% if @performers.any? %>
         <div id="performers-table">
-            <table class="table table-hover">
+            <table class="table table-hover" id="performers">
                 <thead>
                     <th></th>
-                    <th>Name</th>
-                    <th>Location</th>
-                    <th>Rating</th>
+                    <th data-sort="string-ins" class="table-sortable">Name</th>
+                    <th data-sort="string-ins" class="table-sortable">Location</th>
+                    <th data-sort="int" class="table-sortable">Rating</th>
                     <th>Tags</th>
                 </thead>
                 <tbody>
@@ -15,7 +15,7 @@
                             <td><%= link_to(image_tag(performer.avatar.url(:thumb)), user_path(performer.id)) %></td>
                             <td><%= link_to(performer.name, user_path(performer.id)) %></td>
                             <td><%= performer.location %></td>
-                            <td><%= rating_stars(performer.rating) %></td>
+                            <td data-sort-value=<%= performer.rating %>><%= rating_stars(performer.rating) %></td>
                             <td><%= list_tags(performer, n = 2) %></td>
                         </tr>
                     <% end %>

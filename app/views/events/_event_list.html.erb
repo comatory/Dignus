@@ -1,12 +1,12 @@
 <% if events.any? %>
-    <table class="table table-hover">
+    <table class="table table-hover" id="events">
         <thead>
             <tr>
                 <th></th>
-                <th>Name</th>
-                <th>Start</th>
-                <th>Venue</th>
-                <th>Organizer</th>
+                <th data-sort="string-ins" class="table-sortable">Name</th>
+                <th data-sort="int" class="table-sortable">Start</th>
+                <th data-sort="string-ins" class="table-sortable">Venue</th>
+                <th data-sort="string-ins" class="table-sortable">Organizer</th>
                 <th>Tags</th>
             </tr>
         </thead>
@@ -15,8 +15,8 @@
                 <tr>
                     <td><%= link_to(image_tag(event.poster.url(:thumb)), user_event_path(event.user_id, event.id)) %></td>
                     <td><%= link_to("#{event.name}", user_event_path(event.user_id, event.id)) %></td>
-                    <td><%= event.start_time.strftime("%d. %m. %Y %H:%M") %></td>
-                    <td><%= event.venue %></td>
+                    <td data-sort-value=<%= event.start_time.to_f %>><%= event.start_time.strftime("%d. %m. %Y %H:%M") %></td>
+                    <td class="venue-description"><%= event.venue %></td>
                     <td><%= link_to("#{User.find_by(id: event.user_id).name}", user_path(event.user_id)) %></td>
                     <td><%= list_tags(event, n = 3) %></td>
                 </tr>

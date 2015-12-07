@@ -25,5 +25,6 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery.tagsinput
+//= require stupidtable
 //= require turbolinks
 //= require_tree

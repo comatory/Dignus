@@ -10,5 +10,10 @@ $(document).ready(function() {
         }
     }
 
+    function sortTable() {
+        $('table#performers').stupidtable();
+    }
+
     displayShowMoreLink();
+    sortTable();
 });
