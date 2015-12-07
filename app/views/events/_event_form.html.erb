@@ -30,6 +30,13 @@
                     <small>Name of the club, venue or place</small>
                 </h4>
                 <%= f.text_field :venue, class: 'form-control', id: 'searchTextField' %>
+                <%= hidden_field_tag 'event[place_lat]', "", id: 'place_latitude' %>
+                <%= hidden_field_tag 'event[place_lng]', "", id: 'place_longitude' %>
+                <%= hidden_field_tag 'event[place_id]', "", id: 'place_id' %>
+                <%= hidden_field_tag 'event[place_name]', "", id: 'place_name' %>
+                <%= hidden_field_tag 'event[place_address]', "", id: 'place_address' %>
+                <%= hidden_field_tag 'event[place_website]', "", id: 'place_website' %>
+                <%= hidden_field_tag 'event[place_url]', "", id: 'place_url' %>
             </div>
 
 

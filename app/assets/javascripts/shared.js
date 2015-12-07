@@ -19,10 +19,21 @@ $(document).ready(function() {
    }
 
 
+   var mapObj = {};
+
    function bindInputs() {
         $('#tagInputField').tagsInput();
         $('#searchTextField').geocomplete({
-            types: ["geocode", "establishment"]
+            types: ["geocode", "establishment"],
+        }).bind('geocode:result', function(e, result) {
+            console.log(result);
+            $('#latitude').val(result.geometry.location.lat());
+            $('#longitude').val(result.geometry.location.lng());
+            $('#place_id').val(result.place_id);
+            $('#place_name').val(result.name);
+            $('#place_address').val(result.formatted_address);
+            $('#place_website').val(result.website);
+            $('#place_url').val(result.url);
         });
    }
 
