@@ -57,12 +57,14 @@ div.flash {
 }
 
 .tag {
-    padding: 8px 5px;
-    background-color: $highlight-color;
+    padding: 4px 3px;
+    background-color: #dddddd; 
     color: white;
     margin-right: 3px;
     font-size: 80%;
-    opacity: 0.7;
+    opacity: 0.8;
+    font-weight: 100;
+    letter-spacing: 0.05em;
 
     &:hover {
         opacity: 1.0;
@@ -70,7 +72,7 @@ div.flash {
 }
 
 div.tag-list {
-    margin: 15px 0px;
+    margin-bottom: 10px;
 }
 
 
