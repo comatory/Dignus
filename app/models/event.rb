@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   validates :venue, presence: true
   has_attached_file :poster, styles: { medium: "350x525>", thumb: "200x300>" }, default_url: "/images/poster/:style/poster_default.png"
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
+  acts_as_taggable_on :tags
 
   def performers
     performers = {} 

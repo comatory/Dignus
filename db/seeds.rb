@@ -197,10 +197,14 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
     o.tag_list = otags
     o.save
     
-    Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
+    etags = ""
+    8.times { |i| etags += "#{tag_list[rand(tag_list.length - 1)]}, " }
+    e = Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
                  end_time: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location],
                  poster: File.new("#{Rails.root}/faker/#{events[i][:image]}")
                 )
+    e.tag_list = etags
+    e.save
 
 
     o.invitations.create(to: p.id, event_id: o.events.first.id, accepted: false, rejected: false, responded: false)

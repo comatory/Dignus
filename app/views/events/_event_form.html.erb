@@ -25,6 +25,13 @@
                 <%= f.text_area :description, class: 'form-control', rows: 7 %>
             </div>
 
+            <div class="form-group">
+                <h4>Venue
+                    <small>Name of the club, venue or place</small>
+                </h4>
+                <%= f.text_field :venue, class: 'form-control', id: 'searchTextField' %>
+            </div>
+
 
                 <h4>Start
                     <small>When does the event start?</small>
@@ -46,11 +53,13 @@
             </div>
 
             <div class="form-group">
-                <h4>Venue
-                    <small>Name of the club, venue or place</small>
+                <h4>Tags
+                    <small>Help others to find your event (genre, category, style)</small>
                 </h4>
-                <%= f.text_field :venue, class: 'form-control', id: 'searchTextField' %>
+                <%= text_field_tag 'event[tag_list]', event.tag_list.join(', '), class: 'form-control', id: 'tagInputField' %> 
             </div>
+
+
 
             <div class="action">
             <%= f.submit button_label, class: 'btn btn-primary' %>
