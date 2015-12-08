@@ -29,14 +29,18 @@
                 <h4>Venue
                     <small>Name of the club, venue or place</small>
                 </h4>
-                <%= text_field_tag 'event[venue]', event.location_id, class: 'form-control', id: 'searchTextField' %>
-                <%= hidden_field_tag 'event[place_lat]', "", id: 'place_latitude' %>
-                <%= hidden_field_tag 'event[place_lng]', "", id: 'place_longitude' %>
-                <%= hidden_field_tag 'event[place_id]', "", id: 'place_id' %>
-                <%= hidden_field_tag 'event[place_name]', "", id: 'place_name' %>
-                <%= hidden_field_tag 'event[place_address]', "", id: 'place_address' %>
-                <%= hidden_field_tag 'event[place_website]', "", id: 'place_website' %>
-                <%= hidden_field_tag 'event[place_url]', "", id: 'place_url' %>
+                <% if event.location %>
+                    <%= text_field_tag 'event[venue]', "#{event.location.place_name}, #{event.location.place_address}", class: 'form-control', id: 'searchTextField' %>
+                <% else %>
+                    <%= text_field_tag 'event[venue]', "", class: 'form-control', id: 'searchTextField' %>
+                <% end %>
+                <%= hidden_field_tag 'event[place_lat]', event.location ? event.location.latitude : nil , id: 'place_latitude' %>
+                <%= hidden_field_tag 'event[place_lng]', event.location ? event.location.longitude : nil, id: 'place_longitude' %>
+                <%= hidden_field_tag 'event[place_id]', event.location ? event.location.place_id : nil, id: 'place_id' %>
+                <%= hidden_field_tag 'event[place_name]', event.location ? event.location.place_name : nil, id: 'place_name' %>
+                <%= hidden_field_tag 'event[place_address]', event.location ? event.location.place_address : nil, id: 'place_address' %>
+                <%= hidden_field_tag 'event[place_website]', event.location ? event.location.place_website : nil, id: 'place_website' %>
+                <%= hidden_field_tag 'event[place_url]', event.location ? event.location.place_url : nil, id: 'place_url' %>
             </div>
 
 

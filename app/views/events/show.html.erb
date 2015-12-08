@@ -70,17 +70,7 @@
         </div>
 
         <div class="col-md-4">
-            <div class="event-venue">
-                <dl class="event-details">
-                    <dt>Venue</dt>
-                    <dd><%= @event.location.place_name %></dd>
-                    <dt>Web</dt>
-                    <dd><%= link_to(@event.location.place_website, @event.location.place_website) %></dd>
-                    <dt>Address</dt>
-                    <dd><%= link_to(@event.location.place_address, @event.location.place_url) %></dd>
-                </dl>
-                <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= "#{@event.location.latitude},#{@event.location.longitude}"%>&markers=<%= "#{@event.location.latitude},#{@event.location.longitude}"%>&size=500x400&zoom=17" alt="" class="img-responsive">
-            </div>
+            <%= render "venues/venue_details", location: @event.location %>
         </div>
     </div>
 </div>

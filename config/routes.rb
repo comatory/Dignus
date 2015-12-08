@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   post '/users/:id/email' => 'emails#create', as: 'user_email'
 
+  get '/venues/:id' => 'venues#show', as: 'venue'
+
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

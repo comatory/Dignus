@@ -34,9 +34,19 @@ class EventsController < ApplicationController
   end
 
   def update
-    event = Event.find_by(user_id: params[:user_id], id: params[:id])
-    event.update(event_safe_params)
-    redirect_to user_event_path(event.user_id, event.id)
+    @event = Event.find_by(user_id: params[:user_id], id: params[:id])
+    location_id = Location.check_location(event_safe_params)
+    @event.update(name: event_safe_params[:name], start_time: event_safe_params[:start_time],
+                       end_time: event_safe_params[:end_time], description: event_safe_params[:description],
+                        poster: event_safe_params[:poster], tag_list: event_safe_params[:tag_list],
+                        location_id: location_id, tag_list: event_safe_params[:tag_list])
+    if @event.save
+      flash[:notice] = "Event updated succesfully"
+      redirect_to user_event_path(@event.user_id, @event.id)
+    else
+      flash[:alert] = @event.errors.full_messages
+      render "events/edit" 
+    end
   end
 
   def index_all
