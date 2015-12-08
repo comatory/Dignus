@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Discover
+                <p>
+                <small>
+                    This stuff is happening around <%= @current_location.place_name %>.
+                </small>
+                </p>
+            </h3>
+
+        </div>
+    </div>
+
+    <% if current_user.location_id %>
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Events</h4>
+            <%= render "events/event_location_list", upcoming_events: @events_nearby_upcoming, past_events: @events_nearby_past %>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Users</h4>
+            <% if @users_nearby.any? %>
+                <% @users_nearby.each do |user| %>
+                    <%= user.name %>
+                <% end %>
+            <% else %>
+                <em>Nobody near you.</em>
+            <% end %>
+        </div>
+    </div>
+    <% else %>
+        <div class="row">
+            <div class="col-md-12">
+                <em>Fill out your location in your user profile to see any info.</em>
+                <%= link_to("User profile", user_path(current_user.id)) %>
+            </div>
+        </div>
+    <% end %>
+</div>

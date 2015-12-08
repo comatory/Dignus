@@ -1,0 +1,20 @@
+<% if upcoming_events.any? %>
+    <h5>Upcoming</h5>
+    <dl class="events-tab dl-horizontal">
+        <% upcoming_events.each do |event| %>
+            <%= content_tag(:dt, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+            <%= content_tag(:dd, event.start_time.strftime("%d. %m. %Y %H:%M")) %>
+        <% end %>
+    </dl>
+<% end %>
+
+<% if past_events.any? %>
+    <h5>Past</h5>
+    <dl class="events-tab dl-horizontal">
+        <% past_events.each do |event| %>
+            <%= content_tag(:dt, link_to(event.name, user_event_path(event.user_id, event.id))) %>
+            <%= content_tag(:dd, event.end_time.strftime("%d. %m. %Y %H:%M")) %>
+        <% end %>
+    </dl>
+<% end %>
+

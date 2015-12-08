@@ -62,6 +62,9 @@ gem 'jquery-ui-rails', '5.0.5'
 # TAG SYSTEM
 gem 'acts-as-taggable-on', '~> 3.4'
 
+# GEOCODER
+gem 'geocoder', '1.2.12'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

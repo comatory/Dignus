@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post '/users/:id/email' => 'emails#create', as: 'user_email'
 
   get '/venues/:id' => 'venues#show', as: 'venue'
+  get '/discover' => 'discover#index', as: 'discover'
 
 
   root to: 'sites#index'
