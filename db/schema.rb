@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207092651) do
+ActiveRecord::Schema.define(version: 20151208100604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20151207092651) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "description"
-    t.string   "venue"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
     t.string   "poster_file_name"
@@ -54,6 +53,7 @@ ActiveRecord::Schema.define(version: 20151207092651) do
     t.datetime "poster_updated_at"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.integer  "location_id"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
@@ -67,6 +67,18 @@ ActiveRecord::Schema.define(version: 20151207092651) do
     t.boolean  "accepted"
     t.boolean  "rejected"
     t.boolean  "responded"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.string   "place_id"
+    t.string   "place_name"
+    t.string   "place_address"
+    t.string   "place_website"
+    t.string   "place_url"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "reviews", force: :cascade do |t|

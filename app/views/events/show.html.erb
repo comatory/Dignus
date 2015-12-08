@@ -28,7 +28,7 @@
             <div>
                 <dl class="event-details">
                     <dt>Venue</dt>
-                    <dd><%= @event.venue %></dd>
+                    <dd><%= @event.location.place_name %></dd>
                     <dt>Organizer</dt>
                     <dd><%= link_to(@organizer.name, user_path(@organizer.id)) %></dd>
                     <dt>Start time</dt>

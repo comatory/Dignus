@@ -8,7 +8,12 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_safe_params)
+    location_id = Location.check_location(event_safe_params)
+    @event = Event.new(name: event_safe_params[:name], start_time: event_safe_params[:start_time],
+                       end_time: event_safe_params[:end_time], description: event_safe_params[:description],
+                        poster: event_safe_params[:poster], tag_list: event_safe_params[:tag_list],
+                        location_id: location_id)
+
     @event.user_id = params[:user_id]
     if @event.save
       redirect_to user_event_path(@event.user_id, @event.id)
@@ -45,7 +50,9 @@ class EventsController < ApplicationController
   private
 
   def event_safe_params
-    params.require(:event).permit(:name, :start_time, :end_time, :venue, :description, :poster, :tag_list)
+    params.require(:event).permit(:name, :start_time, :end_time, :venue, :description, :poster, 
+                                  :tag_list, :place_lat, :place_lng, :place_id, :place_name, 
+                                  :place_address, :place_website, :place_url)
   end
 
   def authenticate_event_owner! 

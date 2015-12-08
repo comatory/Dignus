@@ -1,11 +1,12 @@
 class Event < ActiveRecord::Base
   belongs_to :user
+  belongs_to :location
   validates :name, presence: true
   validates :start_time, presence: true
   validates_datetime :start_time, on_or_after: DateTime.now + (4.0 / 24) if Rails.env.production?
   validates_datetime :end_time, on_or_after: DateTime.now + (6.0 / 24) if Rails.env.production?
   validates :end_time, presence: true
-  validates :venue, presence: true
+  validates :location_id, presence: true
   has_attached_file :poster, styles: { medium: "350x525>", thumb: "200x300>" }, default_url: "/images/poster/:style/poster_default.png"
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
   acts_as_taggable_on :tags
@@ -45,6 +46,5 @@ class Event < ActiveRecord::Base
     end
     collected
   end
-
 
 end

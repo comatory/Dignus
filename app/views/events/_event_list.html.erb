@@ -17,7 +17,7 @@
                         <td><%= link_to(image_tag(event.poster.url(:thumb)), user_event_path(event.user_id, event.id)) %></td>
                         <td><%= link_to("#{event.name}", user_event_path(event.user_id, event.id)) %></td>
                         <td data-sort-value=<%= event.start_time.to_f %>><%= event.start_time.strftime("%d. %m. %Y %H:%M") %></td>
-                        <td class="venue-description"><%= event.venue %></td>
+                        <td class="venue-description"><%= event.location.place_name %></td>
                         <td><%= link_to(name, user_path(event.user_id)) %></td>
                         <td><%= list_tags(event, n = 3) %></td>
                     </tr>

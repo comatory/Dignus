@@ -12,6 +12,7 @@ Review.destroy_all
 User.destroy_all
 Content.destroy_all
 Event.destroy_all
+Location.destroy_all
 
 audio_path = "#{Rails.root}/public/system/contents/audios/"
 poster_path = "#{Rails.root}/public/system/events/posters/"
@@ -22,6 +23,62 @@ FileUtils.rm_rf(Dir.glob("#{poster_path}*"))
 FileUtils.rm_rf(Dir.glob("#{avatar_path}*"))
 
 puts "--- DB CLEANED ---"
+
+locations = [
+  {
+    "place_id": "ChIJa7qpPRmjpBIRW_sqzl9PWy8",
+    "latitude": 41.3971646,
+    "longitude": 2.188156,
+    "place_name": "Sala Rocksound",
+    "place_address": "Carrer Almogàvers, 116, 08018 Barcelona, Spain",
+    "place_website": "salarocksound.com",
+    "place_url": "https://goo.gl/maps/pnpM7HfGRUB2"
+
+  },
+  {
+    "place_id": "ChIJVzOPbRlD04kRHy8PzhOp4Q8",
+    "latitude": 43.0912783,
+    "longitude": -79.0743031,
+    "place_name": "Hard Rock Cafe",
+    "place_address": "5705 Falls Ave, Niagara Falls, ON L2H 6T3, Canada",
+    "place_website": "hardrock.com",
+    "place_url": "https://goo.gl/maps/F28XE9yepqz"
+
+  },
+  {
+    "place_id": "ChIJjWFUe-gJxkcRx1_NUFX-23U",
+    "latitude": 52.3648651,
+    "longitude": 4.8796894,
+    "place_name": "Sugarfactory",
+    "place_address": "Lijnbaansgracht 238, 1017 PH Amsterdam, Netherlands",
+    "place_website": "sugarfactory.nl",
+    "place_url": "https://goo.gl/maps/Tr9iw8ShLQM2"
+  },
+  {
+    "place_id": "ChIJ65wTQEFKtUYR7gGkOFaqpO0",
+    "latitude": 55.7654497,
+    "longitude": 37.6088046,
+    "place_name": "Artefaq",
+    "place_address": "ul. Bolshaya Dmitrovka, 32, стр. 1, Moskva, Russia, 125009",
+    "place_website": "",
+    "place_url": "https://goo.gl/maps/yGT9GwMqYyT2"
+  },
+  {
+    "place_id": "ChIJsTxURtY3zDER55KkmLaRuRs",
+    "latitude": 3.1579164,
+    "longitude": 101.7062503,
+    "place_name": "Zouk Klub",
+    "place_address": "50250 Kuala Lumpur Wilayah Persekutuan Kuala Lumpur, Malaysia",
+    "place_website": "http://www.zoukclub.com.my/",
+    "place_url": "https://goo.gl/maps/aqGR8iC6J1m"
+  }
+]
+
+locations_db = locations.map do |location|
+  Location.create(latitude: location[:latitude], longitude: location[:longitude], place_id: location[:place_id], 
+                 place_name: location[:place_name], place_address: location[:place_address], place_website: location[:place_website],
+                 place_url: location[:place_url])
+end
 
 password = "12345678"
 
@@ -95,31 +152,31 @@ events = [
   {
     "name": "Crush your bones",
     "description": "This will be great showcase of some great bands.",
-    "location": "Rocksound, Almogàvers, 116, 08018, Barcelona, Spain",
+    "location_id": locations_db[0].id,
     "image": "11.png"
   },
   {
     "name": "Soul Marmelade",
     "description": "Come for some smooth sounds.",
-    "location": "6380 Fallsview Blvd, Niagara Falls, ON L2G, Canada",
+    "location_id": locations_db[1].id,
     "image": "12.png"
   },
   {
     "name": "Night Shift",
     "description": "Amsterdam's best residents, spinning the decks.",
-    "location": "Sugarfactory, Lijnbaansgracht 238, 1017 Amsterdam",
+    "location_id": locations_db[2].id,
     "image": "13.png"
   },
   {
     "name": "Headbanging vol. 12",
     "description": "Come and have some fun in the moshpit.",
-    "location": "ArteFAQ, Ul. Bol. Dmitrovka 32, Moscow",
+    "location_id": locations_db[3].id,
     "image": "14.png"
   },
   {
     "name": "ZHX3204",
     "description": "Only robots invited.",
-    "location": "Zouk Klub, 436, Jalan Tun Razak, 50400 Kuala Lumpur",
+    "location_id": locations_db[4].id,
     "image": "15.png"
   },
 ]
@@ -128,31 +185,31 @@ past_events = [
   {
     "name": "Beirut",
     "description": "Event from past - Beirut.",
-    "location": "Moore Theatre 1932 2nd Ave, Seattle, 98107, United States",
+    "location_id": locations_db[0].id,
     "image": "16.png"
   },
   {
     "name": "Horse Party",
     "description": "Part for horses.",
-    "location": "Stable, Farm Street 123, London",
+    "location_id": locations_db[1].id,
     "image": "17.png"
   },
   {
     "name": "BLABLABLA",
     "description": "This is nonsense.",
-    "location": "No Sense Town, No Sense Land",
+    "location_id": locations_db[2].id, 
     "image": "18.png"
   },
   {
     "name": "Ela Orleans",
     "description": "January 13th, Prague will receive Ela Orleans, the crown princess of UK experimental pop. Her music combines nostalgic dark melodies with endless audio loops, dreamy lo-fi or abstract violin howls – which is possibly why she calls her music “movies for ears. .",
-    "location": "Café V Lese Krymská 273/12, Praha, 101 00, Czech Republic",
+    "location_id": locations_db[3].id ,
     "image": "19.png"
   },
   {
     "name": "Ride",
     "description": "Waving farewell to the Eighties: it was biggest pop kick there’d been in, ooh, ten years. During that godforsaken, musically atrocious decade, it was them and us..",
-    "location": "The Warfield 982 Market Street, San Francisco, 94102, United States",
+    "location_id": locations_db[4].id,
     "image": "20.png"
   },
 ]
@@ -162,6 +219,7 @@ organizers_db = []
 tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad", "czech", "USA", "french", "electronic", "non-profit", "crazy",
             "audience", "funny", "comedy", "drama", "improvisation", "rural", "urban", "trippy", "norm-core", "event-hacking"
             ]
+
 
 5.times do |i|
 
@@ -200,7 +258,7 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
     etags = ""
     8.times { |i| etags += "#{tag_list[rand(tag_list.length - 1)]}, " }
     e = Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
-                 end_time: Faker::Time.forward(6), description: events[i][:description], venue: events[i][:location],
+                 end_time: Faker::Time.forward(6), description: events[i][:description], location_id: events[i][:location_id],
                  poster: File.new("#{Rails.root}/faker/#{events[i][:image]}")
                 )
     e.tag_list = etags
@@ -224,7 +282,7 @@ end
 organizers_db[0..2].each_with_index do |o, index|
     date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
     e = Event.create(user_id: o.id, name: past_events[index][:name], start_time: date,
-                 end_time: date + 0.2, description: past_events[index][:description], venue: past_events[index][:location],
+                 end_time: date + 0.2, description: past_events[index][:description], location_id: past_events[index][:location_id],
                  poster: File.new("#{Rails.root}/faker/#{past_events[index][:image]}")
                 )
     i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false, responded: true)
@@ -237,11 +295,11 @@ end
 
 date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
 e = Event.create(user_id: organizers_db[3].id, name: past_events[3][:name], start_time: date,
-             end_time: date + 0.2, description: past_events[3][:description], venue: past_events[3][:location],
+             end_time: date + 0.2, description: past_events[3][:description], location_id: past_events[3][:location_id],
              poster: File.new("#{Rails.root}/faker/#{past_events[3][:image]}")
             )
 e2 = Event.create(user_id: organizers_db[3].id, name: past_events[4][:name], start_time: date,
-             end_time: date + 0.2, description: past_events[4][:description], venue: past_events[4][:location],
+             end_time: date + 0.2, description: past_events[4][:description], location_id: past_events[4][:location_id],
              poster: File.new("#{Rails.root}/faker/#{past_events[4][:image]}")
             )
 i = performers_db[3].invitations.create(to: organizers_db[3].id, event_id: e.id, accepted: true, rejected: false, responded: true)
