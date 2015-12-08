@@ -17,18 +17,16 @@
 
     <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="event-poster">
                 <%= image_tag(@event.poster.url(:medium), class: 'img-responsive') %>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
 
             <div>
                 <dl class="event-details">
-                    <dt>Venue</dt>
-                    <dd><%= @event.location.place_name %></dd>
                     <dt>Organizer</dt>
                     <dd><%= link_to(@organizer.name, user_path(@organizer.id)) %></dd>
                     <dt>Start time</dt>
@@ -69,6 +67,20 @@
                 <% end %>
             <% end %>
 
+        </div>
+
+        <div class="col-md-4">
+            <div class="event-venue">
+                <dl class="event-details">
+                    <dt>Venue</dt>
+                    <dd><%= @event.location.place_name %></dd>
+                    <dt>Web</dt>
+                    <dd><%= link_to(@event.location.place_website, @event.location.place_website) %></dd>
+                    <dt>Address</dt>
+                    <dd><%= link_to(@event.location.place_address, @event.location.place_url) %></dd>
+                </dl>
+                <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= "#{@event.location.latitude},#{@event.location.longitude}"%>&markers=<%= "#{@event.location.latitude},#{@event.location.longitude}"%>&size=500x400&zoom=17" alt="" class="img-responsive">
+            </div>
         </div>
     </div>
 </div>
