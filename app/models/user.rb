@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :contents
   has_many :invitations
   has_many :reviews
+  belongs_to :location
   acts_as_taggable_on :tags
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", thumb_nav: "20x20#" }, default_url: "/images/avatar/:style/avatar_default.png"

@@ -226,8 +226,11 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
     ptags = ""
     8.times { |i| ptags += "#{tag_list[rand(tag_list.length - 1)]}, " }
 
+    p_location = Location.create(latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, 
+                                 place_address: "#{Faker::Address.city}, #{Faker::Address.country}",
+                                 place_name: "#{Faker::Address.city}")
     p = User.create(email: Faker::Internet.email, password: "12345678", 
-                organizer: false, performer: true, location: performers[i][:location],
+                    organizer: false, performer: true, location_id: p_location.id,
                )  
     p.contents.create(role: 1, content_type: 1, content: performers[i][:name])
     p.contents.create(role: 1, content_type: 2, content: performers[i][:description])
@@ -246,8 +249,11 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
     otags = ""
     8.times { |i| otags += "#{tag_list[rand(tag_list.length - 1)]}, " }
 
+    o_location = Location.create(latitude: Faker::Address.latitude, longitude: Faker::Address.longitude, 
+                                 place_address: "#{Faker::Address.city}, #{Faker::Address.country}",
+                                 place_name: "#{Faker::Address.city}")
     o = User.create(email: Faker::Internet.email, password: "12345678", 
-                organizer: true, performer: false, location: organizers[i][:location],
+                    organizer: true, performer: false, location_id: o_location.id,
                )  
     o.contents.create(role: 0, content_type: 1, content: organizers[i][:name])
     o.contents.create(role: 0, content_type: 2, content: organizers[i][:description])
