@@ -16,18 +16,12 @@
     <div class="row">
         <div class="col-md-6">
             <h4>Events</h4>
-            <%= render "events/event_location_list", upcoming_events: @events_nearby_upcoming, past_events: @events_nearby_past %>
+            <%= render "events/event_mini_list", events: @events_nearby_upcoming %>
         </div>
 
         <div class="col-md-6">
             <h4>Users</h4>
-            <% if @users_nearby.any? %>
-                <% @users_nearby.each do |user| %>
-                    <%= user.name %>
-                <% end %>
-            <% else %>
-                <em>Nobody near you.</em>
-            <% end %>
+            <%= render "users/users_mini_list", users: @users_nearby %>
         </div>
     </div>
     <% else %>

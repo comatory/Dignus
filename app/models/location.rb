@@ -33,7 +33,7 @@ class Location < ActiveRecord::Base
   end
 
   def users_nearby(radius)
-    nearby_resources(radius, :users)
+    nearby_resources(radius, :users) - [User.find_by(location_id: self.id)]
   end
 
   def nearby_resources(radius, resource)

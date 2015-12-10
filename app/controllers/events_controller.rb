@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     @event.update(name: event_safe_params[:name], start_time: event_safe_params[:start_time],
                        end_time: event_safe_params[:end_time], description: event_safe_params[:description],
                         poster: event_safe_params[:poster], tag_list: event_safe_params[:tag_list],
-                        location_id: location_id, tag_list: event_safe_params[:tag_list])
+                        location_id: location_id)
     if @event.save
       flash[:notice] = "Event updated succesfully"
       redirect_to user_event_path(@event.user_id, @event.id)

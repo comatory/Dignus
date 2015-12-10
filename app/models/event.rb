@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   validates_datetime :end_time, on_or_after: DateTime.now + (6.0 / 24) if Rails.env.production?
   validates :end_time, presence: true
   validates :location_id, presence: true
-  has_attached_file :poster, styles: { medium: "350x525>", thumb: "200x300>" }, default_url: "/images/poster/:style/poster_default.png"
+  has_attached_file :poster, styles: { medium: "350x525>", thumb: "200x300>", mini: "100x150>" }, default_url: "/images/poster/:style/poster_default.png"
   validates_attachment_content_type :poster, content_type: /\Aimage\/.*\Z/
   acts_as_taggable_on :tags
 

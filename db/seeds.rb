@@ -323,4 +323,36 @@ performers_db.each_with_index do |performer, i|
   end
 end
 
+places = [
+  "Paris", "Modena", "Bufallo", "New York City", "San Francisco", "Belgrade", "Oslo",
+  "London", "Athens", "Kuala Lumpur"
+]
+10.times do |i|
+
+  place = Geocoder.search(places[i]).first
+  coords = Geocoder.coordinates(places[i])
+  l = Location.create(latitude: coords[0], longitude: coords[1], place_id: place.data['place_id'],
+                      place_name: place.data['address_components'][0]['long_name'], 
+                      place_address: place.data['formatted_address'])
+
+  10.times do |x|
+    
+
+    u = User.create(email: Faker::Internet.email, password: "12345678", location_id: l.id)
+    if x.even?
+      u.performer = true
+      u.organizer = false
+    else
+      u.performer = false 
+      u.organizer = true 
+    end
+    u.contents.create(role: 1, content_type: 1, content: Faker::Name.name, role: u.role)
+    u.save
+
+    e = Event.create(user_id: organizers_db[rand(organizers_db.length - 1)].id, name: Faker::Lorem.sentence, description: Faker::Lorem.sentence(3),
+                     start_time: Faker::Time.forward(6), end_time: Faker::Time.forward(20), location_id: l.id)
+
+  end
+end
+
 puts "--- DB REPOPULATED ---"
