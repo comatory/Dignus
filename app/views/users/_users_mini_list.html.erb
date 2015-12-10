@@ -1,0 +1,20 @@
+<% if users.any? %>
+    <table class="table table-hover" id="mini-users">
+        <thead>
+            <th></th>
+            <th data-sort="string-ins" class="table-sortable">Name</th>
+            <th>Role</th>
+        </thead>
+        <tbody>
+            <% users.each do |user| %>
+                <tr>
+                    <td><%= link_to(image_tag(user.avatar.url(:thumb)), user_path(user.id)) %></td>
+                    <td><%= link_to(user.name, user_path(user.id)) %></td>
+                    <td><%= user.performer ? content_tag(:span, nil, class:"performer-badge resource-badge") : content_tag(:span, nil, class: "organizer-badge resource-badge") %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+<% else %>
+    <em>There are no users nearby.</em>
+<% end %>

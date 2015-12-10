@@ -1,0 +1,23 @@
+<% if events.any? %>
+    <table class="table table-hover" id="mini-events">
+        <thead>
+            <tr>
+                <th></th>
+                <th data-sort="string-ins" class="table-sortable">Name</th>
+                <th data-sort="int" class="table-sortable">Start</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% events.each do |event| %>
+                <tr>
+                    <td><%= link_to(image_tag(event.poster.url(:mini)), user_event_path(event.user_id, event.id)) %></td>
+                    <td><%= link_to("#{event.name}", user_event_path(event.user_id, event.id)) %></td>
+                    <td data-sort-value=<%= event.start_time.to_f %>><%= event.start_time.strftime("%d. %m. %Y %H:%M") %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+<% else %>
+    <em>There are no events nearby.</em>
+<% end %>
+
