@@ -34,6 +34,7 @@
                 <%= content_tag(:li, (link_to "Add event", new_user_event_path(current_user), class: 'navbar-link') ) %>
                 <% end %>
 
+                <%= content_tag( :li, link_to("Settings", settings_path, class: 'navbar-link') ) %>
                 <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete, class: 'navbar-link') ) %>
 
             </ul>
