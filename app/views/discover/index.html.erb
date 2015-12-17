@@ -2,11 +2,13 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Discover
-                <p>
-                <small>
-                    This stuff is happening around <%= @current_location.place_name %>.
-                </small>
-                </p>
+                <% if @current_location %>
+                    <p>
+                    <small>
+                        This stuff is happening around <%= @current_location.place_name %>.
+                    </small>
+                    </p>
+                <% end %>
             </h3>
 
         </div>
