@@ -231,7 +231,10 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
                                  place_name: "#{Faker::Address.city}")
     p = User.create(email: Faker::Internet.email, password: "12345678", 
                     organizer: false, performer: true, location_id: p_location.id,
+                    confirmed_at: Time.now
                )  
+    p.skip_confirmation!
+    p.skip_confirmation_notification!
     p.contents.create(role: 1, content_type: 1, content: performers[i][:name])
     p.contents.create(role: 1, content_type: 2, content: performers[i][:description])
     p.update(avatar: File.new("#{Rails.root}/faker/#{performers[i][:image]}"))
@@ -254,7 +257,10 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
                                  place_name: "#{Faker::Address.city}")
     o = User.create(email: Faker::Internet.email, password: "12345678", 
                     organizer: true, performer: false, location_id: o_location.id,
+                    confirmed_at: Time.now
                )  
+    o.skip_confirmation!
+    o.skip_confirmation_notification!
     o.contents.create(role: 0, content_type: 1, content: organizers[i][:name])
     o.contents.create(role: 0, content_type: 2, content: organizers[i][:description])
     o.update(avatar: File.new("#{Rails.root}/faker/#{organizers[i][:image]}"))
@@ -331,7 +337,9 @@ places = [
   10.times do |x|
     
 
-    u = User.create(email: Faker::Internet.email, password: "12345678", location_id: l.id)
+    u = User.create(email: Faker::Internet.email, password: "12345678", location_id: l.id, confirmed_at: Time.now)
+    u.skip_confirmation!
+    u.skip_confirmation_notification!
     if x.even?
       u.performer = true
       u.organizer = false

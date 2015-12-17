@@ -14,7 +14,7 @@
                         <tr>
                             <td><%= link_to(image_tag(performer.avatar.url(:thumb)), user_path(performer.id)) %></td>
                             <td><%= link_to(performer.name, user_path(performer.id)) %></td>
-                            <td><%= performer.location.place_name %></td>
+                            <td><%= performer.location ? performer.location.place_name : nil%></td>
                             <td data-sort-value=<%= performer.rating %>><%= rating_stars(performer.rating) %></td>
                             <td><%= list_tags(performer, n = 2) %></td>
                         </tr>
