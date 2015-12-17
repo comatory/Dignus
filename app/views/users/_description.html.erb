@@ -4,7 +4,7 @@
     <% else %>
         <h3>Bio</h3>
         <p>
-        <b>Location: </b><%= user.location.place_address %>
+        <b>Location: </b><%= user.location.place_address if user.location %>
         </p>
         <div class="description">
             <%= user.description %>
