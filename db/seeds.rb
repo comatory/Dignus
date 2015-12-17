@@ -315,13 +315,6 @@ r1 = Review.create(user_id: organizers_db[3].id, to: performers_db[3].id, rating
 r2 = Review.create(user_id: organizers_db[3].id, to: performers_db[3].id, rating: rand(0..5), event_id: e2.id,
               text: "#{performers_db[3].name} was at my event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
 
-puts "--- performers ---"
-performers_db.each_with_index do |performer, i|
-  puts "#{i} | #{performer.email} | #{performer.id}"
-  if i == 3
-    puts "--->"
-  end
-end
 
 places = [
   "Paris", "Modena", "Bufallo", "New York City", "San Francisco", "Belgrade", "Oslo",
@@ -356,3 +349,11 @@ places = [
 end
 
 puts "--- DB REPOPULATED ---"
+
+puts "--- performers ---"
+performers_db.each_with_index do |performer, i|
+  puts "#{i} | #{performer.email} | #{performer.id}"
+  if i == 3
+    puts "--->"
+  end
+end

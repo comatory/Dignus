@@ -2,10 +2,14 @@
     <dl class="event-details">
         <dt>Venue</dt>
         <dd><%= link_to(location.place_name, venue_path(location.id)) %></dd>
+        <% unless location.place_website.nil? %>
         <dt>Web</dt>
         <dd><%= link_to(location.place_website, location.place_website) %></dd>
+        <% end %>
         <dt>Address</dt>
         <dd><%= link_to(location.place_address, location.place_url) %></dd>
     </dl>
-    <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= "#{location.latitude},#{location.longitude}"%>&markers=<%= "#{location.latitude},#{location.longitude}"%>&size=500x400&zoom=17" alt="" class="img-responsive">
+    <% if location.latitude && location.longitude %>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= "#{location.latitude},#{location.longitude}"%>&markers=<%= "#{location.latitude},#{location.longitude}"%>&size=500x400&zoom=17" alt="" class="img-responsive">
+    <% end %>
 </div>

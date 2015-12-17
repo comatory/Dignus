@@ -23,10 +23,14 @@ $(document).ready(function() {
 
    function bindInputs() {
         $('#tagInputField').tagsInput();
+
+        $('input#searchTextField').on('change keypress', function() {
+            $('.gmaps_field').val('');
+        });
+
         $('#searchTextField').geocomplete({
             types: ["geocode", "establishment"],
         }).bind('geocode:result', function(e, result) {
-            console.log(result);
             $('#place_latitude').val(result.geometry.location.lat());
             $('#place_longitude').val(result.geometry.location.lng());
             $('#place_id').val(result.place_id);

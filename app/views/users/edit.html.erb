@@ -30,13 +30,13 @@
                         <small>City / Region / County </small>
                     </h4>
                     <%= text_field_tag 'user[location]', @user.location ? @user.location.place_address : nil, id: 'searchTextField', class: 'form-control' %>
-                    <%= hidden_field_tag 'user[place_lat]', @user.location ? @user.location.latitude : nil , id: 'place_latitude' %>
-                    <%= hidden_field_tag 'user[place_lng]', @user.location ? @user.location.longitude : nil, id: 'place_longitude' %>
-                    <%= hidden_field_tag 'user[place_id]', @user.location ? @user.location.place_id : nil, id: 'place_id' %>
-                    <%= hidden_field_tag 'user[place_name]', @user.location ? @user.location.place_name : nil, id: 'place_name' %>
-                    <%= hidden_field_tag 'user[place_address]', @user.location ? @user.location.place_address : nil, id: 'place_address' %>
-                    <%= hidden_field_tag 'user[place_website]', @user.location ? @user.location.place_website : nil, id: 'place_website' %>
-                    <%= hidden_field_tag 'user[place_url]', @user.location ? @user.location.place_url : nil, id: 'place_url' %>
+                    <%= hidden_field_tag 'user[place_lat]', @user.location ? @user.location.latitude : nil , id: 'place_latitude', class: 'gmaps_field' %>
+                    <%= hidden_field_tag 'user[place_lng]', @user.location ? @user.location.longitude : nil, id: 'place_longitude', class: 'gmaps_field' %>
+                    <%= hidden_field_tag 'user[place_id]', @user.location ? @user.location.place_id : nil, id: 'place_id', class: 'gmaps_field' %>
+                    <%= hidden_field_tag 'user[place_name]', @user.location ? @user.location.place_name : nil, id: 'place_name', class: 'gmaps_field' %>
+                    <%= hidden_field_tag 'user[place_address]', @user.location ? @user.location.place_address : nil, id: 'place_address', class: 'gmaps_field' %>
+                    <%= hidden_field_tag 'user[place_website]', @user.location ? @user.location.place_website : nil, id: 'place_website', class: 'gmaps_field' %>
+                    <%= hidden_field_tag 'user[place_url]', @user.location ? @user.location.place_url : nil, id: 'place_url', class: 'gmaps_field' %>
                 </div>
                 <div class="form-group">
                     <h4>Tags
