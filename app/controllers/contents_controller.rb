@@ -17,9 +17,16 @@ class ContentsController < ApplicationController
 
     Content.resource_update(contents_safe_params[:website], website, @user, 5)
     Content.resource_update(contents_safe_params[:youtube], youtube, @user, 4)
-    Content.audio_resource_update(contents_safe_params[:audio_file], @user, 3)
+    audio = Content.audio_resource_update(contents_safe_params[:audio_file], @user, 3)
 
-    flash[:notice] = "Media updated"
+    if contents_safe_params[:audio_file] 
+      if audio.save
+        flash[:notice] = "Track uploaded."
+      else
+        flash[:alert] = audio.errors.full_messages 
+      end
+    end
+
     redirect_to user_content_path(@user.id)
   end
 

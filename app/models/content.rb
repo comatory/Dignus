@@ -4,6 +4,7 @@ class Content < ActiveRecord::Base
   validates_attachment_content_type :audio,
   :content_type => [ 'audio/mpeg', 'audio/x-mpeg', 'audio/mp3', 'audio/x-mp3', 'audio/mpeg3', 'audio/x-mpeg3', 'audio/mpg', 'audio/x-mpg', 'audio/x-mpegaudio',
    'application/mp3','application/x-mp3', 'audio/mpeg', 'audio/mp3' ]
+  validates_attachment_size :audio, :less_than => 8.megabytes
 
 
   def self.resource_update(param, resource, user, content_type)
@@ -17,7 +18,7 @@ class Content < ActiveRecord::Base
 
   def self.audio_resource_update(param, user, content_type)
     unless param.nil?
-      Content.create(user_id: user.id, role: user.role, content_type: content_type, content: "", audio: param)
+      Content.new(user_id: user.id, role: user.role, content_type: content_type, content: "", audio: param)
     end
   end
 

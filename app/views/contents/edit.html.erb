@@ -24,9 +24,23 @@
             <%= form_tag({controller: "contents", action: "update"}, multipart: true, id: 'upload-form') do %>
                 <% if @audio.length < 5 %>
                     <h4>Upload
-                        <small>Put new track on your profile</small>
+                        <small>Put new track on your profile (< 8 MB)</small>
                     </h4>
                     <%= file_field_tag 'contents[audio_file]' %>
+                        <div class="sk-fading-circle onAudioUpload" id="loader">
+                          <div class="sk-circle1 sk-circle"></div>
+                          <div class="sk-circle2 sk-circle"></div>
+                          <div class="sk-circle3 sk-circle"></div>
+                          <div class="sk-circle4 sk-circle"></div>
+                          <div class="sk-circle5 sk-circle"></div>
+                          <div class="sk-circle6 sk-circle"></div>
+                          <div class="sk-circle7 sk-circle"></div>
+                          <div class="sk-circle8 sk-circle"></div>
+                          <div class="sk-circle9 sk-circle"></div>
+                          <div class="sk-circle10 sk-circle"></div>
+                          <div class="sk-circle11 sk-circle"></div>
+                          <div class="sk-circle12 sk-circle"></div>
+                        </div>
                 <% end %>
             <h4>Website
                 <small>Your personal website / blog</small>
@@ -40,7 +54,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="action">
-                            <%= submit_tag "Save", class: 'btn btn-primary' %> 
+                            <%= submit_tag "Save", class: 'btn btn-primary', id: 'save-contents-button' %> 
             <% end %>
                             <%= link_to "Go back", user_path(current_user), class: 'btn btn-primary' %>
                         </div>

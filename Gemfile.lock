@@ -45,6 +45,11 @@ GEM
     autoprefixer-rails (6.1.0)
       execjs
       json
+    aws-sdk (1.66.0)
+      aws-sdk-v1 (= 1.66.0)
+    aws-sdk-v1 (1.66.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -236,6 +241,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 3.4)
   ae-validates_timeliness (= 4.0.0)
   autoprefixer-rails (= 6.1.0)
+  aws-sdk (< 2)
   better_errors (= 2.1.1)
   binding_of_caller (= 0.7.2)
   bootstrap-sass (= 3.3.5)
