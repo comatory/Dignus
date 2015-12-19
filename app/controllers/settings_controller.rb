@@ -1,6 +1,6 @@
 class SettingsController < ApplicationController
   def index
-    @locales = {"#{I18n.t(:english)}": 1, "#{I18n.t(:czech)}": 2}
+    @locales = {"#{I18n.t(:english)}" => 1, "#{I18n.t(:czech)}" => 2}
   end
 
   def change_language
