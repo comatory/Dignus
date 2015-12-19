@@ -110,6 +110,9 @@ cs:
     # users/_user_mini_list
     users_no_nearby: 'Žádní uživatelé okolo vás.'
 
+    # eventDeletePerformer.js.erb 
+    confirm_performer_delete: 'Opravdu chcete umělce odstranit?' 
+
     # invitations/_send_invitation_to_organizer
     invitation_sent: 'Pozvánka poslána'
     invitation_invited: 'Jste pozván/a'
@@ -216,4 +219,3 @@ cs:
 
     # devise/unlocks/new
     devise_resend_unlock: 'Pošli znova odkaz k odemčení účtu'
-

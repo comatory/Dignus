@@ -45,10 +45,14 @@
                     <dt><%= I18n.t :event_performers %></dt>
                     <% @performers.each do |performer, invitation| %>
                         <dd>
-                            <%= link_to(performer.name, user_path(performer.id)) %>
-                            <% if event_not_locked?(@event) %>
-                                <%= render "events/event_delete_performer", invitation_id: invitation, performer_id: performer.id %>
-                            <% end %>
+                            <dl class="dl-horizontal" style="margin-bottom: 2px">
+                                <dt><%= link_to(performer.name, user_path(performer.id)) %></dt>
+                               <% if event_not_locked?(@event) %>
+                                    <dd>
+                                    <%= render "events/event_delete_performer", invitation_id: invitation, performer_id: performer.id %>
+                                    </dd>
+                                <% end %>
+                            </dl>
                         </dd>
                     <% end %>
                 </ul>

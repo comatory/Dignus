@@ -1,0 +1,15 @@
+$(document).ready(function() {
+
+    function confirmPerformerDelete() {
+        $('input.performer-delete').click(function(e) {
+            e.preventDefault();
+            var deleteConfirmation = confirm("<%= I18n.t :confirm_performer_delete %>");
+
+            if (deleteConfirmation == true) {
+                $(e.target).parent().submit();
+            }
+        })
+    }
+
+    confirmPerformerDelete();
+})

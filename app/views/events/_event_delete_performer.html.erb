@@ -1,11 +1,11 @@
 <div class="event-delete-performer">
     <% if user_signed_in? && can_edit?(@event.user) && current_user.organizer %>
-        <%= form_tag({controller: 'invitations', action: 'destroy', id: invitation_id}, method: 'delete') do %>
+        <%= form_tag({controller: 'invitations', action: 'destroy'}, method: 'delete', id: invitation_id) do %>
             <%= hidden_field_tag 'invitation[invitation_id]', invitation_id %>
             <%= hidden_field_tag 'invitation[user_id]', params[:user_id] %>
             <%= hidden_field_tag 'invitation[event_id]', params[:id] %>
             <%= hidden_field_tag 'invitation[to]', performer_id %>
-            <%= submit_tag I18n.t(:delete_button), class: 'btn btn-danger btn-invitation' %>
+            <%= submit_tag I18n.t(:delete_button), class: 'btn btn-danger btn-invitation performer-delete' %>
         <% end %>
     <% end %>
 </div>

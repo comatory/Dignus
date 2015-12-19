@@ -131,6 +131,9 @@ en:
     # users/_user_mini_list
     users_no_nearby: 'There are no users nearby.'
 
+    # eventDeletePerformer.js.erb 
+    confirm_performer_delete: 'Do you want to remove performer from the event?' 
+
     # invitations/_send_invitation_to_organizer
     invitation_sent: 'Invitation sent'
     invitation_invited: 'Invited'
