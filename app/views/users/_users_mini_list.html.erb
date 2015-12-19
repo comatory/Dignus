@@ -10,7 +10,7 @@
                 <tr>
                     <td><%= link_to(image_tag(user.avatar.url(:thumb)), user_path(user.id)) %></td>
                     <td><%= link_to(user.name, user_path(user.id)) %></td>
-                    <td><%= user.performer ? content_tag(:span, nil, class:"performer-badge resource-badge") : content_tag(:span, nil, class: "organizer-badge resource-badge") %></td>
+                    <td><%= user.performer ? content_tag(:span, user.role_name, class:"performer-badge resource-badge") : content_tag(:span, user.role_name, class: "organizer-badge resource-badge") %></td>
                 </tr>
             <% end %>
         </tbody>

@@ -7,9 +7,9 @@
         </h1>
         <p>
             <% if @user.role == 0 %>
-                <span class="organizer-badge resource-badge"></span>
+                <span class="organizer-badge resource-badge"><%= @user.role_name %></span>
             <% else %>
-                <span class="performer-badge resource-badge"></span>
+                <span class="performer-badge resource-badge"><%= @user.role_name %></span>
             <% end %>
             <%= rating_stars(@user_data[:rating]) %>
         </p>

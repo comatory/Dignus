@@ -40,7 +40,7 @@
                         <% @results.each do |item| %>
                             <% item.each do |name, data| %>
                                 <tr>
-                                    <td class="col-md-1"><%= content_tag(:span, nil, class: "#{item[name][:role]}-badge resource-badge") %></td>
+                                    <td class="col-md-1"><%= content_tag(:span, item[name][:role_name], class: "#{item[name][:role]}-badge resource-badge") %></td>
                                     <td class="col-md-2"><%= link_to(name, item[name][:link]) %></td>
                                     <td class="col-md-9"><%= content_tag(:span, item[name][:description], class: 'profile-description') %></td>
                                 </tr>

@@ -24,6 +24,8 @@ en:
     event: 'Event'
     name: 'Name'
     role: 'Role'
+    organizer: 'Organizer'
+    performer: 'Performer'
     start: 'Start'
     end: 'End'
     events: 'Events'

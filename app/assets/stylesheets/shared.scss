@@ -10,25 +10,16 @@ $event-badge-color: #dc7100;
 }
 
 .organizer-badge {
-    &:before {
-        content: "organizer";
-    }
     border: 1px solid $organizer-badge-color; 
     color: $organizer-badge-color;
 }
 
 .performer-badge {
-    &:before {
-        content: "performer";
-    }
     border: 1px solid $performer-badge-color; 
     color: $performer-badge-color;
 }
 
 .event-badge {
-    &:before {
-        content: "event";
-    }
     border: 1px solid $event-badge-color; 
     color: $event-badge-color;
 }
@@ -62,7 +53,7 @@ div.flash {
 
 .tag {
     padding: 4px 3px;
-    background-color: #dddddd; 
+    background-color: rgba(46, 144, 117, 0.6); 
     color: white;
     margin-right: 3px;
     font-size: 80%;

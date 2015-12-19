@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def role_name
-    role == 0 ? "Organizer" : "Performer"
+    role == 0 ? I18n.t(:organizer) : I18n.t(:performer) 
   end
 
   def description

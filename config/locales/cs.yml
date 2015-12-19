@@ -3,6 +3,8 @@ cs:
     event: 'Akce'
     name: 'Jméno'
     role: 'Role'
+    organizer: 'Organizátor'
+    performer: 'Umělec'
     start: 'Začátek'
     end: 'Konec'
     events: 'Akce'

@@ -33,9 +33,10 @@ $(document).ready(function() {
                     link.attr('href', obj[prop]['link']);
                     name.append(link);
                     var badgeData = $('<span>').addClass(obj[prop]['role'] + '-badge resource-badge');
+                    badgeData.text(obj[prop]['role_name'])
                     badge.append(badgeData);
                     var descriptionCollapse = $('<span>').addClass('profile-description');
-                    descriptionCollapse.text(obj[prop]['description'].substring(0, 120) + ' ...');
+                    descriptionCollapse.text(shortenDescription(obj[prop]['description']));
                     description.append(descriptionCollapse);
                 }
                 row.append(badge, name, description);
@@ -43,6 +44,14 @@ $(document).ready(function() {
             tableBody.append(row);
         })
 
+    }
+
+    function shortenDescription(string) {
+        if (string && string.length > 120) {
+            return string.substring(0, 120) + ' ...';
+        } else {
+            return '' ;
+        }
     }
 
 })

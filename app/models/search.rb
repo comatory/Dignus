@@ -56,15 +56,18 @@ class Search < ActiveRecord::Base
 
         if item.performer
           search_data[item.name][:role] = 'performer'
+          search_data[item.name][:role_name] = I18n.t(:performer) 
         elsif item.organizer
           search_data[item.name][:role] = 'organizer'
+          search_data[item.name][:role_name] = I18n.t(:organizer) 
         end 
 
       elsif item.class == Event
         search_data[item.name] = {
           description: item.description,
           link: Rails.application.routes.url_helpers.user_event_path(item.user_id, item.id),
-          role: 'event'
+          role: 'event',
+          role_name: I18n.t(:event)
         }
       end
       search_ary << search_data
