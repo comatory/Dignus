@@ -32,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 #
+# PUMA SERVER
+gem 'puma', '2.15.3'
+
 # BOOTSTRAP
 gem 'bootstrap-sass', '3.3.5'
 gem 'autoprefixer-rails', '6.1.0'
