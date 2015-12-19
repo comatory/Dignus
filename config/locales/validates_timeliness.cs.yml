@@ -1,0 +1,16 @@
+cs:
+  errors:
+    messages:
+      invalid_date: "není platné datum"
+      invalid_time: "není platný čas"
+      invalid_datetime: "není správný čas a datum"
+      is_at: "musí být %{restriction}"
+      before: "musí být před %{restriction}"
+      on_or_before: "musí být v nebo před %{restriction}"
+      after: "musí být po %{restriction}"
+      on_or_after: "musí být po nebo v %{restriction}"
+  validates_timeliness:
+    error_value_formats:
+      date: '%d-%m-%Y'
+      time: '%H:%M:%S'
+      datetime: '%d-%m-%Y %H:%M:%S'

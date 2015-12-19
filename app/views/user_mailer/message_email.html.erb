@@ -4,11 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @recipient.name %></h1>
-    <p>You have received message from user <%= @sender.name %>. This is the following message:</p>
+      <h1><%= I18n.t :mailer_greeting %> <%= @recipient.name %></h1>
+      <p><%= I18n.t(:mailer_message, :name => @sender.name) %></p>
     <p><%= @message %></p>
     <p>
-        You can reply by clicking <%= content_tag(:a, "this link", href: "mailto:#{@sender.email}") %>.
+        <%= I18n.t :mailer_reply %> <%= content_tag(:a, I18n.t(:mailer_reply_link), href: "mailto:#{@sender.email}") %>.
     </p>
   </body>
 </html>

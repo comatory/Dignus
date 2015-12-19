@@ -13,36 +13,36 @@
       <div class="tab-content">
 
           <div role="tabpanel" class="tab-pane" id="me">
-              <h4 class="dashboard-label">Accepted<br>
-                  <small>Invitations I accepted</small>
+              <h4 class="dashboard-label"><%= I18n.t :dashboard_accepted %><br>
+                  <small><%= I18n.t :dashboard_accepted_sub %></small>
               </h4>
-                <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:accepted], buttons: false %>
-                <h4 class="dashboard-label">Rejected & Cancelled<br>
-                  <small>Invitations I rejected & Cancelled events</small>
+                <%= render "dashboard/invitation_table", from: true, th_text: I18n.t(:dashboard_th_from), invitations: admin_data[:accepted], buttons: false %>
+                <h4 class="dashboard-label"><%= I18n.t :dashboard_rejected_cancelled %><br>
+                    <small><%= I18n.t :dashboard_rejected_cancelled_sub %></small>
                 </h4>
-                    <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:cancelled], buttons: false %>
+                    <%= render "dashboard/invitation_table", from: true, th_text: I18n.t(:dashboard_th_from), invitations: admin_data[:cancelled], buttons: false %>
           </div>
 
           <div role="tabpanel" class="tab-pane active" id="inbox">
-              <h4 class="dashboard-label">Invitations<br>
-                  <small>Invitations sent to you</small>
+              <h4 class="dashboard-label"><%= I18n.t :dashboard_invitations %><br>
+                  <small><%= I18n.t :dashboard_invitations_sub %></small>
               </h4>
-                <%= render "dashboard/invitation_table", from: true, th_text: "From", invitations: admin_data[:inbox], buttons: true %>
-                <h4 class="dashboard-label">Confirmed<br>
-                  <small>Invitations confirmed by others</small>
+                <%= render "dashboard/invitation_table", from: true, th_text: I18n.t(:dashboard_th_from), invitations: admin_data[:inbox], buttons: true %>
+                <h4 class="dashboard-label"><%= I18n.t :dashboard_invitations_confirmed %><br>
+                    <small><%= I18n.t :dashboard_invitations_confirmed_sub %></small>
                 </h4>
-                <%= render "dashboard/invitation_table", from: false, th_text: "From", invitations: admin_data[:confirmed], buttons: false%>
+                <%= render "dashboard/invitation_table", from: false, th_text: I18n.t(:dashboard_th_from), invitations: admin_data[:confirmed], buttons: false%>
           </div>
 
           <div role="tabpanel" class="tab-pane" id="outbox">
-              <h4 class="dashboard-label"> Outbox<br>
-                  <small>Invitations I sent</small>
+              <h4 class="dashboard-label"> <%= I18n.t :dashboard_outbox %><br>
+                  <small><%= I18n.t :dashboard_outbox_sub %></small>
               </h4>
-            <%= render "dashboard/invitation_table", from: false, th_text: "To",  invitations: admin_data[:outbox], buttons: false %>
-            <h4 class="dashboard-label">Turned down<br>
-              <small>My invitations others turned down</small>
+            <%= render "dashboard/invitation_table", from: false, th_text: I18n.t(:dashboard_th_to),  invitations: admin_data[:outbox], buttons: false %>
+            <h4 class="dashboard-label"><%= I18n.t :dashboard_turned_down %><br>
+                <small><%= I18n.t :dashboard_turned_down_sub %></small>
             </h4>
-            <%= render "dashboard/invitation_table", from: false, th_text: "To", invitations: admin_data[:turned_down], buttons: false%>
+            <%= render "dashboard/invitation_table", from: false, th_text: I18n.t(:dashboard_th_to), invitations: admin_data[:turned_down], buttons: false%>
           </div>
 
       </div>

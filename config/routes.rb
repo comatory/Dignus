@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   get '/venues/:id' => 'venues#show', as: 'venue'
   get '/discover' => 'discover#index', as: 'discover'
 
-  get '/settings' => 'sites#settings', as: 'settings'
+  get '/settings' => 'settings#index', as: 'settings'
+  post '/settings/language' => 'settings#change_language'
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

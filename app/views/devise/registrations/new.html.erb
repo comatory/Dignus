@@ -4,19 +4,19 @@
         </div>
         <div class="col-md-4">
             <div class="centered-wrapper">
-                <h2>Sign up</h2>
+                <h2><%= I18n.t :sign_up %></h2>
 
                 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   <%= devise_error_messages! %>
 
                   <% if params['user-type'] == 'performer' %>
                   <div class="field">
-                    <%= label_tag 'Performer name' %><br />
+                    <%= label_tag I18n.t(:performer_name) %><br />
                   <%= hidden_field_tag "user-type", "performer" %> 
                   </div>
                   <% elsif params['user-type'] == 'organizer' %>
                   <div class="field">
-                    <%= label_tag 'Organizer name' %><br />
+                    <%= label_tag I18n.t(:organizer_name) %><br />
                   <%= hidden_field_tag "user-type", "organizer" %> 
                   </div>
                   <% end %>
@@ -41,9 +41,14 @@
                     <%= f.password_field :password_confirmation, autocomplete: "off" %>
                   </div>
 
-                  <div style="margin-top: 15px;">
+                  <br>
+                  
+                  <div>
                       <%= f.submit (I18n.t :sign_up), class: 'btn btn-primary'  %>
                   </div>
+
+                  <br>
+                  
                 <% end %>
 
 

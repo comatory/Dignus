@@ -20,11 +20,219 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+    # general
+    event: 'Event'
+    name: 'Name'
+    role: 'Role'
+    start: 'Start'
+    end: 'End'
+    events: 'Events'
+    venue: 'Venue'
+    address: 'Address'
+    location: 'Location'
+    rating: 'Rating'
+    bio: 'Bio'
+    users: 'Users'
+    sent: 'Sent'
+    delete_button: 'Delete'
+    save_button: 'Save'
+    create_button: 'Create'
+    edit_button: 'Edit'
+    go_back_button: 'Go back'
+    accept_button: 'Accept'
+    reject_button: 'Reject'
+    update_button: 'Update'
+    set: 'Set'
+    tags: 'Tags'
+    reviews: 'Reviews'
+    password: 'Password'
+    characters_minimum: 'characters minimum'
+    password_confirmation: 'Password Confirmation'
+    current_password: 'Current password'
+    remember_me: 'Remember me'
+    english: 'English'
+    czech: 'Czech'
+
+    # navbar
     home: 'Home'
     sign_in: 'Log in'
     sign_out: 'Log out'
     sign_up: 'Sign up'
     email: 'Email'
-    password: 'Password'
-    characters_minimum: 'characters minimum'
-    password_confirmation: 'Password Confirmation'
+    search: 'Search'
+    discover: 'Discover'
+    profile: 'Profile'
+    add_event: 'Add event'
+    settings: 'Settings'
+
+    # contents/edit
+    contents_tracks: 'Tracks'
+    contents_tracks_sub: 'Uploaded songs'
+    contents_upload: 'Upload'
+    contents_upload_sub: 'Put new track on your profile (less than 8 MB)'
+    contents_audio: 'Audio'
+    contents_no_audio: 'User has no audio.'
+    contents_website: 'Website'
+    contents_website_sub: 'Your personal website/blog'
+    contents_youtube: 'Youtube'
+    contents_youtube_sub: 'Put a video on your profile'
+
+    # dashboard/index
+    dashboard: 'Dashboard'
+    dashboard_reviews: 'Reviews'
+    dashboard_reviews_sub: 'Feedback I need to write'
+    # dashboard/_dashboard
+    dashboard_accepted: 'Accepted'
+    dashboard_accepted_sub: 'Invitations I accepted'
+    dashboard_rejected_cancelled: 'Rejected & Cancelled'
+    dashboard_rejected_cancelled_sub: 'Invitations that were rejected or cancelled'
+    dashboard_invitations: 'Invitations'
+    dashboard_invitations_sub: 'Invitations sent to you'
+    dashboard_invitations_confirmed: 'Confirmed'
+    dashboard_invitations_confirmed_sub: 'Invitations confirmed by others'
+    dashboard_outbox: 'Outbox'
+    dashboard_outbox_sub: 'Invitations I sent'
+    dashboard_turned_down: 'Turned down'
+    dashboard_turned_down_sub: 'My invitations others turned down'
+    dashboard_th_from: 'From'
+    dashboard_th_to: 'To'
+    dashboard_empty_inbox: 'Inbox empty'
+
+    # discover/index
+    discover_heading: 'Discover'
+    discover_sub: 'This stuff is happening around'
+    discover_no_location_specified: 'Fill out your location in your user profile to see any info.'
+    discover_user_profile: 'User profile'
+
+    # events/new
+    events_add_new: 'Add new event'
+    # events/edit
+    events_edit: 'Edit event'
+    # events/_event_form
+    events_poster: 'Poster'
+    events_poster_sub: 'Upload custom poster'
+    events_name_sub: 'What is your event called?'
+    events_description: 'Description'
+    events_description_sub: 'Describe the event (theme, type, supporting acts etc.)'
+    events_venue_sub: 'Name (and address) of venue, place or club of the event'
+    events_venue_start_sub: 'When does the event start?'
+    events_venue_end_sub: 'When does the event end?'
+    events_tags_sub: 'Help others find your event - specify genre, category, style, etc.'
+    # events/show
+    event_organizer: 'Organizer'
+    event_performers: 'Performers'
+    # events/index_all
+    events_upcoming: 'Upcoming events'    
+    events_past: 'Past events'
+    # events/_event_mini_list
+    events_no_nearby: 'There are no events nearby.'
+    # users/_user_mini_list
+    users_no_nearby: 'There are no users nearby.'
+
+    # invitations/_send_invitation_to_organizer
+    invitation_sent: 'Invitation sent'
+    invitation_invited: 'Invited'
+    invitation_send_button: 'Send invitation'
+    invitation_no_event: 'You have no events which you can invite this user to.'
+    invitation_create_event: 'Create one'
+
+    # reviews/_review_form
+    review: 'Review'
+    reviews_message: 'Message'
+    review_button: 'Leave feedback'
+
+    # search/index
+    #
+    # sites
+    organizer_button: 'I am an organizer'
+    performer_button: 'I am a performer'
+    organizer_heading: 'I want to organize'
+    organizer_sub: 'Provide the best entertainment. Get great performers for free.'
+    how_does_it_work: 'How does it work?'
+    organizer_howto_1: 'Select the performer you like'
+    organizer_howto_2: 'Send the an invitation.'
+    organizer_howto_3: 'Wait for the response.'
+    organizer_howto_4: 'Provide great backstage and refreshments if possible.'
+    organizer_howto_5: "Don't give out money, give a review." 
+    performer_heading: 'I want to perform'
+    performer_sub: 'Perform at great venues. Get more fans and exposure.'
+    performer_howto_1: 'Find nearby events.'
+    performer_howto_2: 'Send invitation to the organizer.'
+    performer_howto_3: 'Wait for the response.'
+    performer_howto_4: 'Do a great performance.'
+    performer_howto_5: 'Prefer a good review over financial reward.'
+
+    # settings
+    settings_change_password: 'Change password'
+    set_language: 'Set language'
+
+    # user_mailer
+    mailer_greeting: 'Hi'
+    mailer_message: 'You have received message from user %{name}. This is the following message:'
+    mailer_reply: 'You can reply by clicking '
+    mailer_reply_link: 'this link'
+
+    # users/_audio
+    edit_media_button: 'Edit media'
+    # users/_description
+    users_no_description: 'User has no description.'
+    edit_profile_button: 'Edit profile'
+    # users/_message
+    users_email_to: 'Email to %{name}'
+    users_email_message: 'Message'
+    users_email_send_button: 'Send'
+    # users/_organizer_events
+    users_organizing: 'Organizing'
+    users_organized: 'Organized'
+    users_performing: 'Performing'
+    users_performed: 'Performed'
+    # users/_video
+    users_no_videos: 'User has no videos.'
+    # users/edit
+    avatar: 'Avatar'
+    users_bio_sub: 'Tell us about yourself'
+    users_location_sub: 'Wherea are you located?'
+    users_tags_sub: 'Help users find you - your style, genre, skills, etc.'
+
+    # DEVISE VIEWS
+    # devise/confirmations/new
+    resend_instructions: 'Resend confirmation instructions'
+    # devise/mailer/confirmation_instructions
+    devise_mailer_confirmation_greetings: 'Welcome %{email}!'
+    devise_mailer_confirmation_message: 'You can confirm your account email through the link below:'
+    devise_mailer_confirm_link: 'Confirm my account'
+    # devise/mailer/reset_password_instructions
+    devise_mailer_reset_greetings: 'Hello %{email}!'
+    devise_mailer_reset_message: 'Someone has requested a link to change your password. You can do this through the link below.'
+    devise_mailer_reset_link: 'Change my password'
+    devise_mailer_reset_warning: "If you didn't request this, please ignore this email.\nYour password won't change until you access the link above and create a new one."
+    # devise/mailer/unlock_instructions
+    devise_mailer_unlock_message: "Your account has been locked due to an excessive number of unsuccessful sign in attempts.\nClick the link below to unlock your account:"
+    devise_mailer_unlock_link: 'Unlock my account'
+    # devise/passwords/new
+    devise_password_new_heading: 'Forgot your password?'
+    devise_password_reset_button: 'Send me reset password instructions'
+    # devise/passwords/edit
+    devise_password_edit_heading: 'Change your password'
+    devise_password_new_label: 'New password'
+    devise_confirm_new_password: 'Confirm new password'
+
+    # devise/registrations/edit
+    devise_pending_message: 'Currently waiting confirmation for: '
+    devise_password_leave_blank: "(leave blank if you don't want to change it)"
+    devise_password_current_message: "(we need your current password to confirm your changes)"
+    devise_cancel_account: 'Cancel my account'
+    unhappy: 'Unhappy?'
+
+    # devise/registrations/new
+    performer_name: 'Performer name'
+    organizer_name: 'Organizer name'
+
+    # devise/shared/_links
+    didnt_receive_confirmation: "Didn't receive confirmation instructions?"
+    didnt_receive_unlock: "Didn't receive unlock instructions?"
+    sign_in_with: 'Sign in with'
+
+    # devise/unlocks/new
+    devise_resend_unlock: 'Resend unlock instructions'
+

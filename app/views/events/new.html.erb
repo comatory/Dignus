@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Add new event</h1>
+    <h1><%= I18n.t :events_add_new %></h1>
 
-    <%= render "event_form", event: @event, url: user_events_path(id: current_user.id), button_label: "Add event" %>
+    <%= render "event_form", event: @event, url: user_events_path(id: current_user.id), button_label: I18n.t(:create_button) %>
 </div>

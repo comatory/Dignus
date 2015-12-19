@@ -3,8 +3,8 @@
         <%= form_for event, { url: url } do |f| %>
     <div class="col-md-4">
             <div class="form-group">
-                <h4>Poster
-                    <small>Upload custom poster</small>
+                <h4><%= I18n.t :events_poster %>
+                <small><%= I18n.t :events_poster_sub %></small>
                 </h4>
                 <%= f.file_field :poster %>
             </div>
@@ -12,22 +12,22 @@
     <div class="col-md-4">
 
             <div class="form-group">
-                <h4>Name
-                    <small>What is your event called</small>
+                <h4><%= I18n.t :name %>
+                    <small><%= I18n.t :events_name_sub %></small>
                 </h4>
                 <%= f.text_field :name, class: 'form-control' %>
             </div>
 
             <div class="form-group">
-                <h4>Description
-                    <small>What is happening here? Any supporting acts?</small>
+                <h4><%= I18n.t :events_description %>
+                    <small><%= I18n.t :events_description_sub %></small>
                 </h4>
                 <%= f.text_area :description, class: 'form-control', rows: 7 %>
             </div>
 
             <div class="form-group">
-                <h4>Venue
-                    <small>Name of the club, venue or place</small>
+                <h4><%= I18n.t :venue %>
+                    <small><%= I18n.t :events_venue_sub %></small>
                 </h4>
                 <% if event.location %>
                     <%= text_field_tag 'event[venue]', "#{event.location.place_name}, #{event.location.place_address}", class: 'form-control', id: 'searchTextField' %>
@@ -44,8 +44,8 @@
             </div>
 
 
-                <h4>Start
-                    <small>When does the event start?</small>
+                <h4><%= I18n.t :start %>
+                    <small><%= I18n.t :events_venue_start_sub %></small>
                 </h4>
             <div class='form-group input-group date' id='datetimepicker1'>
                 <%= f.text_field :start_time, class: 'form-control' %>
@@ -53,8 +53,8 @@
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
-                <h4>End
-                    <small>When is it finished?</small>
+                <h4><%= I18n.t :end %>
+                    <small><%= I18n.t :events_venue_end_sub %></small>
                 </h4>
             <div class='form-group input-group date' id='datetimepicker2'>
                 <%= f.text_field :end_time, class: 'form-control' %>
@@ -64,8 +64,8 @@
             </div>
 
             <div class="form-group">
-                <h4>Tags
-                    <small>Help others to find your event (genre, category, style)</small>
+                <h4><%= I18n.t :tags %>
+                    <small><%= I18n.t :events_tags_sub %></small>
                 </h4>
                 <%= text_field_tag 'event[tag_list]', event.tag_list.join(', '), class: 'form-control', id: 'tagInputField' %> 
             </div>

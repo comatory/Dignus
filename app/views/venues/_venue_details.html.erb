@@ -1,12 +1,12 @@
 <div class="event-venue">
     <dl class="event-details">
-        <dt>Venue</dt>
+        <dt><%= I18n.t :venue %></dt>
         <dd><%= link_to(location.place_name, venue_path(location.id)) %></dd>
         <% unless location.place_website.nil? %>
-        <dt>Web</dt>
+        <dt><%= I18n.t :contents_website %></dt>
         <dd><%= link_to(location.place_website, location.place_website) %></dd>
         <% end %>
-        <dt>Address</dt>
+        <dt><%= I18n.t :address %></dt>
         <dd><%= link_to(location.place_address, location.place_url) %></dd>
     </dl>
     <% if location.latitude && location.longitude %>

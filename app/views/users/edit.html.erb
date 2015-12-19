@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <h4>Avatar</h4>
+            <h4><%= I18n.t :avatar %></h4>
                 <div class="form-group">
                     <%= image_tag @user.avatar, class: 'img-responsive' %>
                     <%= file_field_tag 'user[avatar]' %>
@@ -15,19 +15,19 @@
         </div>
         <div class="col-md-6">
                 <div class="form-group">
-                    <h4>Name</h4>
+                <h4><%= I18n.t :name %></h4>
                     <%= text_field_tag 'user[name]', @user.name, id: :user_name, class: 'form-control' %>
                 </div>
                 <div class="form-group">
-                    <h4>Bio
-                        <small>Tell us about yourself</small>
+                    <h4><%= I18n.t :bio %>
+                        <small><%= I18n.t :users_bio_sub %></small>
                     </h4>
                     <%= text_area_tag 'user[description]', @user.description, rows: 7, id: :user_description, class: 'form-control' %>
                 </div>
                 <div class="form-group">
                     <h4>
-                        Location
-                        <small>City / Region / County </small>
+                        <%= I18n.t :location %> 
+                        <small><%= I18n.t :users_location_sub %></small>
                     </h4>
                     <%= text_field_tag 'user[location]', @user.location ? @user.location.place_address : nil, id: 'searchTextField', class: 'form-control' %>
                     <%= hidden_field_tag 'user[place_lat]', @user.location ? @user.location.latitude : nil , id: 'place_latitude', class: 'gmaps_field' %>
@@ -39,13 +39,13 @@
                     <%= hidden_field_tag 'user[place_url]', @user.location ? @user.location.place_url : nil, id: 'place_url', class: 'gmaps_field' %>
                 </div>
                 <div class="form-group">
-                    <h4>Tags
-                        <small>Genres, style ...</small>
+                    <h4><%= I18n.t :tags %>
+                        <small><%= I18n.t :users_tags_sub %></small>
                     </h4>
                     <%= text_field_tag 'user[tags]', @user.tag_list.join(', '), class: 'form-control', placeholder: 'tags separated by comma', id: 'tagInputField' %>
                 </div>
                 <div class="action">
-                    <%= submit_tag "Save changes", class: 'btn btn-primary' %>
+                    <%= submit_tag I18n.t(:save_button), class: 'btn btn-primary' %>
                 </div>
             <% end %>
         </div>

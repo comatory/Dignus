@@ -1,7 +1,7 @@
 <div class="video-wrapper">
     <div id="youtube-link">
         <% if youtube.nil? %>
-            <em>User has no videos.</em>
+            <em><%= I18n.t :users_no_videos %></em>
         <% else %>
             <div class="embed-container">
                 <%= embed(youtube) %>

@@ -1,0 +1,11 @@
+<div class="container">
+    <h3><%= I18n.t :settings %></h3>
+    <%= link_to I18n.t(:settings_change_password), edit_user_registration_path %>
+
+    <h4><%= I18n.t :set_language %></h4>
+    <%= form_tag({controller: 'settings', action: 'change_language'}, method: 'post') do %>
+        <%= collection_select('settings', 'langid', @locales, :last, :first) %>
+        <%= submit_tag I18n.t(:set), class: 'btn btn-primary' %>
+    <% end %>
+</div>
+

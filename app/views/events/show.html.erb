@@ -27,11 +27,11 @@
 
             <div>
                 <dl class="event-details">
-                    <dt>Organizer</dt>
+                    <dt><%= I18n.t :event_organizer %></dt>
                     <dd><%= link_to(@organizer.name, user_path(@organizer.id)) %></dd>
-                    <dt>Start time</dt>
+                    <dt><%= I18n.t :start %></dt>
                     <dd><%= @event.start_time.strftime("%d. %m. %Y %H:%M") %></dd>
-                    <dt>End time</dt>
+                    <dt><%= I18n.t :end %></dt>
                     <dd><%= @event.end_time.strftime("%d. %m. %Y %H:%M") %></dd>
                 </dl>
             </div>
@@ -42,7 +42,7 @@
 
             <% if @performers.any? %>
                 <dl class="performers-list"> 
-                    <dt>Performers</dt>
+                    <dt><%= I18n.t :event_performers %></dt>
                     <% @performers.each do |performer, invitation| %>
                         <dd>
                             <%= link_to(performer.name, user_path(performer.id)) %>
@@ -62,7 +62,7 @@
 
                 <% if can_edit?(@event.user) %>
                     <%= form_tag(edit_user_event_path(current_user, @event.id), {:method => 'get'}) do %>
-                        <% submit_tag "Edit", class: 'btn btn-primary' %>
+                        <% submit_tag I18n.t(:edit_button), class: 'btn btn-primary' %>
                     <% end %>
                 <% end %>
             <% end %>

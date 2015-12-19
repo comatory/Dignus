@@ -4,16 +4,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Email to <%= to.name %></h4>
+        <h4 class="modal-title" id="myModalLabel"><%= I18n.t :users_email_to, :name => to.name %></h4>
       </div>
         <%= form_tag({controller: 'emails', action: 'create'}, method: 'post') do %>
       <div class="modal-body">
-          <h6>Message</h6>
+          <h6><%= I18n.t :users_email_message %></h6>
             <%= text_area_tag 'email[body]', nil, class: 'form-control' %>
       <div class="modal-footer">
             <%= hidden_field_tag 'email[from]', current_user.id %>
             <%= hidden_field_tag 'email[to]', to.id %>
-            <%= submit_tag "Send", class: 'btn btn-primary', id: 'email-button' %>
+            <%= submit_tag I18n.t(:users_email_send_button), class: 'btn btn-primary', id: 'email-button' %>
           <div class="sk-fading-circle" id="loader">
               <div class="sk-circle1 sk-circle"></div>
               <div class="sk-circle2 sk-circle"></div>

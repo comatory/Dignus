@@ -1,11 +1,11 @@
 <div class="container">
 
-    <h1>Dashboard</h1>
+    <h1><%= I18n.t :dashboard %></h1>
 
     <%= render "dashboard/dashboard", user: @user, admin_data: @admin_data %>
 
-    <h3>Reviews
-        <p><small>Reviews I need to write</small></p>
+    <h3><%= I18n.t :dashboard_reviews %>
+        <p><small><%= I18n.t :dashboard_reviews_sub %></small></p>
     </h3>
 
     <div class="reviews">

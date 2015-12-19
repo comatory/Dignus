@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-md-3">
             <% if @audio.any? %>
-                <h4>Tracks
-                    <small>Uploaded songs</small>
+                <h4><%= I18n.t :contents_tracks %>
+                    <small><%= I18n.t :contents_tracks_sub %></small>
                 </h4>
                     <% @audio.each do |track| %>
                         <p><%= track.audio_file_name %></p>
                         <%= form_tag({controller: "contents", action: "destroy"}, method: 'delete', id: 'delete-form') do %>
                             <%= hidden_field_tag 'contents[delete_audio]', track.id %>
-                            <%= submit_tag "Delete", class: 'btn btn-danger btn-invitation' %>
+                            <%= submit_tag I18n.t(:delete_button), class: 'btn btn-danger btn-invitation' %>
                         <% end %>
                     <% end %>
             <% end %>
@@ -23,8 +23,8 @@
         <div class="col-md-3">
             <%= form_tag({controller: "contents", action: "update"}, multipart: true, id: 'upload-form') do %>
                 <% if @audio.length < 5 %>
-                    <h4>Upload
-                        <small>Put new track on your profile (< 8 MB)</small>
+                    <h4><%= I18n.t :contents_upload %>
+                        <small><%= I18n.t :contents_upload_sub %></small>
                     </h4>
                     <%= file_field_tag 'contents[audio_file]' %>
                         <div class="sk-fading-circle onAudioUpload" id="loader">
@@ -42,21 +42,21 @@
                           <div class="sk-circle12 sk-circle"></div>
                         </div>
                 <% end %>
-            <h4>Website
-                <small>Your personal website / blog</small>
+            <h4><%= I18n.t :contents_website %>
+                <small><%= I18n.t :contents_website_sub %></small>
             </h4>
                 <%= text_field_tag 'contents[website]', @website, class: 'form-control' %>
-                <h4>Youtube
-                    <small>Put a video on your profile</small>
+                <h4><%= I18n.t :contents_youtube %>
+                    <small><%= I18n.t :contents_youtube_sub %></small>
                 </h4>
                 <%= text_field_tag 'contents[youtube]', @youtube, class: 'form-control' %>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="action">
-                            <%= submit_tag "Save", class: 'btn btn-primary', id: 'save-contents-button' %> 
+                            <%= submit_tag I18n.t(:save_button), class: 'btn btn-primary', id: 'save-contents-button' %> 
             <% end %>
-                            <%= link_to "Go back", user_path(current_user), class: 'btn btn-primary' %>
+                            <%= link_to I18n.t(:go_back_button), user_path(current_user), class: 'btn btn-primary' %>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 <% if invitations.any? %>
     <table class="table">
         <thead>
-            <tr><th><%= th_text %></th><th>Event</th><th>Sent</th><th></th></tr>
+            <tr><th><%= th_text %></th><th><%= I18n.t :event %></th><th><%= I18n.t :sent %></th><th></th></tr>
         </thead>
         <tbody>
     <% invitations.each do |invitation_hash| %>
@@ -45,5 +45,5 @@
         </tbody>
     </table>
 <% else %>
-    <p>Inbox empty.</p>
+    <p><%= I18n.t :dashboard_empty_inbox %></p>
 <% end %>

@@ -10,8 +10,8 @@
                     <td>
                         <div class="review-header">
                             <div class="reveal" data-review=<%= reviews[k].id %>></div>
-                            <b>To: </b><%= link_to(k.name, user_path(k.id)) %>
-                            <b>Event: </b><%= link_to(reviews[k].name, user_event_path(reviews[k].user_id, reviews[k].id)) %>
+                            <b><%= I18n.t :dashboard_th_to %>: </b><%= link_to(k.name, user_path(k.id)) %>
+                            <b><%= I18n.t :event %>: </b><%= link_to(reviews[k].name, user_event_path(reviews[k].user_id, reviews[k].id)) %>
                         </div>
                         
                         <div class="review-form" data-review=<%= reviews[k].id %>>
@@ -27,9 +27,9 @@
                                 <%= hidden_field_tag 'review[event_id]', reviews[k].id %>
                                 <%= hidden_field_tag 'review[to]', k.id %>
                                 <%= hidden_field_tag 'review[rating]', 0 %>
-                                <%= label_tag "Message:", nil, class: 'review-label' %>
+                                <%= label_tag "#{I18n.t(:reviews_message)}: ", nil, class: 'review-label' %>
                                 <%= text_field_tag 'review[text]', nil, class: 'review-message' %>
-                                <%= submit_tag "Review", class: 'btn btn-primary btn-invitation' %>
+                                <%= submit_tag I18n.t(:review_button), class: 'btn btn-primary btn-invitation' %>
                             <% end %>
                         </div>
                     </td>

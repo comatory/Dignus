@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Edit event</h1>
+    <h1><%= I18n.t :events_edit %></h1>
 
-    <%= render "event_form", event: @event, url: user_event_path(user_id: current_user.id, id: @event.id), button_label: "Edit event" %>
+    <%= render "event_form", event: @event, url: user_event_path(user_id: current_user.id, id: @event.id), button_label: I18n.t(:save_button) %>
 </div>

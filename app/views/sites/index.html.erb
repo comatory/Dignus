@@ -6,20 +6,20 @@
 
                 <div class="filler"></div>
                 <div class="wrapper">
-                  <h4>I want to organize</h4>
-                  <p>Provide the best entertainment. Get great performers for free.</p>
+                <h4><%= I18n.t :organizer_heading %></h4>
+                    <p><%= I18n.t :organizer_sub %></p>
                   <%= render "shared/organizer_button" %>
 
                   <div class="more-button" id="show-organizer-more"></div>
 
                     <div class="more" id="organizer-more">
-                        <p class="more">How does it work?</p>
+                        <p class="more"><%= I18n.t :how_does_it_work %></p>
                         <ol>
-                            <li>Select the performer your like.</li>
-                            <li>Send them an invitation.</li>
-                            <li>Wait for the response.</li>
-                            <li>Provide great backstage and refreshments if possible.</li>
-                            <li><em>Don't give out money, give a review.</em></li>
+                            <li><%= I18n.t :organizer_howto_1 %></li>
+                            <li><%= I18n.t :organizer_howto_2 %></li>
+                            <li><%= I18n.t :organizer_howto_3 %></li>
+                            <li><%= I18n.t :organizer_howto_4 %></li>
+                            <li><em><%= I18n.t :organizer_howto_5 %></em></li>
                         </ol>
                     </div>
 
@@ -32,20 +32,20 @@
 
                 <div class="filler"></div>
                 <div class="wrapper">
-                  <h4>I want to perform</h4>
-                  <p>Perform at great venues. Get more fans and exposure.</p>
+                <h4><%= I18n.t :performer_heading %></h4>
+                <p><%= I18n.t :performer_sub %></p>
                   <%= render "shared/performer_button" %>
 
                       <div class="more-button" id="show-performer-more"></div>
 
                     <div class="more" id="performer-more">
-                        <p class"more">How does it work?</p>
+                        <p class"more"><%= I18n.t :how_does_it_work %></p>
                         <ol>
-                            <li>Find nearby events.</li>
-                            <li>Send invitation to the organizer.</li>
-                            <li>Wait for the response.</li>
-                            <li>Do a great performance.</li>
-                            <li><em>Prefer a good review over financial reward.</em></li>
+                            <li><%= I18n.t :performer_howto_1 %></li>
+                            <li><%= I18n.t :performer_howto_2 %></li>
+                            <li><%= I18n.t :performer_howto_3 %></li>
+                            <li><%= I18n.t :performer_howto_4 %></li>
+                            <li><em><%= I18n.t :performer_howto_5 %></em></li>
                         </ol>
                     </div>
 

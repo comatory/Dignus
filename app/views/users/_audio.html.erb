@@ -1,22 +1,22 @@
 <div class="audio-wrapper">
     <div id="website-link">
         <% unless website.nil? %>
-            <b>Website: </b><%= link_to(website, website) %>
+            <b><%= I18n.t :contents_website %>: </b><%= link_to(website, website) %>
         <% end %>
     </div>
 
     <% if audio.any? %>
-        <p class="audio-player-label"><b>Audio</b></p>
+        <p class="audio-player-label"><b><%= I18n.t :contents_audio %></b></p>
         <div id="audioplayer">
             <%= render "users/audio_player", audio_files: audio %> 
         </div>
     <% else %>
-        <em>User has no audio.</em>
+        <em><%= I18n.t :contents_no_audio %></em>
     <% end %>
 
     <div class="edit">
         <% if can_edit?(@user) %>
-            <%= link_to "Edit media", user_content_path(current_user), class: 'btn btn-primary' %>
+            <%= link_to I18n.t(:edit_media_button), user_content_path(current_user), class: 'btn btn-primary' %>
         <% end %>
     </div>
 </div>

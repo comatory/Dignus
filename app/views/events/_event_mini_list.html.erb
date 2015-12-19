@@ -3,8 +3,8 @@
         <thead>
             <tr>
                 <th></th>
-                <th data-sort="string-ins" class="table-sortable">Name</th>
-                <th data-sort="int" class="table-sortable">Start</th>
+                <th data-sort="string-ins" class="table-sortable"><%= I18n.t :name %></th>
+                <th data-sort="int" class="table-sortable"><%= I18n.t :start %></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +18,6 @@
         </tbody>
     </table>
 <% else %>
-    <em>There are no events nearby.</em>
+    <em><%= I18n.t :events_no_nearby %></em>
 <% end %>
 

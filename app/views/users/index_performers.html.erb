@@ -4,10 +4,10 @@
             <table class="table table-hover" id="performers">
                 <thead>
                     <th></th>
-                    <th data-sort="string-ins" class="table-sortable">Name</th>
-                    <th data-sort="string-ins" class="table-sortable">Location</th>
-                    <th data-sort="int" class="table-sortable">Rating</th>
-                    <th>Tags</th>
+                    <th data-sort="string-ins" class="table-sortable"><%= I18n.t :name %></th>
+                    <th data-sort="string-ins" class="table-sortable"><%= I18n.t :location %></th>
+                    <th data-sort="int" class="table-sortable"><%= I18n.t :rating %></th>
+                    <th><%= I18n.t :tags %></th>
                 </thead>
                 <tbody>
                     <% @performers.each do |performer| %>

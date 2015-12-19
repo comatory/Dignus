@@ -2,8 +2,8 @@
     <table class="table table-hover" id="mini-users">
         <thead>
             <th></th>
-            <th data-sort="string-ins" class="table-sortable">Name</th>
-            <th>Role</th>
+            <th data-sort="string-ins" class="table-sortable"><%= I18n.t :name %></th>
+            <th><%= I18n.t :role %></th>
         </thead>
         <tbody>
             <% users.each do |user| %>
@@ -16,5 +16,5 @@
         </tbody>
     </table>
 <% else %>
-    <em>There are no users nearby.</em>
+    <em><%= I18n.t :users_no_nearby %></em>
 <% end %>

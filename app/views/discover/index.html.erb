@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3>Discover
+            <h3><%= I18n.t :discover_heading %>
                 <% if @current_location %>
                     <p>
                     <small>
-                        This stuff is happening around <%= @current_location.place_name %>.
+                        <%= "#{I18n.t :discover_sub} #{@current_location.place_name}" %>
                     </small>
                     </p>
                 <% end %>
@@ -17,20 +17,20 @@
     <% if current_user.location_id %>
     <div class="row">
         <div class="col-md-6">
-            <h4>Events</h4>
+            <h4><%= I18n.t :events %></h4>
             <%= render "events/event_mini_list", events: @events_nearby_upcoming %>
         </div>
 
         <div class="col-md-6">
-            <h4>Users</h4>
+            <h4><%= I18n.t :users %></h4>
             <%= render "users/users_mini_list", users: @users_nearby %>
         </div>
     </div>
     <% else %>
         <div class="row">
             <div class="col-md-12">
-                <em>Fill out your location in your user profile to see any info.</em>
-                <%= link_to("User profile", user_path(current_user.id)) %>
+                <em><%= I18n.t :discover_no_location_specified %></em>
+                <%= link_to(I18n.t(:discover_user_profile), user_path(current_user.id)) %>
             </div>
         </div>
     <% end %>

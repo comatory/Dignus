@@ -13,13 +13,13 @@
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <%= content_tag(:li, (link_to "Search", search_index_path, class: 'navbar-link')) %>
-        <%= content_tag(:li, (link_to "Events", events_path, class: 'navbar-link')) %>
-        <%= content_tag(:li, (link_to "Performers", performers_path, class: 'navbar-link')) %>
+        <%= content_tag(:li, (link_to I18n.t(:search), search_index_path, class: 'navbar-link')) %>
+        <%= content_tag(:li, (link_to I18n.t(:events), events_path, class: 'navbar-link')) %>
+        <%= content_tag(:li, (link_to I18n.t(:event_performers), performers_path, class: 'navbar-link')) %>
 
         <% if user_signed_in? %>
 
-        <%= content_tag(:li, (link_to "Discover", discover_path, class: 'navbar-link')) %>
+        <%= content_tag(:li, (link_to I18n.t(:discover), discover_path, class: 'navbar-link')) %>
 
         <li role="presentation" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">          <%= content_tag(:span, invitations_count, class: 'badge') if invitations_count > 0 %>
@@ -27,14 +27,14 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <%= content_tag(:li, link_to("Dashboard", user_dashboard_path(current_user.id), class: 'navbar-link')) %>
-                <%= content_tag(:li, link_to("Profile", user_path(current_user.id), class: 'navbar-link')) %>
+                <%= content_tag(:li, link_to(I18n.t(:dashboard), user_dashboard_path(current_user.id), class: 'navbar-link')) %>
+                <%= content_tag(:li, link_to(I18n.t(:profile), user_path(current_user.id), class: 'navbar-link')) %>
 
                 <% if current_user.organizer %>
-                <%= content_tag(:li, (link_to "Add event", new_user_event_path(current_user), class: 'navbar-link') ) %>
+                <%= content_tag(:li, (link_to I18n.t(:add_event), new_user_event_path(current_user), class: 'navbar-link') ) %>
                 <% end %>
 
-                <%= content_tag( :li, link_to("Settings", settings_path, class: 'navbar-link') ) %>
+                <%= content_tag( :li, link_to(I18n.t(:settings), settings_path, class: 'navbar-link') ) %>
                 <%= content_tag( :li, link_to((I18n.t :sign_out), destroy_user_session_path, method: :delete, class: 'navbar-link') ) %>
 
             </ul>

@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-6">
             <% if @location.events.any? %>
-                <h4>Events</h4>
+                <h4><%= I18n.t :events %></h4>
                 <%= render "events/event_location_list", upcoming_events: @upcoming_events, past_events: @past_events %>
             <% end %>
         </div>
