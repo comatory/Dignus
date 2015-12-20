@@ -12,7 +12,7 @@
     <div class="col-md-4">
 
             <div class="form-group">
-                <h4><%= I18n.t :name %>
+                <h4><%= I18n.t :name %>*
                     <small><%= I18n.t :events_name_sub %></small>
                 </h4>
                 <%= f.text_field :name, class: 'form-control' %>
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group">
-                <h4><%= I18n.t :venue %>
+                <h4><%= I18n.t :venue %>*
                     <small><%= I18n.t :events_venue_sub %></small>
                 </h4>
                 <% if event.location %>
@@ -44,7 +44,7 @@
             </div>
 
 
-                <h4><%= I18n.t :start %>
+                <h4><%= I18n.t :start %>*
                     <small><%= I18n.t :events_venue_start_sub %></small>
                 </h4>
             <div class='form-group input-group date' id='datetimepicker1'>
@@ -53,7 +53,7 @@
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
-                <h4><%= I18n.t :end %>
+                <h4><%= I18n.t :end %>*
                     <small><%= I18n.t :events_venue_end_sub %></small>
                 </h4>
             <div class='form-group input-group date' id='datetimepicker2'>
@@ -73,7 +73,7 @@
 
 
             <div class="action">
-            <%= f.submit button_label, class: 'btn btn-primary' %>
+            <%= f.submit button_label, class: 'btn btn-primary', id: 'form-save-button' %>
             </div>
         <% end %>
     </div>

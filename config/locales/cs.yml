@@ -219,3 +219,21 @@ cs:
 
     # devise/unlocks/new
     devise_resend_unlock: 'Pošli znova odkaz k odemčení účtu'
+
+    flash:
+        flash_media_updated: 'Média pozměněna'
+        flash_audio_notice: 'Písnička nahrána'
+        flash_audio_deleted_alert: 'Písnička smazána'
+        flash_email_sent_notice: 'Email poslán'
+        flash_event_created: 'Akce vytvořena'
+        flash_event_update_notice: 'Akce úspěšně upravena'
+        flash_invitation_sent: 'Pozvánka poslána'
+        flash_invitation_not_sent: 'Pozvánka neposlána'
+        flash_invitation_changed: 'Pozvánka pozměněna'
+        flash_invitation_not_changed: 'Pozvánka nepozměněna'
+        flash_invitation_rejected: 'Pozvánka odmítnuta'
+        flash_invitation_user_removed: 'Uživatel/ka odstraněna z akce'
+        flash_invitation_user_not_removed: 'Neodstraněno'
+        flash_reviews_notice: 'Zrecenzovali jste uživatele/uživatelku'
+        flash_settings_language_notice: 'Jazyk změněn'
+        flash_users_profile_update: 'Profil pozměněn'

@@ -21,18 +21,18 @@ class ContentsController < ApplicationController
 
     if contents_safe_params[:audio_file] 
       if audio.save
-        flash[:notice] = "Track uploaded."
+        flash[:notice] = I18n.t('flash.flash_audio_notice')
       else
         flash[:alert] = audio.errors.full_messages 
       end
     end
-
+    
     redirect_to user_content_path(@user.id)
   end
 
   def destroy
     Content.delete_audio_track(contents_safe_params[:delete_audio])
-    flash[:alert] = "Audio file deleted."
+    flash[:alert] = I18n.t('flash.flash_audio_deleted_alert')
     redirect_to user_content_path(params[:user_id])
   end
 

@@ -5,7 +5,7 @@ class InvitationsController < ApplicationController
                                    accepted: false, rejected: false, responded: false)
     if invitation.save
       @event = Event.find_by(id: invitation.event_id)
-      flash[:notice] = "Invitation sent."
+      flash[:notice] = I18n.t('flash.flash_invitation_sent')
 
       if current_user.organizer
         redirect_to user_path(invitation.to)
@@ -14,7 +14,7 @@ class InvitationsController < ApplicationController
       end
 
     else
-      flash[:alert] = "Invitation not sent."
+      flash[:alert] = I18n.t('flash.flash_invitation_not_sent')
       redirect_to root_path
     end
   end
@@ -23,16 +23,16 @@ class InvitationsController < ApplicationController
     invitation = Invitation.find_by(id: invitation_safe_params[:invitation_id])
     if invitation_safe_params[:accept] != nil
       if invitation.update(accepted: invitation_safe_params[:accept], responded: true)
-        flash[:notice] = "Invitation changed successfuly"
+        flash[:notice] = I18n.t('flash.flash_invitation_changed')
         redirect_to user_dashboard_path(params[:id])
       else
-        flash[:notice] = "Invitation not changed"
+        flash[:alert] = I18n.t('flash.flash_invitation_not_changed')
         redirect_to user_dashboard_path(params[:id])
       end
     elsif invitation_safe_params[:reject] != nil
         CanceledInvitation.create(user_id: invitation.user_id, to: invitation.to, event_id: invitation.event_id)
         invitation.destroy
-        flash[:notice] = "Invitation rejected"
+        flash[:notice] = I18n.t('flash.flash_invitation_rejected')
         redirect_to user_dashboard_path(params[:id])
     end
   end
@@ -41,10 +41,10 @@ class InvitationsController < ApplicationController
     canceled_inv = CanceledInvitation.create(invitation_delete_safe_params)
     if canceled_inv.save
       Invitation.find_by(id: invitation_delete_safe_params[:invitation_id]).destroy
-      flash[:notice] = "You removed user from event."
+      flash[:notice] = I18n.t('flash.flash_invitation_user_removed')
       redirect_to user_event_path(invitation_delete_safe_params[:user_id], invitation_delete_safe_params[:event_id])
     else
-      flash[:alert] = "You didn't remove user from event."
+      flash[:alert] = I18n.t('flash.flash_invitation_user_not_removed')
       redirect_to user_event_path(invitation_delete_safe_params[:user_id], invitation_delete_safe_params[:event_id])
     end
   end

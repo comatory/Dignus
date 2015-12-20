@@ -28,7 +28,7 @@ $(document).ready(function() {
             $('.gmaps_field').val('');
         });
 
-        $('#searchTextField').geocomplete({
+        $('#searchTextField, #searchTextField2').geocomplete({
             types: ["geocode", "establishment"],
         }).bind('geocode:result', function(e, result) {
             $('#place_latitude').val(result.geometry.location.lat());

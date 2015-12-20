@@ -12,6 +12,7 @@ class SettingsController < ApplicationController
       cookies['locale'] = :cs
     end
 
+    flash[:notice] = I18n.t('flash.flash_settings_language_notice')
     redirect_to settings_path
   end
 

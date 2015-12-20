@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     user.tag_list = safe_params[:tags]
 
     if user.save
-      flash[:notice] = "Profile updated succesfully"
+      flash[:notice] = I18n.t('flash.flash_users_profile_update')
       redirect_to user_path(user)
     else
       flash[:alert] = user.errors.full_messages

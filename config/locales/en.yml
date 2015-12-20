@@ -241,3 +241,20 @@ en:
     # devise/unlocks/new
     devise_resend_unlock: 'Resend unlock instructions'
 
+    flash:
+        flash_media_updated: 'Media updated'
+        flash_audio_notice: 'Track uploaded'
+        flash_audio_deleted_alert: 'Audio file deleted'
+        flash_email_sent_notice: 'Email sent'
+        flash_event_created: 'Event created'
+        flash_event_update_notice: 'Event updated succesfully'
+        flash_invitation_sent: 'Invitation sent'
+        flash_invitation_not_sent: 'Invitation not sent'
+        flash_invitation_changed: 'Invitation changed succesfully'
+        flash_invitation_not_changed: 'Invitation not changed'
+        flash_invitation_rejected: 'Invitation rejected'
+        flash_invitation_user_removed: 'Removed user from event'
+        flash_invitation_user_not_removed: 'Did not remove user'
+        flash_reviews_notice: 'You reviewed the user'
+        flash_settings_language_notice: 'Language switched'
+        flash_users_profile_update: 'Profile updated succesfully'

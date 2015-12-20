@@ -1,14 +1,14 @@
 <div class="description-wrapper">
-    <% if user.description.nil? || user.description.empty? %>
-        <em><%= I18n.t :users_no_description %></em>
-    <% else %>
         <h3><%= I18n.t :bio %></h3>
         <p>
         <b><%= I18n.t :location %>: </b><%= user.location.place_address if user.location %>
         </p>
+    <% if !user.description.nil? && !user.description.empty? %>
         <div class="description">
             <%= user.description %>
         </div>
+    <% else %>
+        <em><%= I18n.t :users_no_description %></em>
     <% end %>
 
     <div class="edit">

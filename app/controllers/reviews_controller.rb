@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
                        rating: safe_review_params[:rating], text: safe_review_params[:text])
 
     if review.save
-      flash[:notice] = "You reviewed the person."
+      flash[:notice] = I18n.t('flash.flash_reviews_notice')
       redirect_to user_dashboard_path(user.id)
     else
       flash[:alert] = review.errors.full_messages
