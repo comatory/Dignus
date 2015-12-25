@@ -237,3 +237,25 @@ cs:
         flash_reviews_notice: 'Zrecenzovali jste uživatele/uživatelku'
         flash_settings_language_notice: 'Jazyk změněn'
         flash_users_profile_update: 'Profil pozměněn'
+
+
+    activerecord:
+        errors:
+            messages:
+                less_than: 'musí být méně jak %{count}'
+                invalid: 'není správný typ'
+
+        models:
+            content: 'Media'
+            user: 'Uživatel/ka'
+        attributes:
+            content:
+                audio: 'Audio'
+                audio_file_size: 'Velikost skladby'
+                audio_content_type: 'Audio soubor'
+            user:
+                avatar: 'Profilový obrázek'
+                avatar_file_size: 'Velikost obrázku'
+                avatar_content_type: 'Obrázek'
+
+
