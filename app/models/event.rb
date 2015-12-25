@@ -3,8 +3,8 @@ class Event < ActiveRecord::Base
   belongs_to :location
   validates :name, presence: true
   validates :start_time, presence: true
-  validates_datetime :start_time, on_or_after: DateTime.now + (4.0 / 24) , on: [:create, :update] # if Rails.env.production?
-  validates_datetime :end_time, on_or_after: DateTime.now + (6.0 / 24) , on: [:create, :update] # if Rails.env.production?
+  validates_datetime :start_time, on_or_after: DateTime.now + (4.0 / 24) , on: [:create, :update]
+  validates_datetime :end_time, on_or_after: DateTime.now + (6.0 / 24) , on: [:create, :update]
   validates :end_time, presence: true
   validates :location_id, presence: true
   has_attached_file :poster, styles: { medium: "350x525>", thumb: "200x300>", mini: "100x150>" }, default_url: "/images/poster/:style/poster_default.png"
