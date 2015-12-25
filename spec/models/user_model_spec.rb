@@ -3,13 +3,13 @@ require "rails_helper"
 RSpec.describe User, :type => :model do
 
   before :each do
-    @organizer = create(:user)
+    @organizer = create(:user, confirmed_at: Time.now)
     @organizer.id = 100
     @organizer.organizer = true
     @organizer.performer = false 
     @organizer.contents.create(role: 0, content_type: 1, content: "Jack")
     @organizer.contents.create(role: 0, content_type: 2, content: "Hello world")
-    @performer = create(:user, email: "whatever@whatever.com")
+    @performer = create(:user, email: "whatever@whatever.com", confirmed_at: Time.now)
     @performer.organizer = false
     @performer.performer = true
     @performer.id = 101

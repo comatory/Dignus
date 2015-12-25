@@ -22,7 +22,7 @@ RSpec.describe UsersController, type: 'controller' do
     end
 
     it "should see user profile at /users/:id" do
-      user = create(:user)
+      user = create(:user, confirmed_at: Time.now)
       @user_data = {}
       get :show, id: user.id 
       expect(response).to be_success
@@ -34,7 +34,7 @@ RSpec.describe UsersController, type: 'controller' do
 
     before :each do
       request.env['HTTP_ACCEPT_LANGUAGE'] = 'en'
-      @user = create(:user)
+      @user = create(:user, confirmed_at: Time.now)
       login_with @user 
     end
 

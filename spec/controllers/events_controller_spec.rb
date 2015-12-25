@@ -44,7 +44,7 @@ RSpec.describe EventsController, type: 'controller' do
 
     before :each do
       request.env['HTTP_ACCEPT_LANGUAGE'] = 'en'
-      @user = create(:user)
+      @user = create(:user, confirmed_at: Time.now)
       login_with @user 
     end
 
