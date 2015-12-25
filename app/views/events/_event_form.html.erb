@@ -80,3 +80,33 @@
     <div class="col-md-4">
     </div>
 </div>
+
+<script>
+
+    $(document).ready(function() {
+        
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+              locale: 'en-gb',
+              format: 'YYYY-MM-DD HH:mm',
+              sideBySide: true,
+              minDate: "<%= event_start_time_min %>",
+              defaultDate: "<%= @event.start_time ? momentjs_formatted(@event.start_time) : event_start_time_min %>",
+              useCurrent: false
+            }); 
+        });
+        
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+              locale: 'en-gb',
+              format: 'YYYY-MM-DD HH:mm',
+              sideBySide: true,
+              minDate: "<%= event_end_time_min %>",
+              defaultDate: "<%= @event.end_time ? momentjs_formatted(@event.end_time ): event_end_time_min %>",
+              useCurrent: false
+            });
+        });
+
+    });
+
+</script>
