@@ -75,9 +75,13 @@ class User < ActiveRecord::Base
 
   # method for organizers
   def performer_invitations
-    invitations_created = Invitation.where(user_id: self.id, accepted: true)
-    invitations_received = Invitation.where(to: self.id, accepted: true)
-    invitations_created + invitations_received
+    if self.role == 1
+      invitations_created = Invitation.where(user_id: self.id, accepted: true)
+      invitations_received = Invitation.where(to: self.id, accepted: true)
+      invitations_created + invitations_received
+    else
+      []
+    end
   end
 
   # method for performers 

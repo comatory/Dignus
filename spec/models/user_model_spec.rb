@@ -44,24 +44,22 @@ RSpec.describe User, :type => :model do
     end
 
     it "generates user data hash for view" do
-      # generate_user_data could be more optimized
-      # fetches all info for any role
-
       e1 = create(:event, user_id: @organizer.id)
       i1 = create(:invitation, to: @performer.id, user_id: @organizer.id, event_id: e1.id, accepted: true)
 
       @organizer.contents.create(role: 0, content_type: 4, content: "www.youtube.com/video1")
       @organizer.contents.create(role: 0, content_type: 5, content: "www.organizer.com")
-      @performer.contents.create(role: 0, content_type: 4, content: "www.youtube.com/video2")
-      @performer.contents.create(role: 0, content_type: 5, content: "www.performer.com")
+      @performer.contents.create(role: 1, content_type: 4, content: "www.youtube.com/video2")
+      @performer.contents.create(role: 1, content_type: 5, content: "www.performer.com")
 
       allow(DateTime).to receive(:now).and_return(forward_time_days(10))
       e2 = create(:event, user_id: @organizer.id, start_time: DateTime.now + 2, end_time: DateTime.now + 4)
       i2 = create(:invitation, to: @performer.id, user_id: @organizer.id, event_id: e2.id, accepted: true)
 
       organizer_hash = @organizer.generate_user_data()
-      expect(organizer_hash[:performances][:past].count).to eq(1)
-      expect(organizer_hash[:performances][:scheduled].count).to eq(1)
+      expect(organizer_hash.class).to be(Hash)
+      expect(organizer_hash[:performances][:past].count).to eq(0)
+      expect(organizer_hash[:performances][:scheduled].count).to eq(0)
       expect(organizer_hash[:events][:past].count).to eq(1)
       expect(organizer_hash[:events][:scheduled].count).to eq(1)
       expect(organizer_hash[:website]).to eq('www.organizer.com')
@@ -70,6 +68,7 @@ RSpec.describe User, :type => :model do
       expect(organizer_hash[:rating]).to be_zero
 
       performer_hash = @performer.generate_user_data()
+      expect(performer_hash.class).to be(Hash)
       expect(performer_hash[:performances][:past].count).to eq(1)
       expect(performer_hash[:performances][:scheduled].count).to eq(1)
       expect(performer_hash[:events][:past].count).to eq(0)
@@ -87,13 +86,6 @@ RSpec.describe User, :type => :model do
     before :each do
       create(:event, user_id: @organizer.id)
       create(:event, user_id: @organizer.id)
-    end
-
-    it "has performer invitations" do
-      invitation = create(:invitation)
-      invitation.accepted = true
-      @organizer.invitations.create(user_id: @organizer.id, accepted: true, to: @performer.id, event_id: 1, responded: false)
-      expect(@organizer.performer_invitations.count).to eq(1)
     end
 
     it "can have scheduled events" do
