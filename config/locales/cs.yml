@@ -248,6 +248,7 @@ cs:
         models:
             content: 'Media'
             user: 'Uživatel/ka'
+            event: 'Akce'
         attributes:
             content:
                 audio: 'Audio'
@@ -257,5 +258,8 @@ cs:
                 avatar: 'Profilový obrázek'
                 avatar_file_size: 'Velikost obrázku'
                 avatar_content_type: 'Obrázek'
+            event:
+                start_time: 'Začátek'
+                end_time: 'Konec'
 
 
