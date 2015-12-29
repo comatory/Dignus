@@ -1,15 +1,19 @@
+![](https://s3-eu-west-1.amazonaws.com/comatory-personal/dignus-preview.png)
+
+Live version: [https://dign.us](https://dign.us)
+
 # Dignus
 
-_Connecting event organizers and performers_
+_"Connecting event organizers and performers"_
 
-This app was conceived as a final project of Ironhack Web Development Bootcamp and was written in two weeks (as of Dec 5th 2015). Further work will be done on it and it will go live soon.
+This app was conceived as a final project of Ironhack Web Development Bootcamp and the intial version was written in two weeks. This is a work in progress.
 
 __Web app written in Rails 4 that helps connect two groups of people__
 
 1. Event organizers who might not have contacts to performers or do not have a budget for it
 2. Performers who are starting out and do not have exposure or fans
 
-Both type of users can sign up and discover each other. Event organizers can create events and invite performers to participate in them. Performers can also search for events and send invitation request to the organizer.
+Both type of users can sign up and discover each other. Event organizers can create events and invite performers to participate in them. Performers can also search for events and send invitation requests to the organizer's events.
 
 User profiles can be updated with description and various media. Performers can upload their audio files and embed youtube videos (organizers as well if they wish to promote themselves).
 
@@ -23,4 +27,4 @@ Users of the app can contact each other via email form, your email address is no
 
 - Mailer needs to be set up with your own credentials via [Figaro](https://github.com/laserlemon/figaro).
 
-- You need to set up your own storage for user's media files.
+- The app uses AWS S3 storage with Paperclip. You can configure the credentials for AWS and start using it (development mode uses local storage).
