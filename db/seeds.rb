@@ -111,7 +111,7 @@ performers = [
     "description": "Electro-pop band Midi Lidi was formed and built in 2006 around the backbone of the band The Beautiful Removal Man Gerard & Sexual Furniture. Up until 2011, the band members were Petr Marek (vocals, electronics, keyboards), Marketa Lisa (vocals, electronics, keyboards, saxophone), Prokop Holoubek (vocals, drums, keyboards, clarinet, guitar) and three visual artists Filip Cenek, Magdalena Hruba and Jan Sramek, all of whom were responsible for creating the live visuals, album covers, posters and T-shirts.",
     "image": "09.jpg",
     "location": "Brno, Czech Republic",
-    "files": ["20 Jellybelly - Miami Vice (Midi Lidi Kutya Remix).mp3", "Bujon (live Fléda 2012).mp3"],
+    "files": ["Bujon (live Fléda 2012).mp3"],
     "youtube": "https://www.youtube.com/watch?v=jjxhXSYIOlA",
     "website": "http://www.bumbumsatori.org/artists/midi-lidi/"
     },
@@ -269,9 +269,10 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
     
     etags = ""
     8.times { |i| etags += "#{tag_list[rand(tag_list.length - 1)]}, " }
-    e = Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.forward(5),
-                 end_time: Faker::Time.forward(6), description: events[i][:description], location_id: events[i][:location_id],
-                 poster: File.new("#{Rails.root}/faker/#{events[i][:image]}")
+    e = Event.create(user_id: o.id, name: events[i][:name], start_time: Faker::Time.between(DateTime.now + 1, DateTime.now + 5),
+                     end_time: Faker::Time.between(DateTime.now + 6, DateTime.now + 10), 
+                     description: events[i][:description], location_id: events[i][:location_id],
+                     poster: File.new("#{Rails.root}/faker/#{events[i][:image]}")
                 )
     e.tag_list = etags
     e.save
@@ -283,37 +284,35 @@ tag_list = ["rock", "pop", "hip-hop", "spoken word", "seen live", "happy", "sad"
     organizers_db << o
 end
 
+
 Invitation.find_by(to: performers_db.last.id).update(accepted: true, responded: true)
 
-if Rails.env.development? || Rails.env.test?
-  ValidatesTimeliness.setup do |config|
-    config.ignore_restriction_errors = true 
-   end
-end
-
 organizers_db[0..2].each_with_index do |o, index|
-    date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
-    e = Event.create(user_id: o.id, name: past_events[index][:name], start_time: date,
-                 end_time: date + 0.2, description: past_events[index][:description], location_id: past_events[index][:location_id],
+  date = Faker::Time.between(DateTime.now - 1825, DateTime.now - 300)
+  e = Event.new(user_id: o.id, name: past_events[index][:name], start_time: date,
+                 end_time: date + 5, description: past_events[index][:description], location_id: past_events[index][:location_id],
                  poster: File.new("#{Rails.root}/faker/#{past_events[index][:image]}")
                 )
-    i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false, responded: true)
-    r1 = Review.create(user_id: organizers_db[index].id, to: performers_db[index].id, rating: rand(0..5), event_id: e.id,
-                  text: "#{performers_db[index].name} was at my event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
-    r2 = Review.create(user_id: performers_db[index].id, to: organizers_db[index].id, rating: rand(0..5), event_id: e.id,
-                  text: "#{organizers_db[index].name} had a nice event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
+  e.save(:validate => false)
+  i = performers_db[index].invitations.create(to: o.id, event_id: e.id, accepted: true, rejected: false, responded: true)
+  r1 = Review.create(user_id: organizers_db[index].id, to: performers_db[index].id, rating: rand(0..5), event_id: e.id,
+                text: "#{performers_db[index].name} was at my event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
+  r2 = Review.create(user_id: performers_db[index].id, to: organizers_db[index].id, rating: rand(0..5), event_id: e.id,
+                text: "#{organizers_db[index].name} had a nice event and it was #{['ok', 'great', 'good','bad'][rand(0..3)]}" )
 end
 
 
-date = DateTime.new(rand(2010..2014),rand(1..12),rand(1..20), 19,0)
-e = Event.create(user_id: organizers_db[3].id, name: past_events[3][:name], start_time: date,
-             end_time: date + 0.2, description: past_events[3][:description], location_id: past_events[3][:location_id],
+  date = Faker::Time.between(DateTime.now - 1825, DateTime.now - 300)
+e = Event.new(user_id: organizers_db[3].id, name: past_events[3][:name], start_time: date,
+             end_time: date + 5, description: past_events[3][:description], location_id: past_events[3][:location_id],
              poster: File.new("#{Rails.root}/faker/#{past_events[3][:image]}")
             )
-e2 = Event.create(user_id: organizers_db[3].id, name: past_events[4][:name], start_time: date,
-             end_time: date + 0.2, description: past_events[4][:description], location_id: past_events[4][:location_id],
+e.save(:validate => false)
+e2 = Event.new(user_id: organizers_db[3].id, name: past_events[4][:name], start_time: date,
+             end_time: date + 5, description: past_events[4][:description], location_id: past_events[4][:location_id],
              poster: File.new("#{Rails.root}/faker/#{past_events[4][:image]}")
             )
+e2.save(:validate => false)
 i = performers_db[3].invitations.create(to: organizers_db[3].id, event_id: e.id, accepted: true, rejected: false, responded: true)
 i = performers_db[3].invitations.create(to: organizers_db[3].id, event_id: e2.id, accepted: true, rejected: false, responded: true)
 r1 = Review.create(user_id: organizers_db[3].id, to: performers_db[3].id, rating: rand(0..5), event_id: e.id,
@@ -350,8 +349,11 @@ places = [
     u.contents.create(role: 1, content_type: 1, content: Faker::Name.name, role: u.role)
     u.save
 
-    e = Event.create(user_id: organizers_db[rand(organizers_db.length - 1)].id, name: Faker::Lorem.sentence, description: Faker::Lorem.sentence(3),
-                     start_time: Faker::Time.forward(6), end_time: Faker::Time.forward(20), location_id: l.id)
+    e = Event.new(user_id: organizers_db[rand(organizers_db.length - 1)].id, name: Faker::Lorem.sentence, 
+                  description: Faker::Lorem.sentence(3),
+                  start_time: Faker::Time.between(DateTime.now + 1, DateTime.now + 4), 
+                  end_time: Faker::Time.between(DateTime.now + 5, DateTime.now + 10), location_id: l.id)
+    e.save(:validate => :false)
 
   end
 end
