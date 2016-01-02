@@ -19,6 +19,8 @@
 *.swo
 .*.swo
 
+.ruby-version
+
 .DS_Store
 .content_types.txt
 faker/*
