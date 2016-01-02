@@ -13,7 +13,12 @@ class SettingsController < ApplicationController
     end
 
     flash[:notice] = I18n.t('flash.flash_settings_language_notice')
-    redirect_to settings_path
+
+    if user_signed_in?
+        redirect_to settings_path
+    else
+        redirect_to root_path
+    end
   end
 
   private

@@ -33,6 +33,7 @@ cs:
     remember_me: 'Pamatovat'
     english: 'Angličtina'
     czech: 'Čeština'
+    learn_more: 'Začít znovu'
 
     # navbar
     home: 'Hlavní'

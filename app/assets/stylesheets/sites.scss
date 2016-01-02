@@ -1,5 +1,7 @@
 $brand-primary: #3ab795;
 $navbar-height: 50px;
+$footer-height: 30px;
+$navbar-default-bg: #2a333b;
 
 img.nav-avatar {
     width: 20px;
@@ -23,11 +25,54 @@ div.wrapper {
 
 .marketing1, .marketing2 {
     background-size: cover;
-    height: 100vh; 
+    height: calc(100vh - #{$footer-height}); 
     margin-top: -#{$navbar-height};
     color: $brand-primary;
     position: relative;
     text-align: center;
+}
+
+.footer-index {
+    height: $footer-height;
+    margin: 0px;
+    padding: 5px;
+    background-color: $navbar-default-bg;
+    border-top: 1px solid $brand-primary;
+    color: $brand-primary;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.footer-languages {
+    ul {
+        list-style-type: none;
+        padding: 0px;
+        margin: 0px;
+
+        li {
+            display: inline;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+}
+
+.flag {
+    width: 20px;
+    margin-left: 5px;
+}
+
+.footer-pages {
 }
 
 div.filler {

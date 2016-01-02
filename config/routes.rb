@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get '/discover' => 'discover#index', as: 'discover'
 
   get '/settings' => 'settings#index', as: 'settings'
-  post '/settings/language' => 'settings#change_language'
+  post '/settings/language' => 'settings#change_language', as: 'settings_change_language'
 
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

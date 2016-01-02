@@ -1,0 +1,13 @@
+<div class="col-md-12 footer-index">
+    <div class="footer-links">
+        <div class="footer-languages">
+            <ul>
+                <li><%= link_to(image_tag("https://s3.amazonaws.com/dignus.s3-ireland.amazonaws.com/static/gb.svg", alt: "English", title: "English", class: "flag"), settings_change_language_path(:settings => { :langid => 1 }), method: :post) %></li>
+                <li><%= link_to(image_tag("https://s3.amazonaws.com/dignus.s3-ireland.amazonaws.com/static/cz.svg", alt: "Czech", title: "Czech", class: "flag"), settings_change_language_path(:settings => { :langid => 2 }), method: :post) %></li>
+            </ul>
+        </div>
+        <div class="footer-pages">
+            <%= link_to I18n.t :learn_more, root_path %>
+        </div>
+    </div>
+</div>
