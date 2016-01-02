@@ -4,4 +4,7 @@ class SitesController < ApplicationController
 
   def settings
   end
+
+  def learn_more
+  end
 end

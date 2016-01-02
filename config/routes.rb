@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get '/settings' => 'settings#index', as: 'settings'
   post '/settings/language' => 'settings#change_language', as: 'settings_change_language'
 
+  get '/learn_more' => 'sites#learn_more', as: 'learn_more'
+
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

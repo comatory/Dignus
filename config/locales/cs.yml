@@ -264,3 +264,53 @@ cs:
                 end_time: 'Konec'
 
 
+    learn_more: 
+        learn_more_link: 'Více informací'
+        block1:
+            heading: 'Co je Dignus?'
+            content: >
+                Je to sociální síť, která pomáhá spojovat lidi s podobnými
+                zájmy.
+                Dignus je výhodný pro organizátory akcí, aby mohli mít na svém 
+                programu kvalitní umělce a zadarmo.
+                Stejně výhodné je to i pro umělce, kteří si ve svém okolí 
+                najdou akce na kterých mohou vystupovat.
+        block2:
+            heading: 'Pro koho to je?'
+            content: >
+                Dignus je užitečný pro různé skupiny lidí. Nemusí jít nutně 
+                o hudební producenty a promotéry.
+                Například neziskové organizace, které většinou nedisponují 
+                rozpočtem pro kulturní akce, mohou použít Dignus k tomu, aby 
+                si našli muzikanti či řečníky zadarmo.
+                Stejně tak to platí pro malé školy či školky, které třeba
+                shánějí divadelníky na svoje vánoční představení.
+                Samozřejmě, že Dignus je skvělý pro začínající muzikanty,
+                ale ostatní druhy umělců (řečníci, tanečníci apod.) jej 
+                využijí taktéž.
+        block3:
+            heading: 'Organizátoři & Umělci'
+            content: >
+                Když chcete všechny funkce stránky využít naplno, musíte se
+                zaregistrovat a to buď jako umělec nebo jako organizátor.
+                Oba dva typy uživatelů mohou dělat to samé ať už jde o pozvánky,
+                posílání zpráv a vyhledávání. Jediný rozdíl je v tom,
+                že pouze organizátoři mohou vytvářet akce, na kterých pak
+                umělci mohou hrát.
+        block4:
+            heading: 'Akce'
+            content: >
+                Organizátoři jsou ti, co mohou vytvářet akce. Ty musí mít 
+                začátek a konec. Taktéž je u nich určeno, na kterém místě 
+                se budou konat.
+                Když je akce vytvořena tak organizátoři si mohou umělce najít
+                a pozvat je na svoji akci. Stejně tak umělci si mohou najít akci
+                a poslat na ni svoji pozvánku, funguje to na obě strany.
+        block5:
+            heading: 'Vyhledávání & Doporučení'
+            content: >
+                Každá organizátor, umělec či akce můžou být vyhledáni
+                skrze full-textové vyhledávání. Všechno je možné otagovat 
+                (oštítkovat), což pomůže ostatním vás lépe najít.
+                Každý uživatel Dignusu má k dispozici funkci Doporučení, 
+                která mu zobrazí co všechno se děje v jeho okolí.

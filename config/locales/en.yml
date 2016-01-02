@@ -259,3 +259,57 @@ en:
         flash_reviews_notice: 'You reviewed the user'
         flash_settings_language_notice: 'Language switched'
         flash_users_profile_update: 'Profile updated succesfully'
+
+    learn_more: 
+        learn_more_link: 'Learn more'
+        block1:
+            heading: 'What is Dignus?'
+            content: >
+                It's a social network that helps people with similar interests
+                and goals look each other up.
+                Dignus helps organizers to get performers for their events
+                without any cost.
+                It works the other way around for performers who can look up
+                events in their area and invite themselves.
+        block2:
+            heading: 'Who is Dignus for?'
+            content: >
+                The scope of users is broader than just musicians. Organizers do
+                not have to be music promoters. They could be coming from any
+                kind of organization, for example non-profit group that has no
+                budget to spend on entertainment on their fundraisers.
+                Maybe a small school or kindergarten needs a christmas theatre
+                play for cheap.
+                The design of site is well-made for musicians but works very well
+                for other kinds of performers - dancers, artists, athletes or even
+                public speakers.
+        block3:
+            heading: 'Organizers and Performers'
+            content: >
+                Everyone who wishes to use full features of the website must sign
+                up either as a performer or an organizer.
+                Both kind of users can do all operations like sending each other
+                invites, messaging and searching. The only difference is that
+                organizers are the only ones who can create
+                events.
+        block4:
+            heading: 'Events'
+            content: >
+                Can be created only by organizers. Events have a starting and
+                ending time. They display the location of the event, such as
+                club or venue. If the place is available in Google Maps, then more
+                information will be displayed.
+                After the event is created, it is available to any user or visitor 
+                of Dignus. Organizers can look up performers and invite them to 
+                the event. Performers can also see the event page and offer their
+                performance for that particular event. It means the invitations
+                are bi-directional.
+        block5:
+            heading: 'Discovery & Search'
+            content: >
+                Every organizer, performer or event is searchable via full-text
+                search.
+                Everything is also taggable so events can be matched to performers
+                and the other way around.
+                Users of Dignus can use Discover feature to see what is happening
+                around them.
