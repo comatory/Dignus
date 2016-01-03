@@ -282,19 +282,18 @@ cs:
                 o hudební producenty a promotéry.
                 Například neziskové organizace, které většinou nedisponují 
                 rozpočtem pro kulturní akce, mohou použít Dignus k tomu, aby 
-                si našli muzikanti či řečníky zadarmo.
+                si našli muzikanty či řečníky zadarmo.
                 Stejně tak to platí pro malé školy či školky, které třeba
                 shánějí divadelníky na svoje vánoční představení.
-                Samozřejmě, že Dignus je skvělý pro začínající muzikanty,
-                ale ostatní druhy umělců (řečníci, tanečníci apod.) jej 
-                využijí taktéž.
+                Své si tu najdou jak začínající hudebníci, tak i třeba tanečníci, 
+                řečnící a podobně.
         block3:
             heading: 'Organizátoři & Umělci'
             content: >
-                Když chcete všechny funkce stránky využít naplno, musíte se
+                Pokud chcete využít všechny funkce naplno, musíte se
                 zaregistrovat a to buď jako umělec nebo jako organizátor.
-                Oba dva typy uživatelů mohou dělat to samé ať už jde o pozvánky,
-                posílání zpráv a vyhledávání. Jediný rozdíl je v tom,
+                Oba dva typy uživatelů mohou dělat to samé, ať už jde o pozvánky,
+                posílání zpráv či vyhledávání. Jediný rozdíl je v tom,
                 že pouze organizátoři mohou vytvářet akce, na kterých pak
                 umělci mohou hrát.
         block4:
@@ -306,11 +305,13 @@ cs:
                 Když je akce vytvořena tak organizátoři si mohou umělce najít
                 a pozvat je na svoji akci. Stejně tak umělci si mohou najít akci
                 a poslat na ni svoji pozvánku, funguje to na obě strany.
+                Jakmile je pozvánka schválena, umělec se automaticky stává vystupujícím
+                na akci.
         block5:
             heading: 'Vyhledávání & Doporučení'
             content: >
-                Každá organizátor, umělec či akce můžou být vyhledáni
+                Každá akce či uživatel může být nalezen
                 skrze full-textové vyhledávání. Všechno je možné otagovat 
-                (oštítkovat), což pomůže ostatním vás lépe najít.
+                (oštítkovat) a tím pádem i snáze vyhledat.
                 Každý uživatel Dignusu má k dispozici funkci Doporučení, 
-                která mu zobrazí co všechno se děje v jeho okolí.
+                která mu zobrazí vše, co se děje v jeho okolí.
