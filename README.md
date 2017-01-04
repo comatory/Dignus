@@ -1,12 +1,8 @@
-![](https://s3-eu-west-1.amazonaws.com/comatory-personal/dignus-preview.png)
-
-Live version: [https://dign.us](https://dign.us)
-
 # Dignus
 
 _"Connecting event organizers and performers"_
 
-This app was conceived as a final project of Ironhack Web Development Bootcamp and the intial version was written in two weeks. This is a work in progress.
+This app was conceived as a final project of Ironhack Web Development Bootcamp and the intial version was written in two weeks.
 
 __Web app written in Rails 4 that helps connect two groups of people__
 
@@ -33,11 +29,11 @@ __Web app written in Rails 4 that helps connect two groups of people__
 
 ## Setup & deployment
 
-- My live version is deployed on Heroku.
+- My live version was deployed on Heroku.
 
 - You need PostgreSQL database in order for the live search to work because it is integrated with [textacular gem](https://github.com/textacular/textacular) that relies on trigram function of the database.
 
-- Mailer needs to be set up with your own credentials via [Figaro](https://github.com/laserlemon/figaro).
+- Mailer needs to be set up with your own credentials, I used [Figaro](https://github.com/laserlemon/figaro).
 
 - The app uses AWS S3 storage with Paperclip. You can configure the credentials for AWS and start using it (development mode uses local storage).
 
